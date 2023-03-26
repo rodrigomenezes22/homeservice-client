@@ -1,25 +1,27 @@
+
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+
 import { toast } from "react-toastify";
 
-const Register = ({ setAuth, setUserid }) => {
+const Login = ({ setAuth, setUserid }) => {
   const [inputs, setInputs] = useState({
-    role: "",
     email: "",
     password: ""
   });
 
-  const {role, email, password } = inputs;
+  const { email, password } = inputs;
 
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
   const onSubmitForm = async e => {
     e.preventDefault();
+
     try {
-      const body = {  role, email, password };
+      const body = { email, password };
       const response = await fetch(
-        "http://localhost:8000/api/auth/register",
+        "http://localhost:8000/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -28,13 +30,16 @@ const Register = ({ setAuth, setUserid }) => {
           body: JSON.stringify(body)
         }
       );
+
       const parseRes = await response.json();
+    
+      console.log(parseRes.userId);
 
       if (parseRes.jwtToken) {
         localStorage.setItem("jwtToken", parseRes.jwtToken);
         setAuth(true);
-        setUserid(parseRes.userid);
-        toast.success("Register Successfully");
+        setUserid(parseRes.userId);
+        toast.success("Logged in Successfully");
       } else {
         setAuth(false);
         toast.error(parseRes);
@@ -46,13 +51,12 @@ const Register = ({ setAuth, setUserid }) => {
 
   return (
     <Fragment>
-      <h1 className="mt-5 text-center">Register</h1>
+      <h1 className="mt-5 text-center">Login</h1>
       <form onSubmit={onSubmitForm}>
         <input
           type="text"
           name="email"
           value={email}
-          placeholder="email"
           onChange={e => onChange(e)}
           className="form-control my-3"
         />
@@ -60,23 +64,14 @@ const Register = ({ setAuth, setUserid }) => {
           type="password"
           name="password"
           value={password}
-          placeholder="password"
-          onChange={e => onChange(e)}
-          className="form-control my-3"
-        />
-        <input
-          type="text"
-          name="role"
-          value={role}
-          placeholder="Role"
           onChange={e => onChange(e)}
           className="form-control my-3"
         />
         <button className="btn btn-success btn-block">Submit</button>
       </form>
-      <Link to="/login">login</Link>
+      <Link to="/register">register</Link>
     </Fragment>
   );
 };
 
-export default Register;
+export default Login;
