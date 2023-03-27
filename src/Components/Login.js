@@ -12,6 +12,8 @@ const Login = ({ setAuth, setUserid }) => {
 
   const { email, password } = inputs;
 
+  const [invalidLogin, setInvalidLogin ] = useState(false);
+
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
@@ -33,10 +35,16 @@ const Login = ({ setAuth, setUserid }) => {
 
       const parseRes = await response.json();
     
-      console.log(parseRes.userId);
+      console.log(parseRes);
+      setInvalidLogin(false)
+      if(parseRes === "Invalid Credential") {
+        setInvalidLogin(true);
+      }
+
 
       if (parseRes.jwtToken) {
         localStorage.setItem("jwtToken", parseRes.jwtToken);
+        localStorage.setItem("userId", parseRes.userId);
         setAuth(true);
         setUserid(parseRes.userId);
         toast.success("Logged in Successfully");
@@ -44,8 +52,8 @@ const Login = ({ setAuth, setUserid }) => {
         setAuth(false);
         toast.error(parseRes);
       }
-    } catch (err) {
-      console.error(err.message);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -67,6 +75,7 @@ const Login = ({ setAuth, setUserid }) => {
           onChange={e => onChange(e)}
           className="form-control my-3"
         />
+        { invalidLogin ? <div className="alert alert-warning d-flex align-items-center" role="alert">Username or Password is not correct.</div> : <></> }
         <button className="btn btn-success btn-block">Submit</button>
       </form>
       <Link to="/register">register</Link>
