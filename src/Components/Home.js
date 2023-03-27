@@ -1,18 +1,12 @@
 import React from "react";
-import ImageUploadForm from "./PropertyImage";
 import ButtonRight from './ui/ButtonRight'
 import Hero from './Hero';
-import CategoryUploadForm from "./Category";
-
-
 
 function Home() {
   return (
     <div>
-
-      <Hero />
-      <ImageUploadForm />
-      <CategoryUploadForm />
+    Home Page
+       <Hero />
       <h1 className="pacifico">Home Page</h1>
       <ButtonRight
         name="Test button"
