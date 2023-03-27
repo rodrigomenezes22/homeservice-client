@@ -1,3 +1,19 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Trykker&display=swap');
+
+.pacifico {
+  font-family: 'Pacifico', cursive;
+}
+
+.trykker {
+  font-family: 'Trykker', serif;
+}
+
+.material-symbols-rounded {
+  font-size: 16px!important;
+  height: 16px;
+}
+
 .App {
   text-align: center;
 }
@@ -13,6 +29,8 @@
   }
 }
 
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -26,6 +44,16 @@
 
 .App-link {
   color: #61dafb;
+}
+
+
+.button-organizer {
+  display: flex;
+  align-items: center;
+}
+
+.button-organizer span {
+  padding-left: 10px
 }
 
 @keyframes App-logo-spin {
