@@ -1,11 +1,12 @@
 import React from "react";
-
-import ButtonRight from "./ui/ButtonRight";
+import ButtonRight from './ui/ButtonRight'
+import Hero from './Hero';
 
 function Home() {
   return (
     <div>
-      Home Page
+    Home Page
+       <Hero />
       <h1 className="pacifico">Home Page</h1>
       <ButtonRight
         name="Test button"

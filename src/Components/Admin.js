@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const Admin = ({ setAuth, userid }) => {
-  const [name, setName] = useState("");
+const Admin = ({ setAuth, userid, name, setName }) => {
+
 
   const getProfile = async () => {
 
