@@ -9,7 +9,7 @@ const Admin = ({ setAuth, userid }) => {
     try {
       const res = await fetch(`http://localhost:8000/api/admin/${userid}`, {
         method: "POST",
-        headers: { token: localStorage.jwtToken }
+        headers: { jwtToken: localStorage.jwtToken }
       });
 
       const parseData = await res.json();
@@ -24,6 +24,7 @@ const Admin = ({ setAuth, userid }) => {
     e.preventDefault();
     try {
       localStorage.removeItem("jwtToken");
+      localStorage.removeItem("userId");
       setAuth(false);
       toast.success("Logout successfully");
     } catch (err) {

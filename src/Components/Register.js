@@ -4,12 +4,17 @@ import { toast } from "react-toastify";
 
 const Register = ({ setAuth, setUserid }) => {
   const [inputs, setInputs] = useState({
-    role: "",
+
     email: "",
-    password: ""
+    password: "",
+    confirmPass: ""
   });
 
-  const {role, email, password } = inputs;
+  const [isError, setIsError ] = useState(false);
+
+  const [passwordMatch, setPasswordMatch ] = useState(false);
+
+  const { email, password, confirmPass } = inputs;
 
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -17,7 +22,7 @@ const Register = ({ setAuth, setUserid }) => {
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
-      const body = {  role, email, password };
+      const body = {  email, password, confirmPass };
       const response = await fetch(
         "http://localhost:8000/api/auth/register",
         {
@@ -29,18 +34,30 @@ const Register = ({ setAuth, setUserid }) => {
         }
       );
       const parseRes = await response.json();
+      
+      setPasswordMatch(false);
+      setIsError(false);
+
+
+      if (parseRes === "User already exists!") {
+        return setIsError(true);
+      } else if (parseRes === "Passwords do not match!") {
+        return setPasswordMatch(true);
+      }
+
 
       if (parseRes.jwtToken) {
         localStorage.setItem("jwtToken", parseRes.jwtToken);
+        localStorage.setItem("userId", parseRes.userId);
         setAuth(true);
-        setUserid(parseRes.userid);
+        setUserid(parseRes.userId);
         toast.success("Register Successfully");
       } else {
         setAuth(false);
         toast.error(parseRes);
       }
-    } catch (err) {
-      console.error(err.message);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -65,13 +82,15 @@ const Register = ({ setAuth, setUserid }) => {
           className="form-control my-3"
         />
         <input
-          type="text"
-          name="role"
-          value={role}
-          placeholder="Role"
+          type="password"
+          name="confirmPass"
+          value={confirmPass}
+          placeholder="Confirm Password"
           onChange={e => onChange(e)}
           className="form-control my-3"
         />
+        { isError ? <div className="alert alert-warning d-flex align-items-center" role="alert">User already Exists - Got to&nbsp;  <Link to="/login"> login</Link></div> : <></> }
+        { passwordMatch ? <div className="alert alert-warning d-flex align-items-center" role="alert">Password do not match!</div> : <></> }
         <button className="btn btn-success btn-block">Submit</button>
       </form>
       <Link to="/login">login</Link>
