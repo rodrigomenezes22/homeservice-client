@@ -1,8 +1,9 @@
 
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-
 import { toast } from "react-toastify";
+import ButtonRight from "./ui/ButtonRight";
+
 
 const Login = ({ setAuth, setUserid }) => {
   const [inputs, setInputs] = useState({
@@ -76,7 +77,9 @@ const Login = ({ setAuth, setUserid }) => {
           className="form-control my-3"
         />
         { invalidLogin ? <div className="alert alert-warning d-flex align-items-center" role="alert">Username or Password is not correct.</div> : <></> }
-        <button className="btn btn-success btn-block">Submit</button>
+        {/* <button className="btn btn-success btn-block">Submit</button> */}
+        <ButtonRight name="Submit" icon="search" styles="btn btn-success rounded-pill " />
+
       </form>
       <Link to="/register">register</Link>
     </Fragment>
