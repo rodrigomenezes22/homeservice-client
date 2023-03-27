@@ -17,6 +17,8 @@ function App() {
   
   const [ userid, setUserid ] = useState();
 
+  const [name, setName] = useState("");
+
   async function isAuth() {
     try {
       const response = await fetch(`http://localhost:8000/api/auth/isverify`, {
@@ -49,11 +51,11 @@ function App() {
 
   return (
     <Fragment>
-      <Header />
+      <Header isAuthenticated={isAuthenticated} name={name} />
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={ isAuthenticated ?  <Admin setAuth={setAuth} userid={userid} /> : <Navigate to="/login" /> } />
+          <Route path="/admin" element={ isAuthenticated ?  <Admin setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
           <Route path="/register" element={ !isAuthenticated ? <Register setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/login" />  } />
           <Route path="/login" element={  !isAuthenticated ? <Login setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/admin" /> } />
         </Routes>
