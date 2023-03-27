@@ -1,9 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Trykker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&family=Pacifico&family=Trykker&display=swap');
 
 :root {
   --primary: #3B7ABD;
   --secondary: #F28243;
+  --footer: #303030;
 }
 
 * {
@@ -19,11 +20,29 @@
   font-family: 'Trykker', serif;
 }
 
+.opensans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.font-primary {
+  color: var(--primary);
+}
+
 .material-symbols-rounded {
   font-size: 16px!important;
   height: 16px;
 }
 
+
+/* Helpers */
+.has-max-width {
+  max-width: 550px;
+  padding: 3rem;
+  border: 1px solid var(--primary);
+  border-radius: 11px;
+  background-color: white;
+  box-shadow: 1px 3px 15px rgba(0,0,0,0.2);
+}
 
 /* Header Section */
 header {
@@ -160,6 +179,20 @@ header {
   color: var(--secondary)
 }
 
+.nav-pills .nav-link {
+  transition: background-color .7s;
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--primary)!important;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: var(--secondary)!important;
+  color: white;
+
+}
+
 /* Website General */
 
 .App {
@@ -213,6 +246,29 @@ header {
   }
 }
 
+/* Footer */
+footer {
+  background-color: var(--footer);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
+.footer-logo {
+  margin-top: -2.9rem;
+}
+
+.footer-item {
+  text-decoration: none;
+  color: white;
+  padding-bottom: 1rem;
+}
+
+.footer-item:hover {
+  color: var(--secondary);
+}
 
 @media (max-width: 991px) {
     .mobile-hidden {

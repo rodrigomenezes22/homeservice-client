@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
+import Container from "react-bootstrap/Container"
 
 const Register = ({ setAuth, setUserid }) => {
   const [inputs, setInputs] = useState({
@@ -63,7 +64,20 @@ const Register = ({ setAuth, setUserid }) => {
 
   return (
     <Fragment>
-      <h1 className="mt-5 text-center">Register</h1>
+      <div className="container justify-content-center d-flex align-items-center">
+        <div className="has-max-width mt-5">
+      
+        <ul class="nav nav-pills nav-fill mb-3">
+          <li class="nav-item">
+            <Link className="nav-link active" aria-current="page" to="/register">Home Owner</Link>
+          </li>
+          <li class="nav-item">
+            <Link className="nav-link" to="service-provider-register">Service Provider</Link>
+          </li>
+
+        </ul>
+      <p>Register here to publish the tasks needed at your home!</p>
+      <h2 className="opensans font-primary h4 mt-3 text-start">Register here</h2>
       <form onSubmit={onSubmitForm}>
         <input
           type="text"
@@ -91,9 +105,18 @@ const Register = ({ setAuth, setUserid }) => {
         />
         { isError ? <div className="alert alert-warning d-flex align-items-center" role="alert">User already Exists - Got to&nbsp;  <Link to="/login"> login</Link></div> : <></> }
         { passwordMatch ? <div className="alert alert-warning d-flex align-items-center" role="alert">Password do not match!</div> : <></> }
-        <button className="btn btn-success btn-block">Submit</button>
+        <button className="btn btn-success btn-block rounded-pill color-primary">
+          <div className="button-organizer">Submit
+          <span className="material-symbols-rounded">
+            how_to_reg
+          </span>
+          </div>
+        </button>
       </form>
-      <Link to="/login">login</Link>
+      <p>Already have an account with us? <Link to="/login">Click here to Login</Link></p>
+      
+      </div>
+      </div>
     </Fragment>
   );
 };
