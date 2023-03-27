@@ -60,7 +60,20 @@ const Login = ({ setAuth, setUserid }) => {
 
   return (
     <Fragment>
-      <h1 className="mt-5 text-center">Login</h1>
+      <div className="container justify-content-center d-flex align-items-center">
+        <div className="has-max-width mt-5">
+      
+        <ul class="nav nav-pills nav-fill mb-3">
+          <li class="nav-item">
+            <Link className="nav-link active" aria-current="page" to="/register">Home Owner</Link>
+          </li>
+          <li class="nav-item">
+            <Link className="nav-link" to="service-provider-register">Service Provider</Link>
+          </li>
+
+        </ul>
+        <p>Login area for Home Owners and Residents.</p>
+      <h2 className="opensans font-primary h4 mt-3 text-start">Login here</h2>
       <form onSubmit={onSubmitForm}>
         <input
           type="text"
@@ -77,11 +90,21 @@ const Login = ({ setAuth, setUserid }) => {
           className="form-control my-3"
         />
         { invalidLogin ? <div className="alert alert-warning d-flex align-items-center" role="alert">Username or Password is not correct.</div> : <></> }
-        {/* <button className="btn btn-success btn-block">Submit</button> */}
-        <ButtonRight name="Submit" icon="search" styles="btn btn-success rounded-pill " />
+        <button className="btn btn-success btn-block rounded-pill color-primary">
+          <div className="button-organizer">
+          Submit
+          <span className="material-symbols-rounded icon-small">
+            login
+          </span>
+          </div>
+        </button> 
+
+
 
       </form>
-      <Link to="/register">register</Link>
+      <p>If you do not have an account <Link to="/register">Click here to Register.</Link></p>
+      </div>
+      </div>
     </Fragment>
   );
 };
