@@ -3,7 +3,7 @@ import ImageUploadForm from "./PropertyImage";
 import ButtonRight from './ui/ButtonRight'
 import Hero from './Hero';
 import CategoryUploadForm from "./Category";
-import ButtonRight from "./ui/ButtonRight";
+
 
 
 function Home() {
