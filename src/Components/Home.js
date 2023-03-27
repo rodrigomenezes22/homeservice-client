@@ -1,13 +1,14 @@
 import React from "react";
 import ImageUploadForm from "./PropertyImage";
 import ButtonRight from './ui/ButtonRight'
-
+import Hero from './Hero';
 
 function Home() {
   return (
     <div>
+      <Hero />
 
-      Home Page
+
       <ImageUploadForm />
       <h1 className='pacifico'>Home Page</h1>
       <ButtonRight name="Test button" styles="btn btn-primary rounded-pill" icon="arrow_forward_ios" />
