@@ -1,50 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function ImageUploadForm() {
+function CategoryUploadForm() {
   const [file, setFile] = useState(null);
-  const [altdescription, setAltdescription] = useState("");
-  const [propertyid, setPropertyid] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleFileInputChange = (event) => {
     setFile(event.target.files[0]);
   };
 
-  const handleTitleInputChange = (event) => {
-    setAltdescription(event.target.value);
+  const handledescriptionInputChange = (event) => {
+    setDescription(event.target.value);
   };
 
-  const handlePropertyIdInputChange = (event) => {
-    setPropertyid(event.target.value);
+  const handlecategoryInputChange = (event) => {
+    setCategory(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("altdescription", altdescription);
-    formData.append("propertyid", propertyid);
+    formData.append("description", description);
+    formData.append("category", category);
     console.log("********");
     console.log(formData);
     console.log("********");
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_BASE_URL}/api/propertyImage/upload-image`,
+        `${process.env.REACT_APP_SERVER_BASE_URL}/api/category/upload-image`,
         formData
       );
       console.log(response.data.secureUrl);
-      console.log(response.data.altdescription);
-      setAltdescription("");
-      setPropertyid("");
-      setFile(null);
+      console.log(response.data.description);
     } catch (error) {
       console.error(error);
     }
+    setDescription("");
+    setCategory("");
+    setFile(null);
   };
 
   return (
     <>
-      <h2> Property </h2>
+      <h2> Category </h2>
       <form onSubmit={handleSubmit}>
         <label>
           Image File:
@@ -54,16 +54,16 @@ function ImageUploadForm() {
           Description:
           <input
             type="text"
-            value={altdescription}
-            onChange={handleTitleInputChange}
+            value={description}
+            onChange={handledescriptionInputChange}
           />
         </label>
         <label>
-          PropertyID:
+          Category:
           <input
             type="text"
-            value={propertyid}
-            onChange={handlePropertyIdInputChange}
+            value={category}
+            onChange={handlecategoryInputChange}
           />
         </label>
         <br />
@@ -73,4 +73,4 @@ function ImageUploadForm() {
   );
 }
 
-export default ImageUploadForm;
+export default CategoryUploadForm;
