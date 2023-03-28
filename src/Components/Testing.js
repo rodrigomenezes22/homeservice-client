@@ -1,4 +1,3 @@
-import ServiceProvider from "./ServiceProvider";
 import ImageUploadForm from "./PropertyImage";
 import CategoryUploadForm from "./Category";
 import React from "react";
@@ -9,7 +8,6 @@ function Testing() {
       <ImageUploadForm />
 
       <CategoryUploadForm />
-      <ServiceProvider />
     </div>
   );
 }

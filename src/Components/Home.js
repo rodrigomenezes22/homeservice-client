@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonRight from './ui/ButtonRight'
-import Hero from './Hero';
+import ButtonRight from "./ui/ButtonRight";
+import Hero from "./Hero";
 
 function Home() {
   return (
