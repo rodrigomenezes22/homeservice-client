@@ -15,6 +15,8 @@ const Admin = ({ setAuth, userid, name, setName }) => {
 
   const [ propertyCount, setPropertyCount ] = useState("");
 
+  const [ properties, setProperties ] = useState([]);
+
   const navigate = useNavigate();
 
   const getProfile = async () => {
@@ -54,8 +56,9 @@ const Admin = ({ setAuth, userid, name, setName }) => {
 
       console.log(propertyData);
       
-      setPropertyCount(propertyData.length +1);
 
+      setPropertyCount(propertyData.length);
+      setProperties(propertyData);
 
     } catch (error) {
       console.log(error);
@@ -73,6 +76,10 @@ const Admin = ({ setAuth, userid, name, setName }) => {
       console.error(err.message);
     }
   };
+
+ const goToProperties = () => {
+  navigate("/manage-properties")
+ }
 
   useEffect(() => {
     getProfile();
@@ -117,77 +124,78 @@ const Admin = ({ setAuth, userid, name, setName }) => {
 
   return (
     <section className="admin-panel">
-      <div className="container">
+
       <div className="container justify-content-center d-flex align-items-center">
         <div className="has-max-width mt-5">
-        <h2 className="opensans font-primary">Welcome {name}</h2>
-        { incompleteRegis ? (
+            <h2 className="opensans font-primary">Welcome {name}</h2>
+            { incompleteRegis ? (
 
-            <form onSubmit={handleSubmit}>
-            <h3 className="opensans font-primary h4 mt-3 text-start">Update Contact Information</h3>
-            <label for="firstname" className="label mt-3">First Name</label>
-            <input type="text" placeholder="First name" className="form-control" name="firstname" value={userData.firstname} onChange={handleChange} />
-            <label for="lastname"  className="label mt-3">Last Name</label>
-            <input type="text" placeholder="Last name" className="form-control" name="lastname" value={userData.lastname} onChange={handleChange} />
-            <label for="email"  className="label mt-3">Email</label>
-            <input type="email"  className="form-control" name="email" value={userData.email} onChange={handleChange} />
-            <label for="phone"  className="label mt-3">Phone</label>
-            <input type="number"  placeholder="Phone" className="form-control" name="phone" value={userData.phone} onChange={handleChange} />
-            <button className="btn btn-primary prirmary-color mt-3 mb-3">Update Info</button>
-            </form>
+                <form onSubmit={handleSubmit}>
+                <h3 className="opensans font-primary h4 mt-3 text-start">Update Contact Information</h3>
+                <label for="firstname" className="label mt-3">First Name</label>
+                <input type="text" placeholder="First name" className="form-control" name="firstname" value={userData.firstname} onChange={handleChange} />
+                <label for="lastname"  className="label mt-3">Last Name</label>
+                <input type="text" placeholder="Last name" className="form-control" name="lastname" value={userData.lastname} onChange={handleChange} />
+                <label for="email"  className="label mt-3">Email</label>
+                <input type="email"  className="form-control" name="email" value={userData.email} onChange={handleChange} />
+                <label for="phone"  className="label mt-3">Phone</label>
+                <input type="number"  placeholder="Phone" className="form-control" name="phone" value={userData.phone} onChange={handleChange} />
+                <button className="btn btn-primary prirmary-color mt-3 mb-3">Update Info</button>
+                </form>
 
-        ) : (
-            <>
-            <h2 className="opensans font-primary"></h2>
-            <div className="card-admin-properties">
-                <div className="card-body">
-                  <div className="icon-card">
-                  <span class="material-symbols-rounded font-primary icon-xxl">
-                    real_estate_agent
-                  </span>
-                  </div>
-                  <div className="text">
-                    <h3 className="font-primary h4">Your properties</h3>
-                    <p>You have {propertyCount} Property</p>
-                  </div>
+            ) : (
+                <>
+                <h2 className="opensans font-primary"></h2>
+                <div className="card-admin-properties">
+                    <div className="card-body">
+                      <div className="icon-card">
+                      <span class="material-symbols-rounded font-primary icon-xxl">
+                        real_estate_agent
+                      </span>
+                      </div>
+                      <div className="text">
+                        <h3 className="font-primary h4">Your properties</h3>
+                        <p>You have {propertyCount} Property</p>
+                      </div>
+                    </div>
+                    
+                    <div className="buttons-card">
+                      <button className="card-button button-primary" onClick={goToProperties}>
+                        <span class="material-symbols-rounded">
+                        real_estate_agent
+                        </span>
+                        <p>Manage</p>
+                        <p>Properties</p>
+                      </button>
+
+                      <button className="card-button button-primary">
+                        <span class="material-symbols-rounded">
+                        add_box
+                        </span>
+                        <p>Add</p>
+                        <p>Property</p>
+                      </button>
+                    </div>
                 </div>
-                
-                <div className="buttons-card">
-                  <button className="card-button button-primary">
-                    <span class="material-symbols-rounded">
-                    real_estate_agent
-                    </span>
-                    <p>Manage</p>
-                    <p>Properties</p>
-                  </button>
+                </>
+              )  }
 
-                  <button className="card-button button-primary">
-                    <span class="material-symbols-rounded">
-                    add_box
-                    </span>
-                    <p>Add</p>
-                    <p>Property</p>
-                  </button>
-                </div>
-            </div>
-            </>
-          )  }
+                    {formError !== "" ? (
+                      <div className="alert alert-warning" role="alert">
+                        {formError}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
 
-                {formError !== "" ? (
-                  <div className="alert alert-warning" role="alert">
-                    {formError}
-                  </div>
-                ) : (
-                  <></>
-                )}
-
-        <button onClick={e => logout(e)} className="btn btn-primary">
-   
-          Logout
-        </button>
+            <button onClick={e => logout(e)} className="btn btn-primary">
+      
+              Logout
+            </button>
           </div>
+ 
         </div>      
-      </div>
+
     </section>
   );
 };
