@@ -5,8 +5,8 @@ import Hero from "./Hero";
 function Home() {
   return (
     <div>
-      Home Page
-      <Hero />
+
+       <Hero />
       <h1 className="pacifico">Home Page</h1>
       <ButtonRight
         name="Test button"

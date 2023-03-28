@@ -193,6 +193,69 @@ header {
 
 }
 
+.button-primary {
+  background-color: var(--primary);
+  border: 0px;
+}
+
+/* Cards - admin */
+.card-admin-properties {
+  box-shadow: 1px 3px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  min-width: 320px;
+  margin-bottom: 2rem;
+}
+
+.card-admin-properties .card-body {
+  padding: 1rem;
+  display: flex;
+}
+
+.card-admin-properties .card-body div {
+  padding: 2rem .5rem .5rem .5rem;
+}
+
+
+.buttons-card {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.buttons-card button {
+  flex-grow: 1;
+}
+
+.buttons-card button:first-of-type {
+  border-radius: 0px 0px 0px 10px;
+}
+
+.buttons-card button:last-of-type {
+  border-radius: 0px 0px 10px 0px;
+}
+
+.card-button {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transition: background-color .7s;
+}
+
+.card-button:hover {
+  background-color: var(--secondary);
+}
+
+
+
+.card-button p {
+  margin: 0px;
+  font-size: .7rem;
+  text-transform: uppercase;
+}
+
 /* Website General */
 
 .App {
@@ -310,4 +373,13 @@ footer {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+
+.has-max-width {
+  padding: .75rem;
+  width: 100%;
+  border: none;
+  margin: 0px;
+  box-shadow: none;
 }
