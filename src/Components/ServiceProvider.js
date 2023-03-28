@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import AddServiceProviderForm from "./AddServiceProvider";
 import Testing from "./Testing";
+import ServiceProviderCarousel from "./ServiceProviderCarousel";
 
 function ServiceProvider() {
   const [service, setServices] = useState([]);
@@ -36,78 +34,86 @@ function ServiceProvider() {
   }));
 
   return (
-    <div>
-      {filteredCategories.map((e) => (
-        <div key={e.serviceproviderid}>
-          {e.category && (
-            <Container>
-              {/* first row */}
-              <Row>
-                <Col xs={12} sm={4} md={3}>
-                  <Image
-                    src={e.image}
-                    alt={e.username}
-                    roundedCircle
-                    className="servieprovider-profile-pic"
-                  ></Image>
-                </Col>
-                <Col>
-                  <Row>
-                    {e.firstname} {e.lastname}
-                  </Row>
-                  <Row>Service Offered</Row>
-                  <Row>{e.category.category}</Row>
-                </Col>
-              </Row>
-              {/* Second row */}
-              <Row>{e.description}</Row>
-
-              {/* Third Row */}
-              <Row>
-                {/* call action */}
-                <Col>
-                  <Row>
-                    <span class="material-symbols-rounded icon-large action-item">
+    <>
+      {filteredCategories.map((provider) => (
+        <div key={provider.serviceproviderid}>
+          {provider.category && (
+            <Card className="my-3">
+              <Card.Body>
+                <Row>
+                  <Col xs={12} sm={2} md={2}>
+                    <Image
+                      src={provider.image}
+                      alt={provider.username}
+                      rounded
+                      className="servieprovider-profile-pic"
+                    ></Image>
+                  </Col>
+                  <Col>
+                    <Row className="font-primary h4">
+                      {provider.firstname} {provider.lastname}
+                    </Row>
+                    <Row>Service Offered</Row>
+                    <Row>{provider.category.category}</Row>
+                  </Col>
+                </Row>
+                <Row className="mt-3">{provider.description}</Row>
+                <Row className="mt-3 buttons-card">
+                  <Col
+                    xs={3}
+                    sm={3}
+                    md={3}
+                    className="card-button button-primary"
+                  >
+                    <span className="material-symbols-rounded icon-large action-item">
                       phone_in_talk
                     </span>
-                  </Row>
-                  <Row className="action-item">Call Now!</Row>
-                </Col>
-
-                {/* website */}
-                <Col>
-                  <Row>
-                    <span class="material-symbols-rounded icon-large action-item">
+                    <p className="action-item">Call Now!</p>
+                  </Col>
+                  <Col
+                    xs={3}
+                    sm={3}
+                    md={3}
+                    className="card-button button-primary"
+                  >
+                    <span className="material-symbols-rounded icon-large action-item">
                       globe_uk
                     </span>
-                  </Row>
-                  <Row className="action-item">Website</Row>
-                </Col>
-                <Col>
-                  <Row>
-                    <span class="material-symbols-rounded icon-large action-item">
+                    <p className="action-item">Website</p>
+                  </Col>
+                  <Col
+                    xs={3}
+                    sm={3}
+                    md={3}
+                    className="card-button button-primary"
+                  >
+                    <span className="material-symbols-rounded icon-large action-item">
                       chat
                     </span>
-                  </Row>
-                  <Row className="action-item">Message</Row>
-                </Col>
-                <Col>
-                  <Row>
-                    <span class="material-symbols-rounded icon-large action-item">
+                    <p className="action-item">Message</p>
+                  </Col>
+                  <Col
+                    xs={3}
+                    sm={3}
+                    md={3}
+                    className="card-button button-primary"
+                  >
+                    <span className="material-symbols-rounded icon-large action-item">
                       euro_symbol
                     </span>
-                  </Row>
-                  <Row className="action-item">Get a quote</Row>
-                </Col>
-              </Row>
-            </Container>
+                    <p className="action-item">Get a quote</p>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
           )}
         </div>
       ))}
       <AddServiceProviderForm />
       <h1>Test image upload</h1>
       <Testing />
-    </div>
+      <ServiceProviderCarousel />
+    </>
   );
 }
 
