@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import AddServiceProviderForm from "./AddServiceProvider";
+import Testing from "./Testing";
 
 function ServiceProvider() {
   const [service, setServices] = useState([]);
@@ -36,15 +38,15 @@ function ServiceProvider() {
   return (
     <div>
       {filteredCategories.map((e) => (
-        <div key={e.id}>
+        <div key={e.serviceproviderid}>
           {e.category && (
             <Container>
               {/* first row */}
               <Row>
                 <Col xs={12} sm={4} md={3}>
                   <Image
-                    src={e.category.image}
-                    alt={e.category.category}
+                    src={e.image}
+                    alt={e.username}
                     roundedCircle
                     className="servieprovider-profile-pic"
                   ></Image>
@@ -58,7 +60,7 @@ function ServiceProvider() {
                 </Col>
               </Row>
               {/* Second row */}
-              <Row>{e.category.description}</Row>
+              <Row>{e.description}</Row>
 
               {/* Third Row */}
               <Row>
@@ -102,6 +104,9 @@ function ServiceProvider() {
           )}
         </div>
       ))}
+      <AddServiceProviderForm />
+      <h1>Test image upload</h1>
+      <Testing />
     </div>
   );
 }
