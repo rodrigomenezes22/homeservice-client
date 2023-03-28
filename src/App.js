@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import ManageProperties from "./Components/ManageProperties";
 
 function App() {
 
@@ -58,6 +59,7 @@ function App() {
           <Route path="/admin" element={ isAuthenticated ?  <Admin setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
           <Route path="/register" element={ !isAuthenticated ? <Register setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/login" />  } />
           <Route path="/login" element={  !isAuthenticated ? <Login setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/admin" /> } />
+          <Route path="/manage-properties" element={ isAuthenticated ?  <ManageProperties setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
         </Routes>
 
 
