@@ -1,12 +1,13 @@
 import React from "react";
 import ButtonRight from "./ui/ButtonRight";
 import Hero from "./Hero";
+import ServiceProviderCarousel from "./ServiceProviderCarousel";
 
 function Home() {
   return (
     <div>
-
-       <Hero />
+      <Hero />
+      <ServiceProviderCarousel />
       <h1 className="pacifico">Home Page</h1>
       <ButtonRight
         name="Test button"
