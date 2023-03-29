@@ -42,7 +42,11 @@ function Task() {
         {/*<Button variant="primary">Home</Button>*/}
         </div>
         <div className='details'>
-        <button className="btn btn-primary rounded-pill color-primary" onClick={goHome} >Details</button>
+        <button className="btn btn-primary rounded-pill color-primary" >
+        <Link to="/task-details">
+          Details
+          </Link>  
+          </button>
         </div>
       </Card.Body>
     </Card>

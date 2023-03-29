@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ManageProperties from "./ManageProperties";
 
 const Admin = ({ setAuth, userid, name, setName }) => {
 
@@ -80,6 +81,11 @@ const Admin = ({ setAuth, userid, name, setName }) => {
  const goToProperties = () => {
   navigate("/manage-properties")
  }
+
+ const addProperty = () => {
+  navigate(`/add-property/${userid}`)
+ }
+
 
   useEffect(() => {
     getProfile();
@@ -168,7 +174,7 @@ const Admin = ({ setAuth, userid, name, setName }) => {
                         <p>Properties</p>
                       </button>
 
-                      <button className="card-button button-primary">
+                      <button className="card-button button-primary" onClick={addProperty} >
                         <span class="material-symbols-rounded">
                         add_box
                         </span>
