@@ -4,7 +4,9 @@
 :root {
   --primary: #3B7ABD;
   --secondary: #F28243;
+  --tertiary: #264B72;
   --footer: #303030;
+  --green: #74C384;
 }
 
 * {
@@ -21,12 +23,30 @@
   font-family: 'Trykker', serif;
 }
 
+
 .opensans {
   font-family: 'Open Sans', sans-serif;
 }
 
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.property-header {
+  display: flex;
+}
+
+.icon-container {
+  padding-right: 2rem;
+}
+
 .font-primary {
   color: var(--primary);
+}
+
+.font-tertiary {
+  color: var(--tertiary);
 }
 
 .material-symbols-rounded {
@@ -87,7 +107,7 @@ header {
 .icon-xxl {
   font-size: 50px !important;
   height: 50px;
-  color: var(--primary);
+
 }
 
 .link-user {
@@ -180,6 +200,8 @@ header {
   box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
+
+
 .color-secondary {
   background-color: var(--secondary) !important;
   border: none !important;
@@ -187,6 +209,25 @@ header {
   text-transform: uppercase;
   margin: 1rem 0rem;
   box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 1s;
+}
+
+.color-secondary:hover {
+  background-color: var(--green)!important;
+}
+
+.color-green {
+  background-color: var(--green) !important;
+  border: none !important;
+  padding: .7rem 1.5rem !important;
+  text-transform: uppercase;
+  margin: 1rem 0rem;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color .7s;
+}
+
+.color-green:hover {
+  background-color: var(--primary)!important;
 }
 
 .service-provider {
@@ -209,6 +250,11 @@ header {
 
 .button-primary {
   background-color: var(--primary);
+  border: 0px;
+}
+
+.button-tertiary {
+  background-color: var(--tertiary);
   border: 0px;
 }
 
