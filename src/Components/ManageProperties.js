@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function ManageProperties({userid}) {
 
@@ -15,28 +15,8 @@ function ManageProperties({userid}) {
 
     const [ tasks, setTasks ] = useState([]);
 
-    const getTaskList = async (taskid) => {
-
-        try {
-          const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/`, {
-            method: "GET",
-            headers: { jwtToken: localStorage.jwtToken }
-          });
-    
-          const taskList = await res.json();
-          
-          console.log(taskList.length);
-          setTasks(taskList);
-          setTasksCount(taskList.length);
-        } catch (error) {
-          console.log(error);
-          return error.message;
-        }
-      };
-
-
     const getProperties = async () => {
-
+      console.log(userid)
         try {
           const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/property/user/${userid}`, {
             method: "GET",
@@ -47,8 +27,8 @@ function ManageProperties({userid}) {
 
           setPropertyCount(propertyData.length);
           setProperties(propertyData);
-          propertyData.map((property) => getTaskList(property.propertyid));
-          
+
+
         } catch (error) {
           console.log(error);
         }
@@ -58,7 +38,9 @@ function ManageProperties({userid}) {
         getProperties();
       }, []);
 
-
+      const handleTasks = (value) => {
+        return navigate(`/manage-tasks/${value}`)
+      }
 
       const handleDelete = async (propertyidentity) => {
 
@@ -70,7 +52,7 @@ function ManageProperties({userid}) {
       
             const propertyData = await res.json();
 
-            console.log(propertyData);
+            navigate("/admin")
       
           } catch (error) {
             console.log(error);
@@ -82,7 +64,7 @@ function ManageProperties({userid}) {
     <div className="has-max-width mt-5">
     <div className=" p-4">
     <h3 className="font-primary h4 pb-4">Manage your properties</h3>
-    {properties && properties.map((property) => 
+    {properties && properties.map((property, index) => 
     
     <div className="card-admin-properties" key={property?.propertyid}>
     <div className="card-body">
@@ -95,17 +77,17 @@ function ManageProperties({userid}) {
         <h3 className="font-primary h4">{property?.description}</h3>
         <p className='m-1'>Address: {property?.address},  </p>
         <p className="m-1">{property?.city} - {property?.zipcode}, {property?.country} </p>
-        <p>You have {tasks && tasksCount} task(s) in this Property.</p>
+        <p>You have {property?.taskcount} task(s) in this Property.</p>
       </div>
     </div>
     
     <div className="buttons-card">
-      <button className="card-button button-primary">
+      <button className="card-button button-primary" onClick={()=>handleTasks(property?.propertyid)}>
         <span class="material-symbols-rounded">
         task
         </span>
-        <p>Add</p>
-        <p>TASK</p>
+        <p>MANAGE</p>
+        <p>TASKS</p>
       </button>
 
       <button className="card-button button-primary">
@@ -125,8 +107,16 @@ function ManageProperties({userid}) {
         <p>Property</p>
       </button>
     </div>
-</div>
+  </div>
     )}
+      <Link className="btn btn-primary rounded-pill color-secondary  m-2" to="/admin">
+        <div className='button-organizer'>
+        <span class="material-symbols-rounded">
+            chevron_left
+        </span>
+            Back to dashboard
+        </div>
+    </Link>
   </div>
   </div>
   </div>

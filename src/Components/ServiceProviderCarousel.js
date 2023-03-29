@@ -6,14 +6,20 @@ import "react-multi-carousel/lib/styles.css";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 
 const responsive = {
+  widescreen: {
+    breakpoint: { max: 3000, min: 1600 },
+    items: 3,
+    slidesToSlide: 3, // optional, default to 1.
+  },
+
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-    slidesToSlide: 1, // optional, default to 1.
+    breakpoint: { max: 1600, min: 1024 },
+    items: 3,
+    slidesToSlide: 3, // optional, default to 1.
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 1,
     slidesToSlide: 1, // optional, default to 1.
   },
   mobile: {
@@ -58,6 +64,7 @@ const ServiceProviderCarousel = () => {
   return (
     <>
       <section className="bg-light">
+        <div className="container">
         <br></br>
         <h1 className="pacifico mt-5 mb-5">Service providers</h1>
         <Carousel
@@ -78,9 +85,9 @@ const ServiceProviderCarousel = () => {
           arrows={true}
         >
           {filteredCategories.map((provider) => (
-            <div key={provider.serviceproviderid}>
+            <div className="p-2" key={provider.serviceproviderid}>
               {provider.category && (
-                <Card className="my-3">
+                <Card className="p-0 my-3">
                   <Card.Body>
                     <Row>
                       <Col xs={12} sm={3} md={3}>
@@ -100,53 +107,44 @@ const ServiceProviderCarousel = () => {
                       </Col>
                     </Row>
                     <Row className="mt-3">{provider.description}</Row>
-                    <Row className="mt-3 buttons-card">
-                      <Col
-                        xs={3}
-                        sm={3}
-                        md={3}
-                        className="card-button button-primary"
-                      >
-                        <span className="material-symbols-rounded  action-item">
-                          phone_in_talk
-                        </span>
-                        <p className="action-item">Call Now!</p>
-                      </Col>
-                      <Col
-                        xs={3}
-                        sm={3}
-                        md={3}
-                        className="card-button button-primary"
-                      >
-                        <span className="material-symbols-rounded  action-item">
-                          globe_uk
-                        </span>
-                        <p className="action-item">Website</p>
-                      </Col>
-                      <Col
-                        xs={3}
-                        sm={3}
-                        md={3}
-                        className="card-button button-primary"
-                      >
-                        <span className="material-symbols-rounded action-item">
-                          chat
-                        </span>
-                        <p className="action-item">Message</p>
-                      </Col>
-                      <Col
-                        xs={3}
-                        sm={3}
-                        md={3}
-                        className="card-button button-primary"
-                      >
-                        <span className="material-symbols-rounded action-item">
-                          euro_symbol
-                        </span>
-                        <p className="action-item">Get a quote</p>
-                      </Col>
-                    </Row>
+
                   </Card.Body>
+                  <div className="buttons-card">
+                    <button className="card-button button-primary">
+                      <span class="material-symbols-rounded">
+                      phone_in_talk
+                      </span>
+                      <p>Call</p>
+                      <p>Now!</p>
+                    </button>
+
+                    <button className="card-button button-primary">
+                      <span class="material-symbols-rounded">
+                      globe_uk
+                      </span>
+                      <p>Visit our</p>
+                      <p>Website</p>
+                    </button>
+
+
+                    <button className="card-button button-primary">
+                      <span class="material-symbols-rounded">
+                      chat
+                      </span>
+                      <p>Message</p>
+                      <p>Us</p>
+                    </button>
+
+                    <button className="card-button button-primary">
+                      <span class="material-symbols-rounded">
+                      euro_symbol
+                      </span>
+                      <p>Get a</p>
+                      <p>Quote</p>
+                    </button>
+                  </div>
+
+                 
                 </Card>
               )}
             </div>
@@ -170,6 +168,7 @@ const ServiceProviderCarousel = () => {
           </Link>
         </div>
         <br></br>
+        </div>
       </section>
     </>
   );
