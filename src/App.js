@@ -10,8 +10,8 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import Task from "./Components/Task";
 import ManageProperties from "./Components/ManageProperties";
-import Tasks from "./Components/Tasks";
 import ServiceProvider from "./Components/ServiceProvider";
 
 
@@ -61,7 +61,7 @@ function App() {
           <Route path="/register" element={ !isAuthenticated ? <Register setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/login" />  } />
           <Route path="/login" element={  !isAuthenticated ? <Login setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/admin" /> } />
           <Route path="/manage-properties" element={ isAuthenticated ?  <ManageProperties setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
-          <Route path="/tasks" element={<Tasks/>}/>
+          <Route path="/task" element={<Task/>}/>
           <Route path="/service-providers" element={<ServiceProvider />} />
         </Routes>
       <Footer />
