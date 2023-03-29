@@ -194,9 +194,13 @@ const Admin = ({ setAuth, userid, name, setName }) => {
                       <></>
                     )}
 
-            <button onClick={e => logout(e)} className="btn btn-primary">
-      
+            <button onClick={e => logout(e)} className="btn btn-primary color-danger rounded-pill">
+              <div className="button-organizer">
               Logout
+              <span class="material-symbols-rounded">
+                logout
+              </span>
+              </div>
             </button>
           </div>
  
