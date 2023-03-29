@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import Tasks from "./Components/Tasks";
 import ServiceProvider from "./Components/ServiceProvider";
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
             )
           }
         />
+        <Route path="/tasks" element={<Tasks/>}/>
         <Route path="/service-providers" element={<ServiceProvider />} />
       </Routes>
 
