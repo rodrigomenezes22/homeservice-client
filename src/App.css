@@ -1,10 +1,13 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&family=Pacifico&family=Trykker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400;500;700&family=Pacifico&family=Trykker&display=swap');
 
 :root {
   --primary: #3B7ABD;
   --secondary: #F28243;
+  --tertiary: #264B72;
   --footer: #303030;
+  --green: #74C384;
+  --danger: #A10303;
 }
 
 * {
@@ -21,12 +24,39 @@
   font-family: 'Trykker', serif;
 }
 
+
+.bebas {
+  font-family: 'Bebas Neue', serif;
+}
+
+
 .opensans {
   font-family: 'Open Sans', sans-serif;
 }
 
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.property-header {
+  display: flex;
+}
+
+.icon-container {
+  padding-right: 2rem;
+}
+
 .font-primary {
   color: var(--primary);
+}
+
+.font-tertiary {
+  color: var(--tertiary);
+}
+
+.font-gray {
+  color: var(--footer);
 }
 
 .material-symbols-rounded {
@@ -87,7 +117,7 @@ header {
 .icon-xxl {
   font-size: 50px !important;
   height: 50px;
-  color: var(--primary);
+
 }
 
 .link-user {
@@ -180,6 +210,24 @@ header {
   box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
+.number-icon {
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-it-works {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .color-secondary {
   background-color: var(--secondary) !important;
   border: none !important;
@@ -187,6 +235,39 @@ header {
   text-transform: uppercase;
   margin: 1rem 0rem;
   box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 1s;
+}
+
+.color-secondary:hover {
+  background-color: var(--green)!important;
+}
+
+.color-danger {
+  background-color: var(--danger) !important;
+  border: none !important;
+  padding: .7rem 1.5rem !important;
+  text-transform: uppercase;
+  margin: 1rem 0rem;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 1s;
+}
+
+.color-danger:hover {
+  background-color: var(--green)!important;
+}
+
+.color-green {
+  background-color: var(--green) !important;
+  border: none !important;
+  padding: .7rem 1.5rem !important;
+  text-transform: uppercase;
+  margin: 1rem 0rem;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color .7s;
+}
+
+.color-green:hover {
+  background-color: var(--primary)!important;
 }
 
 .service-provider {
@@ -209,6 +290,11 @@ header {
 
 .button-primary {
   background-color: var(--primary);
+  border: 0px;
+}
+
+.button-tertiary {
+  background-color: var(--tertiary);
   border: 0px;
 }
 
