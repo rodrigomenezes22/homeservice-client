@@ -76,7 +76,6 @@ function Tasks() {
                   >
                     <Link className="btn btn-primary rounded-pill button-organizer text-uppercase" to="/task-details">Details
   
-                      
                       </Link>
                     
                   </Col>
