@@ -398,6 +398,7 @@ header {
 .button-organizer {
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 .button-organizer span {
@@ -473,6 +474,15 @@ footer {
   color: var(--light);
   text-align: center;
 }
+
+.service-provider-card {
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  margin: 1rem 2rem;
+  height: 300px;
+}
+
 
 
 .servieprovider-profile-pic {

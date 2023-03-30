@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Card, Col, Image, Row } from "react-bootstrap";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
 
 const responsive = {
   widescreen: {
@@ -150,18 +151,21 @@ const ServiceProviderCarousel = () => {
           ))}
         </Carousel>
         <div className="search service-pro-search my-3">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search service provider"
-            />
-            <button className="btn btn-search" type="button">
-              <span className="material-symbols-rounded icon-medium">
-                search
-              </span>
-            </button>
-          </div>
+          <Link
+            to={`/service-providers`}
+            className="btn btn-search rounded-pill"
+            type="button"
+            onClick={() => {
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+              });
+            }}
+          >
+            Search service provider
+            <span className="material-symbols-rounded icon-medium">search</span>
+          </Link>
         </div>
         <br></br>
         </div>
