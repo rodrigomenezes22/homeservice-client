@@ -413,3 +413,16 @@ footer {
   margin: 0px;
   box-shadow: none;
 }
+
+.task-profile-pic {
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+}
+.task{
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  margin: 1rem 2rem;
+  height: 300px;
+}

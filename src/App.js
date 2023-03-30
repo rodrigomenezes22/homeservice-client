@@ -10,7 +10,8 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
-import Task from "./Components/Task";
+import Tasks from "./Components/Tasks";
+import TaskDetails from "./Components/TaskDetails";
 import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
 import AddProperty from "./Components/AddProperty";
@@ -64,9 +65,9 @@ function App() {
           <Route path="/login" element={  !isAuthenticated ? <Login setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/admin" /> } />
           <Route path="/manage-properties" element={ isAuthenticated ?  <ManageProperties setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
           <Route path="/add-property/:id" element={ isAuthenticated ?  <AddProperty setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
-
           <Route path="/manage-tasks/:id" element={ isAuthenticated ?  <ManageTasks setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
-          <Route path="/task" element={<Task/>}/>
+          <Route path="/tasks" element={<Tasks/>}/>
+          <Route path="/task-details/:id" element = {<TaskDetails/>}/>
           <Route path="/service-providers" element={<ServiceProvider />} />
         </Routes>
       <Footer />
