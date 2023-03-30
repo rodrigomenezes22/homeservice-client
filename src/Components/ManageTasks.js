@@ -116,7 +116,7 @@ function ManageTasks() {
       </div>
       <div className="text">
         <h3 className="font-tertiary h4">{task?.title}</h3>
-        <h4 className='font-tertiary h5'>Service Category: {task?.categoryid}</h4>
+        <h4 className='font-tertiary h5'>Service Category: {task?.category}</h4>
         <p className='m-1'>Description: {task?.description},  </p>
         <p className="m-1">Status: {task?.status}</p>
         <p>Task Date:  {moment(task?.date).utc().format('DD-MM-YYYY')}</p>
