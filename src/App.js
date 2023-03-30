@@ -14,6 +14,7 @@ import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
 import AddProperty from "./Components/AddProperty";
 import AddTask from "./Components/AddTask";
+import ManageTasks from "./Components/ManageTasks";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -122,9 +123,23 @@ function App() {
             )
           }
         />
-
         <Route
-          path="/add-tasks/:id"
+          path="/manage-tasks/:id"
+          element={
+            isAuthenticated ? (
+              <ManageTasks
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/add-task/:id"
           element={
             isAuthenticated ? (
               <AddTask

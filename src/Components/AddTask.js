@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AddTask() {
   const [file, setFile] = useState(null);
@@ -9,8 +9,14 @@ function AddTask() {
   const [description, SetDescription] = useState("");
   const [status, SetStatus] = useState("");
   const [date, SetDate] = useState("");
-  const [propertyid, SetPropertyid] = useState(1);
+
   const [imagedescription, SetImagedescription] = useState("");
+
+  const { id } = useParams();
+
+  const navigate = useNavigate();
+
+  const propertyid = id;
 
   const handleFileInputChange = (event) => {
     setFile(event.target.files[0]);
@@ -61,11 +67,10 @@ function AddTask() {
       SetStatus("");
       SetDescription("");
       SetDate("");
-      SetPropertyid("");
       SetImagedescription("");
 
       // Navigate(`/task/${response.data.}`);
-      Navigate("/manage-tasks");
+      navigate(`/manage-tasks/${propertyid}`);
     } catch (error) {
       console.error(error);
     }
