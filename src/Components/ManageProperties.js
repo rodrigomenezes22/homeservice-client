@@ -39,7 +39,7 @@ function ManageProperties({ userid }) {
   }, []);
 
   const handleTasks = (value) => {
-    return navigate(`/add-tasks/${value}`);
+    return navigate(`/manage-tasks/${value}`);
   };
 
   const handleDelete = async (propertyidentity) => {
@@ -84,6 +84,7 @@ function ManageProperties({ userid }) {
                     <p>
                       You have {property?.taskcount} task(s) in this Property.
                     </p>
+                    <p>{property?.propertyid}</p>
                   </div>
                 </div>
 

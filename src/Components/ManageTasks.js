@@ -53,6 +53,11 @@ function ManageTasks() {
         }
       };
 
+
+      const addTask = (value) => {
+        return navigate(`/add-task/${value}`);
+      };
+
     const handleDelete = async (taskid) => {
       console.log("What is the taskid", taskid)
       axios
@@ -90,7 +95,7 @@ function ManageTasks() {
             </div>
           </div>
 
-          <Link className="btn btn-primary rounded-pill color-green mb-5" to="/add-task">
+          <button className="btn btn-primary rounded-pill color-green mb-5" onClick={() => addTask(property?.propertyid)}>
               <div className='button-organizer'>
                   Publish a new Task
                   <span class="material-symbols-rounded">
@@ -98,7 +103,7 @@ function ManageTasks() {
                   </span>
               </div>
 
-          </Link>
+          </button>
 
     {tasksList && tasksList.map((task, index) => 
     
