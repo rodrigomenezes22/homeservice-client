@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
+import Tasks from "./Components/Tasks";
 import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
 import AddProperty from "./Components/AddProperty";
@@ -138,6 +139,8 @@ function App() {
             )
           }
         />
+        
+          <Route path="/tasks" element={<Tasks/>}/>
         <Route
           path="/add-task/:id"
           element={
@@ -155,6 +158,7 @@ function App() {
         />
         <Route path="/service-providers" element={<ServiceProvider />} />
       </Routes>
+
       <Footer />
     </Fragment>
   );
