@@ -11,6 +11,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
 import Tasks from "./Components/Tasks";
+import TaskDetails from "./Components/TaskDetails";
 import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
 import AddProperty from "./Components/AddProperty";
@@ -141,6 +142,7 @@ function App() {
         />
         
           <Route path="/tasks" element={<Tasks/>}/>
+          <Route path="/task-details/:id" element={<TaskDetails/>}/>
         <Route
           path="/add-task/:id"
           element={

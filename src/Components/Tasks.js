@@ -13,7 +13,7 @@ function Tasks() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task`)
+      .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${id}`)
       .then((res) => {
         //console.log(res.data);
         setTask(res.data);
@@ -74,7 +74,7 @@ function Tasks() {
                     md={3}
                     className="d-flex justify-content-center my-1"
                   >
-                    <Link className="btn btn-primary rounded-pill button-organizer text-uppercase" to="/task-details">Details
+                    <Link className="btn btn-primary rounded-pill button-organizer text-uppercase" to="/task-details/:id">Details
   
                       </Link>
                     
