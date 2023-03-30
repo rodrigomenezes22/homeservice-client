@@ -9,6 +9,32 @@ function AddTask() {
   const [description, SetDescription] = useState("");
   const [status, SetStatus] = useState("");
   const [date, SetDate] = useState("");
+  const [ categoyList, setCategoryList ] = useState([]);
+  const [ categoryid, setCategoryId ] = useState("");
+
+  const getAllCategories = async () => {
+
+    try {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/category`, {
+        method: "GET",
+        headers: { jwtToken: localStorage.jwtToken }
+      });
+
+      const categoryData = await res.json();
+
+      console.log(categoryData);
+
+      setCategoryList(categoryData);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+useEffect(()=>{
+  getAllCategories();
+},[]);
+
 
   const [imagedescription, SetImagedescription] = useState("");
 
@@ -34,6 +60,11 @@ function AddTask() {
   const handledateInputChange = (event) => {
     SetDate(event.target.value);
   };
+
+  const handleSelectInputChange = (event) => {
+    setCategoryId(event.target.value);
+
+  };
   // const handlepropertyidInputChange = (event) => {
   //   SetPropertyid(event.target.value);
   // };
@@ -51,7 +82,8 @@ function AddTask() {
     formData.append("date", date);
     formData.append("propertyid", propertyid);
     formData.append("imagedescription", imagedescription);
-
+    formData.append("categories", categoryid);
+    console.log(categoryid);
     console.log("********");
     console.log(formData);
     console.log("********");
@@ -75,6 +107,11 @@ function AddTask() {
       console.error(error);
     }
   };
+
+  useEffect(()=> {
+    console.log(categoryid);
+  },[categoryid]);
+
 
   // const { id } = useParams();
   // const propertyid = id;
@@ -130,6 +167,11 @@ function AddTask() {
               value={date}
               onChange={handledateInputChange}
             />
+
+            <select name="categories" id="categories" onChange={handleSelectInputChange} value={categoryid}>
+              <option value="">Please Select a Category</option>
+              {categoyList && categoyList.map((category) => (<option value={category?.categoryid}>{category?.category}</option>) )}
+            </select>
 
             <label for="image" className="label mt-3">
               Image File:
