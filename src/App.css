@@ -360,6 +360,13 @@ header {
   text-transform: uppercase;
 }
 
+
+.task-image-thumb {
+  width: 150px;
+  height: auto;
+
+}
+
 /* Website General */
 
 .App {

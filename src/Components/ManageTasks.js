@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
+import moment from "moment";
 
 function ManageTasks() {
 
@@ -27,7 +28,8 @@ function ManageTasks() {
 
         setTaskCount(tasksData.length);
         setTasksList(tasksData);
-
+        let date = new Date(tasksData.date);
+        tasksList.date = date.toUTCString();
 
       } catch (error) {
         console.log(error);
@@ -110,16 +112,14 @@ function ManageTasks() {
     <div className="card-admin-properties" key={task?.taskid}>
     <div className="card-body">
       <div className="icon-card">
-      <span class="material-symbols-rounded font-tertiary icon-xxl">
-        task
-      </span>
+        <img src={task?.image} alt={task?.title} className="task-image-thumb" />
       </div>
       <div className="text">
-        <h3 className="font-tertiary h4">{task?.description}</h3>
-        <p className='m-1'>Address: {task?.address},  </p>
-        <p className="m-1">{task?.city} - {task?.zipcode}, {task?.country} </p>
-        <p>You have {task?.taskcount} task(s) in this task.</p>
-        <p>{task?.taskid}</p>
+        <h3 className="font-tertiary h4">{task?.title}</h3>
+        <p className='m-1'>Description: {task?.description},  </p>
+        <p className="m-1">Status: {task?.status}</p>
+        <p>Task Date:  {moment(task?.date).utc().format('DD-MM-YYYY')}</p>
+        
       </div>
     </div>
     
