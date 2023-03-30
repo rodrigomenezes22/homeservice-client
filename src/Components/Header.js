@@ -9,9 +9,9 @@ function Header({ isAuthenticated, name}) {
       <div className='container'>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
+            <Link className="navbar-brand" to="/">
               <img src={Logo} className="logo-brand" alt="My Home Services Logo" />
-            </a>
+            </Link>
 
             <div className='mobile-hidden'  id="navbarNav">
               <ul className="navbar-nav">

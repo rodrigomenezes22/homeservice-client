@@ -14,8 +14,8 @@ import Tasks from "./Components/Tasks";
 import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
 import AddProperty from "./Components/AddProperty";
+import AddTask from "./Components/AddTask";
 import ManageTasks from "./Components/ManageTasks";
-
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,17 +57,108 @@ function App() {
     <Fragment>
       <Header isAuthenticated={isAuthenticated} name={name} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={ isAuthenticated ?  <Admin setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
-          <Route path="/register" element={ !isAuthenticated ? <Register setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/login" />  } />
-          <Route path="/login" element={  !isAuthenticated ? <Login setAuth={setAuth} setUserid={setUserid} /> : <Navigate to="/admin" /> } />
-          <Route path="/manage-properties" element={ isAuthenticated ?  <ManageProperties setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
-          <Route path="/add-property/:id" element={ isAuthenticated ?  <AddProperty setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
-          <Route path="/manage-tasks/:id" element={ isAuthenticated ?  <ManageTasks setAuth={setAuth} userid={userid} setName={setName} name={name} /> : <Navigate to="/login" /> } />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/admin"
+          element={
+            isAuthenticated ? (
+              <Admin
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            !isAuthenticated ? (
+              <Register setAuth={setAuth} setUserid={setUserid} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            !isAuthenticated ? (
+              <Login setAuth={setAuth} setUserid={setUserid} />
+            ) : (
+              <Navigate to="/admin" />
+            )
+          }
+        />
+        <Route
+          path="/manage-properties"
+          element={
+            isAuthenticated ? (
+              <ManageProperties
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/add-property/:id"
+          element={
+            isAuthenticated ? (
+              <AddProperty
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/manage-tasks/:id"
+          element={
+            isAuthenticated ? (
+              <ManageTasks
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        
           <Route path="/tasks" element={<Tasks/>}/>
-          <Route path="/service-providers" element={<ServiceProvider />} />
-        </Routes>
+        <Route
+          path="/add-task/:id"
+          element={
+            isAuthenticated ? (
+              <AddTask
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route path="/service-providers" element={<ServiceProvider />} />
+      </Routes>
+
       <Footer />
     </Fragment>
   );

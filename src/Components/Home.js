@@ -2,13 +2,15 @@ import React from "react";
 import ButtonRight from "./ui/ButtonRight";
 import Hero from "./Hero";
 import ServiceProviderCarousel from "./ServiceProviderCarousel";
+import HowItWorks from "./HowItWorks";
 
 function Home() {
   return (
     <div>
       <Hero />
+      <HowItWorks />
       <ServiceProviderCarousel />
-      <h1 className="pacifico">Home Page</h1>
+
       <ButtonRight
         name="Test button"
         styles="btn btn-primary rounded-pill"
