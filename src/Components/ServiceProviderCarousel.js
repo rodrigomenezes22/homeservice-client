@@ -66,7 +66,7 @@ const ServiceProviderCarousel = () => {
       <section className="bg-light">
         <div className="container">
         <br></br>
-        <h1 className="pacifico mt-5 mb-5">Service providers</h1>
+        <h1 className="pacifico mt-5 mb-5 font-tertiary">Service providers</h1>
         <Carousel
           swipeable={true}
           draggable={true}

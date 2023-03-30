@@ -59,6 +59,10 @@
   color: var(--footer);
 }
 
+.bolder {
+  font-weight: 700;
+}
+
 .material-symbols-rounded {
   font-size: 16px !important;
   height: 16px;
@@ -293,6 +297,12 @@ header {
   border: 0px;
 }
 
+
+.button-green {
+  background-color: var(--green);
+  border: 0px;
+}
+
 .button-tertiary {
   background-color: var(--tertiary);
   border: 0px;
@@ -308,6 +318,48 @@ header {
   border-radius: 10px;
   min-width: 320px;
   margin-bottom: 2rem;
+  width: 100%;
+}
+
+
+.card-admin-properties .card-header {
+  background-color: var(--primary);
+  color: white;
+  padding: .75rem;
+  border-radius: 10px 10px 0px 0px!important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+.card-with-image {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  min-height: 135px;
+}
+
+.image-thumb-card {
+  padding: .5rem;
+  width: 100%;
+  height: auto;
+}
+
+.service-cat-card {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.image-thumb-card img {
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .card-admin-properties .card-body {
@@ -337,6 +389,14 @@ header {
 .buttons-card button:last-of-type {
   border-radius: 0px 0px 10px 0px;
 }
+
+.card-desc {
+  min-height: 135px;
+}
+
+.react-multiple-carousel__arrow--right {
+  margin-right: ;
+} 
 
 .card-button {
   display: flex;
