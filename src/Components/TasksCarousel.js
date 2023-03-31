@@ -19,11 +19,10 @@ function TasksCarousel() {
       axios
         .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/`)
         .then((res) => {
-          //console.log(res.data);
           setTasksList(res.data);
         })
         .catch((e) => console.log(e));
-    }, []);
+    }, [setTasksList]);
 
     const responsive = {
         superLargeDesktop: {
@@ -87,8 +86,8 @@ function TasksCarousel() {
                         <div className="card-desc p-1">
                             <div className="service-cat-card">
                                 <p className="m-0 ps-3 opensans font-tertiary bolder">Service Category:  &nbsp;</p>
-                                <span class="material-symbols-rounded  font-tertiary">
-                                bolt
+                                <span class="material-symbols-rounded icon-medium font-tertiary">
+                                {task?.categoryimage}
                                 </span>
                                  &nbsp; {task?.category}
                             </div>
@@ -120,7 +119,27 @@ function TasksCarousel() {
                 </div>
             ))}
             </Carousel>
+            <div className="search service-pro-search my-3">
+          <Link
+            to={`/tasks`}
+            className="btn btn-search color-white rounded-pill"
+            type="button"
+            onClick={() => {
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+              });
+            }}
+          >
+            <div className="button-organizer">
+            Search for tasks
+            <span className="material-symbols-rounded icon-medium">search</span>
             </div>
+          </Link>
+        </div>
+            </div>
+
         </div>
     </section>
   )
