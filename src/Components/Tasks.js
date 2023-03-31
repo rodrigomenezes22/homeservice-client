@@ -3,17 +3,18 @@ import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Link, Navigate } from 'react-router-dom';
+//import { Link, Navigate } from 'react-router-dom';
 
 
 
 function Tasks() {
   const [task, setTask] = useState([]);
   //const [categories, setCategories] = useState([]);
+  //const [id ] =useParams
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${id}`)
+      .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/`)
       .then((res) => {
         //console.log(res.data);
         setTask(res.data);
@@ -21,10 +22,12 @@ function Tasks() {
       .catch((e) => console.log(e));
   }, []);
   const navigate = useNavigate();
-  const goHome = (e) => {
 
-    navigate("/");
-  }
+  
+  const GoTask = (value) => {
+    console.log("taskid "+value);
+    return navigate(`/task-details/${value}`);
+  };
 
   return (<>
     <h2>Showing all tasks</h2>
@@ -74,9 +77,8 @@ function Tasks() {
                     md={3}
                     className="d-flex justify-content-center my-1"
                   >
-                    <Link className="btn btn-primary rounded-pill button-organizer text-uppercase" to="/task-details/:id">Details
-  
-                      </Link>
+                    <button className="btn btn-primary rounded-pill color-blue mb-5" onClick={() => GoTask(item?.taskid)}>Details</button>
+                    
                     
                   </Col>
                   <Col
