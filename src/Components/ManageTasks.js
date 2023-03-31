@@ -28,8 +28,6 @@ function ManageTasks() {
 
         setTaskCount(tasksData.length);
         setTasksList(tasksData);
-        let date = new Date(tasksData.date);
-        tasksList.date = date.toUTCString();
 
       } catch (error) {
         console.log(error);
@@ -107,7 +105,7 @@ function ManageTasks() {
 
           </button>
 
-    {tasksList && tasksList.map((task, index) => 
+    {tasksList && Array.isArray(tasksList) && tasksList.map((task, index) => 
     
     <div className="card-admin-properties" key={task?.taskid}>
     <div className="card-body">
@@ -116,10 +114,10 @@ function ManageTasks() {
       </div>
       <div className="text">
         <h3 className="font-tertiary h4">{task?.title}</h3>
-        <h4 className='font-tertiary h5'>Service Category: {task?.category}</h4>
-        <p className='m-1'>Description: {task?.description},  </p>
-        <p className="m-1">Status: {task?.status}</p>
-        <p>Task Date:  {moment(task?.date).utc().format('DD-MM-YYYY')}</p>
+        <h4 className='font-tertiary h5'><b>Service Category:</b> {task?.category}</h4>
+        <p className='m-1'><b>Description:</b> {task?.description},  </p>
+        <p className="m-1"><b>Status:</b> {task?.status}</p>
+        <p><b>Task Date:</b>  {moment(task?.date).utc().format('DD-MM-YYYY')}</p>
         
       </div>
     </div>

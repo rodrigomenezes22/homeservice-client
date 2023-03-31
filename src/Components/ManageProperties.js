@@ -84,7 +84,7 @@ function ManageProperties({ userid }) {
                     <p>
                       You have {property?.taskcount} task(s) in this Property.
                     </p>
-                    <p>{property?.propertyid}</p>
+
                   </div>
                 </div>
 

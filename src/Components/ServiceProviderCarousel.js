@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -33,6 +33,8 @@ const ServiceProviderCarousel = () => {
   const [service, setServices] = useState([]);
   const [categories, setCategories] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders`)
@@ -61,95 +63,88 @@ const ServiceProviderCarousel = () => {
     e.style.transition = "transform 0.5s ease 0s";
   };
 
+  const viewProfile = (value) => {
+    navigate(`/service-provider-profile/${value}`);
+  }
+
   return (
     <>
       <section className="bg-light">
         <div className="container">
         <br></br>
         <h1 className="pacifico mt-5 mb-5 font-tertiary">Service providers</h1>
-        <Carousel
-          swipeable={true}
-          draggable={true}
-          showDots={false}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlay={false}
-          keyBoardControl={true}
-          customTransition={customTransition}
-          transitionDuration={500}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-          arrows={true}
-        >
-          {filteredCategories.map((provider) => (
-            <div className="p-2" key={provider.serviceproviderid}>
-              {provider.category && (
-                <Card className="p-0 my-3">
-                  <Card.Body>
-                    <Row>
-                      <Col xs={12} sm={3} md={3}>
-                        <Image
-                          src={provider.image}
-                          alt={provider.username}
-                          rounded
-                          className="servieprovider-profile-pic"
-                        ></Image>
-                      </Col>
-                      <Col>
-                        <Row className="font-primary h4">
-                          {provider.firstname} {provider.lastname}
-                        </Row>
-                        <Row>Service Offered</Row>
-                        <Row>{provider.category.category}</Row>
-                      </Col>
-                    </Row>
-                    <Row className="mt-3">{provider.description}</Row>
+        <div className="row">
+        <Carousel responsive={responsive}>
+            {service && service.map((provider)=> 
+            ( 
+                <div className="col-11 col-md-11 col-lg-11">
+                    <div key={provider?.serviceproviderid} className="card-admin-properties ">
+                        <div className="card-header capitalize">{provider?.username.substring(0, 30) }{provider?.username.length > 30 ? "..." : "" }</div>
+                        <div className="card-with-image">
+                            <div className="image-thumb-card ps-3 pt-3">
+                                <img src={provider?.image} className="img-fluid" />
+                            </div>
+                            <div className="content-card">
+      
+                            <p className="m-0 ps-3 opensans font-primary bolder">Service Category:  &nbsp;</p>
+                            <div className="service-cat-card">
+                                
+                                <span class="material-symbols-rounded ps-2 font-primary">
+                                bolt
+                                </span>
+                                <p className="font-primary m-0">{provider?.category}</p>
+                            </div>
+                           
+                            </div>
 
-                  </Card.Body>
-                  <div className="buttons-card">
-                    <button className="card-button button-primary">
-                      <span class="material-symbols-rounded">
-                      phone_in_talk
-                      </span>
-                      <p>Call</p>
-                      <p>Now!</p>
-                    </button>
+                        </div>
+                        <div className="card-desc p-1">
 
-                    <button className="card-button button-primary">
-                      <span class="material-symbols-rounded">
-                      globe_uk
-                      </span>
-                      <p>Visit our</p>
-                      <p>Website</p>
-                    </button>
+                            <p className="opensans font-gray pe-2 ps-3">{provider?.description.substring(0, 120) }{provider?.description.length > 120 ? "..." : "" }</p>
+
+                        </div>
+                        <div className="buttons-card">
 
 
-                    <button className="card-button button-primary">
-                      <span class="material-symbols-rounded">
-                      chat
-                      </span>
-                      <p>Message</p>
-                      <p>Us</p>
-                    </button>
+                            <button className="card-button button-primary" >
+                            <span class="material-symbols-rounded">
+                            call
+                            </span>
+                            <p>CALL</p>
+                            <p>NOW!</p>
+                            </button>
 
-                    <button className="card-button button-primary">
-                      <span class="material-symbols-rounded">
-                      euro_symbol
-                      </span>
-                      <p>Get a</p>
-                      <p>Quote</p>
-                    </button>
-                  </div>
 
-                 
-                </Card>
-              )}
+                            <button className="card-button button-primary" onClick={()=>viewProfile(provider?.serviceproviderid)}>
+                            <span class="material-symbols-rounded">
+                            person
+                            </span>
+                            <p>Visit our</p>
+                            <p>profile</p>
+                            </button>
+
+                            <button className="card-button button-primary">
+                            <span class="material-symbols-rounded">
+                            chat
+                            </span>
+                            <p>Send us</p>
+                            <p>a message</p>
+                            </button>
+
+                            <button className="card-button button-primary">
+                            <span class="material-symbols-rounded">
+                            request_quote
+                            </span>
+                            <p>Request a</p>
+                            <p>Quote</p>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            ))}
+            </Carousel>
             </div>
-          ))}
-        </Carousel>
         <div className="search service-pro-search my-3">
           <Link
             to={`/service-providers`}

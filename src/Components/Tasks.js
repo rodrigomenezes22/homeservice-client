@@ -30,11 +30,16 @@ function Tasks() {
   };
 
   return (<>
-    <h2>Showing all tasks</h2>
+
     {/*fluid className='task-grid mt-5  p-4 y'>*/}
+    <Container>
+    <h1 className='mt-5 mb-5 pacifico font-tertiary'>Showing all tasks</h1>
     {task.map((item) => (
-      <Container className="task">
-        <Card className="task-card">
+
+        <Card className="task-card-wide">
+          <div className='card-header'>
+          {item.title}
+          </div>
           <Card.Body>
             <Row>
               <Col xs={12} sm={6} md={4} lg={2}>
@@ -46,10 +51,8 @@ function Tasks() {
                 ></Image>
               </Col>
               <Col xs={12} sm={6} md={4} lg={4}>
-                <Row className="font-primary h4">
-                  {item.title}
-                </Row>
-                <Row>Estimated 5 days of work</Row>
+
+    
                 {/*<Row>{provider.category.category}</Row>*/}
                 <Row className="mt-3">{item.description}</Row>
               </Col>
@@ -61,23 +64,15 @@ function Tasks() {
                     md={3}
                     className="d-flex justify-content-center my-1"
                   >
+                    <button className="btn btn-primary rounded-pill color-tertiary" onClick={() => GoTask(item?.taskid)}>
 
-                  </Col>
-                  <Col
-                    xs={12}
-                    sm={6}
-                    md={3}
-                    className="d-flex justify-content-center my-1"
-                  >
-
-                  </Col>
-                  <Col
-                    xs={12}
-                    sm={6}
-                    md={3}
-                    className="d-flex justify-content-center my-1"
-                  >
-                    <button className="btn btn-primary rounded-pill color-blue mb-5" onClick={() => GoTask(item?.taskid)}>Details</button>
+                      <div className='button-organizer'>
+                      <span class="material-symbols-rounded">
+                      add
+                      </span>
+                      Details
+                      </div>
+                    </button>
                     
                     
                   </Col>
@@ -87,8 +82,14 @@ function Tasks() {
                     md={3}
                     className="d-flex justify-content-center my-1"
                   >
-                    <button className="btn btn-primary rounded-pill button-organizer text-uppercase">
-                      SubmitQuote
+                    <button className="btn btn-primary rounded-pill color-tertiary">
+                    <div className='button-organizer'>
+
+                      Details
+                      <span class="material-symbols-rounded">
+                      request_quote
+                      </span>
+                      </div>
                     </button>
                   </Col>
                 </Row>
@@ -98,10 +99,10 @@ function Tasks() {
         </Card>
 
 
-      </Container>
+      
 
     ))}
-
+    </Container>
   </>
   );
 }
