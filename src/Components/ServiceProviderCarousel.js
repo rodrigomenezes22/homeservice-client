@@ -89,9 +89,10 @@ const ServiceProviderCarousel = () => {
                             <p className="m-0 ps-3 opensans font-primary bolder">Service Category:  &nbsp;</p>
                             <div className="service-cat-card">
                                 
-                                <span class="material-symbols-rounded ps-2 font-primary">
-                                bolt
+                                <span class="material-symbols-rounded icon-medium ps-2 font-primary">
+                                {provider?.categoryimage}
                                 </span>
+                                &nbsp;
                                 <p className="font-primary m-0">{provider?.category}</p>
                             </div>
                            
@@ -148,7 +149,7 @@ const ServiceProviderCarousel = () => {
         <div className="search service-pro-search my-3">
           <Link
             to={`/service-providers`}
-            className="btn btn-search rounded-pill"
+            className="btn btn-search color-white rounded-pill"
             type="button"
             onClick={() => {
               window.scroll({
@@ -158,8 +159,10 @@ const ServiceProviderCarousel = () => {
               });
             }}
           >
+            <div className="button-organizer">
             Search service provider
             <span className="material-symbols-rounded icon-medium">search</span>
+            </div>
           </Link>
         </div>
         <br></br>

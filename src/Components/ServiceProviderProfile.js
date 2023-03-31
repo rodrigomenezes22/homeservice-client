@@ -31,7 +31,11 @@ function ServiceProviderProfile() {
                     <div className='profile-picture'>
                     <img src={profile?.image} className="img-fluid mt-5" />
                     </div>
-                    <div className='button-organizer mt-3'><h3 className='font-primary h4'>{profile?.category}</h3><span class="material-symbols-rounded icon-large">{profile?.categoryimage}</span></div>
+                    <div className='button-organizer mt-3'><h3 className='font-primary h4'>{profile?.category}</h3>
+                        <span class="material-symbols-rounded icon-large">
+                            {profile?.categoryimage}
+                        </span>
+                    </div>
                 </div>
                 <div className='col-12 col-md-6 col-lg-8 content-profile'>
                     <h1 className='trykker mt-5 font-primary'>{profile?.firstname}&nbsp;{profile?.lastname}</h1>
