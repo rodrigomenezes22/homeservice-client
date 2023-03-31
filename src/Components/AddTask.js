@@ -10,7 +10,7 @@ function AddTask() {
   const [status, SetStatus] = useState("");
   const [date, SetDate] = useState("");
   const [ categoyList, setCategoryList ] = useState([]);
-  const [ categoryid, setCategoryId ] = useState("");
+  const [ categoryId, setCategoryId ] = useState("");
 
   const getAllCategories = async () => {
 
@@ -82,8 +82,8 @@ useEffect(()=>{
     formData.append("date", date);
     formData.append("propertyid", propertyid);
     formData.append("imagedescription", imagedescription);
-    formData.append("categories", categoryid);
-    console.log(categoryid);
+    formData.append("categoryid", categoryId);
+    console.log(categoryId);
     console.log("********");
     console.log(formData);
     console.log("********");
@@ -108,9 +108,6 @@ useEffect(()=>{
     }
   };
 
-  useEffect(()=> {
-    console.log(categoryid);
-  },[categoryid]);
 
 
   // const { id } = useParams();
@@ -168,7 +165,7 @@ useEffect(()=>{
               onChange={handledateInputChange}
             />
 
-            <select name="categories" id="categories" onChange={handleSelectInputChange} value={categoryid}>
+            <select name="categoryid" id="categoryid" onChange={handleSelectInputChange} value={categoryId}>
               <option value="">Please Select a Category</option>
               {categoyList && categoyList.map((category) => (<option value={category?.categoryid}>{category?.category}</option>) )}
             </select>

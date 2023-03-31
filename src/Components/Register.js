@@ -25,7 +25,7 @@ const Register = ({ setAuth, setUserid }) => {
     try {
       const body = {  email, password, confirmPass };
       const response = await fetch(
-        "http://localhost:8000/api/auth/register",
+        `${process.env.REACT_APP_SERVER_BASE_URL}/api/auth/register`,
         {
           method: "POST",
           headers: {

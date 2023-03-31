@@ -24,7 +24,7 @@ const Login = ({ setAuth, setUserid }) => {
     try {
       const body = { email, password };
       const response = await fetch(
-        "http://localhost:8000/api/auth/login",
+        `${process.env.REACT_APP_SERVER_BASE_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {

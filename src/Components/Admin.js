@@ -23,7 +23,7 @@ const Admin = ({ setAuth, userid, name, setName }) => {
   const getProfile = async () => {
 
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/${userid}`, {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/admin/${userid}`, {
         method: "POST",
         headers: { jwtToken: localStorage.jwtToken }
       });
@@ -48,7 +48,7 @@ const Admin = ({ setAuth, userid, name, setName }) => {
   const getProperties = async () => {
 
     try {
-      const res = await fetch(`http://localhost:8000/api/property/user/${userid}`, {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/property/user/${userid}`, {
         method: "GET",
         headers: { jwtToken: localStorage.jwtToken }
       });
