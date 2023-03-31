@@ -65,7 +65,7 @@ function ManageProperties({ userid }) {
       <div className="has-max-width mt-5">
         <div className=" p-4">
           <h3 className="font-primary h4 pb-4">Manage your properties</h3>
-          {properties &&
+          {properties && Array.isArray(properties) &&
             properties.map((property, index) => (
               <div className="card-admin-properties" key={property?.propertyid}>
                 <div className="card-body">
