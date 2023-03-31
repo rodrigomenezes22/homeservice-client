@@ -66,6 +66,7 @@ function ManageProperties({ userid }) {
         <div className=" p-4">
           <h3 className="font-primary h4 pb-4">Manage your properties</h3>
           {properties &&
+            Array.isArray(properties) &&
             properties.map((property, index) => (
               <div className="card-admin-properties" key={property?.propertyid}>
                 <div className="card-body">
@@ -84,7 +85,6 @@ function ManageProperties({ userid }) {
                     <p>
                       You have {property?.taskcount} task(s) in this Property.
                     </p>
-
                   </div>
                 </div>
 

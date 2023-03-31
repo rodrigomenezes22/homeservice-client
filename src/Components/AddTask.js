@@ -9,32 +9,32 @@ function AddTask() {
   const [description, SetDescription] = useState("");
   const [status, SetStatus] = useState("");
   const [date, SetDate] = useState("");
-  const [ categoyList, setCategoryList ] = useState([]);
-  const [ categoryId, setCategoryId ] = useState("");
+  const [categoyList, setCategoryList] = useState([]);
+  const [categoryId, setCategoryId] = useState("");
 
   const getAllCategories = async () => {
-
     try {
-      const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/category`, {
-        method: "GET",
-        headers: { jwtToken: localStorage.jwtToken }
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER_BASE_URL}/api/category`,
+        {
+          method: "GET",
+          headers: { jwtToken: localStorage.jwtToken },
+        }
+      );
 
       const categoryData = await res.json();
 
       console.log(categoryData);
 
       setCategoryList(categoryData);
-
     } catch (error) {
       console.log(error);
     }
   };
 
-useEffect(()=>{
-  getAllCategories();
-},[]);
-
+  useEffect(() => {
+    getAllCategories();
+  }, []);
 
   const [imagedescription, SetImagedescription] = useState("");
 
@@ -63,11 +63,8 @@ useEffect(()=>{
 
   const handleSelectInputChange = (event) => {
     setCategoryId(event.target.value);
-
   };
-  // const handlepropertyidInputChange = (event) => {
-  //   SetPropertyid(event.target.value);
-  // };
+
   const handleimagedescriptionInputChange = (event) => {
     SetImagedescription(event.target.value);
   };
@@ -108,8 +105,6 @@ useEffect(()=>{
     }
   };
 
-
-
   // const { id } = useParams();
   // const propertyid = id;
 
@@ -125,11 +120,12 @@ useEffect(()=>{
             </label>
             <input
               type="text"
-              placeholder="title Name"
+              placeholder="Title name"
               className="form-control"
               name="title"
               value={title}
               onChange={handletitleInputChange}
+              required
             />
             <label for="Description" className="label mt-3">
               Description:
@@ -141,20 +137,25 @@ useEffect(()=>{
               name="description"
               value={description}
               onChange={handledescriptionInputChange}
+              required
             />
             <label for="status" className="label mt-3">
-              status:
+              Status:
             </label>
-            <input
-              type="text"
-              placeholder="status"
+            <select
+              defaultValue={""}
               className="form-control"
-              name="status"
-              value={status}
               onChange={handlestatusInputChange}
-            />
+              required
+            >
+              <option value="">Please Select Task Status</option>
+              <option value="Pending">Pending</option>
+              <option value="In progress">In progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+
             <label for="date" className="label mt-3">
-              date:
+              Date:
             </label>
             <input
               type="date"
@@ -163,11 +164,27 @@ useEffect(()=>{
               name="date"
               value={date}
               onChange={handledateInputChange}
+              required
             />
 
-            <select name="categoryid" id="categoryid" onChange={handleSelectInputChange} value={categoryId}>
+            <label for="status" className="label mt-3">
+              Task Category:
+            </label>
+            <select
+              name="categoryid"
+              id="categoryid"
+              onChange={handleSelectInputChange}
+              required
+              value={categoryId}
+              className="form-control"
+            >
               <option value="">Please Select a Category</option>
-              {categoyList && categoyList.map((category) => (<option value={category?.categoryid}>{category?.category}</option>) )}
+              {categoyList &&
+                categoyList.map((category) => (
+                  <option value={category?.categoryid}>
+                    {category?.category}
+                  </option>
+                ))}
             </select>
 
             <label for="image" className="label mt-3">
@@ -176,10 +193,11 @@ useEffect(()=>{
                 className="form-control"
                 type="file"
                 onChange={handleFileInputChange}
+                required
               />
             </label>
             <label for="imagedescription" className="label mt-3">
-              imagedescription:
+              Image Description:
               <input
                 type="text"
                 placeholder="imagedescription"
@@ -187,6 +205,7 @@ useEffect(()=>{
                 name="imagedescription"
                 value={imagedescription}
                 onChange={handleimagedescriptionInputChange}
+                required
               />
             </label>
 

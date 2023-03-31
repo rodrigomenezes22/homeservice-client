@@ -18,6 +18,7 @@ import AddProperty from "./Components/AddProperty";
 import AddTask from "./Components/AddTask";
 import ManageTasks from "./Components/ManageTasks";
 import ServiceProviderProfile from "./Components/ServiceProviderProfile";
+import EditTask from "./Components/EditTask";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -141,15 +142,33 @@ function App() {
             )
           }
         />
-        
-          <Route path="/tasks" element={<Tasks/>}/>
-          <Route path="/task-details/:id" element={<TaskDetails/>}/>
-          <Route path="/service-provider-profile/:id" element={<ServiceProviderProfile />}/>
+
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/task-details/:id" element={<TaskDetails />} />
+        <Route
+          path="/service-provider-profile/:id"
+          element={<ServiceProviderProfile />}
+        />
         <Route
           path="/add-task/:id"
           element={
             isAuthenticated ? (
               <AddTask
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/edit-task/:id"
+          element={
+            isAuthenticated ? (
+              <EditTask
                 setAuth={setAuth}
                 userid={userid}
                 setName={setName}
