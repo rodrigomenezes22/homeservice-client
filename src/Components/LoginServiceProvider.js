@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import ButtonRight from "./ui/ButtonRight";
 
 
-const Login = ({ setAuth, setUserid }) => {
+const LoginServiceProvider = ({ setAuthServ, setProviderid }) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
@@ -13,7 +13,7 @@ const Login = ({ setAuth, setUserid }) => {
 
   const { email, password } = inputs;
 
-  const [invalidLogin, setInvalidLogin ] = useState(false);
+  const [ invalidLogin, setInvalidLogin ] = useState(false);
 
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -24,7 +24,7 @@ const Login = ({ setAuth, setUserid }) => {
     try {
       const body = { email, password };
       const response = await fetch(
-        `${process.env.REACT_APP_SERVER_BASE_URL}/api/auth/login`,
+        `${process.env.REACT_APP_SERVER_BASE_URL}/api/authService/login`,
         {
           method: "POST",
           headers: {
@@ -45,12 +45,12 @@ const Login = ({ setAuth, setUserid }) => {
 
       if (parseRes.jwtToken) {
         localStorage.setItem("jwtToken", parseRes.jwtToken);
-        localStorage.setItem("userId", parseRes.userId);
-        setAuth(true);
-        setUserid(parseRes.userId);
+        localStorage.setItem("userId", parseRes.providerid);
+        setAuthServ(true);
+        setProviderid(parseRes.userId);
         toast.success("Logged in Successfully");
       } else {
-        setAuth(false);
+        setAuthServ(false);
         toast.error(parseRes);
       }
     } catch (error) {
@@ -65,10 +65,10 @@ const Login = ({ setAuth, setUserid }) => {
       
         <ul class="nav nav-pills nav-fill mb-3">
           <li class="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/login">Home Owner</Link>
+            <Link className="nav-link " aria-current="page" to="/login">Home Owner</Link>
           </li>
           <li class="nav-item">
-            <Link className="nav-link" to="/login-service">Service Provider</Link>
+            <Link className="nav-link active" to="/login-service">Service Provider</Link>
           </li>
 
         </ul>
@@ -102,11 +102,11 @@ const Login = ({ setAuth, setUserid }) => {
 
 
       </form>
-      <p>If you do not have an account <Link to="/register">Click here to Register.</Link></p>
+      <p>If you do not have an account <Link to="/register-service">Click here to Register.</Link></p>
       </div>
       </div>
     </Fragment>
   );
 };
 
-export default Login;
+export default LoginServiceProvider;
