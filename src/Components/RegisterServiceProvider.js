@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import Container from "react-bootstrap/Container"
 
-const Register = ({ setAuth, setUserid }) => {
+const RegisterServiceProvider = ({ setAuthServ, setProviderid }) => {
   const [inputs, setInputs] = useState({
 
     email: "",
@@ -25,7 +25,7 @@ const Register = ({ setAuth, setUserid }) => {
     try {
       const body = {  email, password, confirmPass };
       const response = await fetch(
-        `${process.env.REACT_APP_SERVER_BASE_URL}/api/auth/register`,
+        `${process.env.REACT_APP_SERVER_BASE_URL}/api/authService/register`,
         {
           method: "POST",
           headers: {
@@ -50,11 +50,12 @@ const Register = ({ setAuth, setUserid }) => {
       if (parseRes.jwtToken) {
         localStorage.setItem("jwtToken", parseRes.jwtToken);
         localStorage.setItem("userId", parseRes.userId);
-        setAuth(true);
-        setUserid(parseRes.userId);
+        setAuthServ(true);
+        setProviderid(parseRes.userId);
         toast.success("Register Successfully");
+        console.log("whaaat usuario registrado");
       } else {
-        setAuth(false);
+        setAuthServ(false);
         toast.error(parseRes);
       }
     } catch (error) {
@@ -69,10 +70,10 @@ const Register = ({ setAuth, setUserid }) => {
       
         <ul class="nav nav-pills nav-fill mb-3">
           <li class="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/register">Home Owner</Link>
+            <Link className="nav-link " aria-current="page" to="/register">Home Owner</Link>
           </li>
           <li class="nav-item">
-            <Link className="nav-link" to="/register-service">Service Provider</Link>
+            <Link className="nav-link active" to="/register-service">Service Provider</Link>
           </li>
 
         </ul>
@@ -113,7 +114,7 @@ const Register = ({ setAuth, setUserid }) => {
           </div>
         </button>
       </form>
-      <p>Already have an account with us? <Link to="/login">Click here to Login</Link></p>
+      <p>Already have an account with us? <Link to="/login-service">Click here to Login</Link></p>
       
       </div>
       </div>
@@ -121,4 +122,4 @@ const Register = ({ setAuth, setUserid }) => {
   );
 };
 
-export default Register;
+export default RegisterServiceProvider;

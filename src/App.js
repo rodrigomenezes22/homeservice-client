@@ -19,15 +19,37 @@ import AddTask from "./Components/AddTask";
 import ManageTasks from "./Components/ManageTasks";
 import ServiceProviderProfile from "./Components/ServiceProviderProfile";
 import EditTask from "./Components/EditTask";
+import RegisterServiceProvider from "./Components/RegisterServiceProvider";
+import LoginServiceProvider from "./Components/LoginServiceProvider";
+import AdminService from "./Components/AdminService";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const [isSerProvider, setIsSerProvider] = useState(false);
+
   const [userid, setUserid] = useState();
+
+  const [providerid, setProviderid] = useState();
 
   const [name, setName] = useState("");
 
   async function isAuth() {
+    try {
+      const response = await fetch(`http://localhost:8000/api/auth/isverify`, {
+        method: "GET",
+        headers: { jwtToken: localStorage.jwtToken },
+      });
+      const parseRes = await response.json();
+      console.log(parseRes);
+
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (error) {
+      console.error(error.messsage);
+    }
+  }
+
+  async function isAuthServ() {
     try {
       const response = await fetch(`http://localhost:8000/api/auth/isverify`, {
         method: "GET",
@@ -47,20 +69,44 @@ function App() {
     setUserid(JSON.parse(userid));
   }
 
+  const setAuthServ = (boolean) => {
+    setIsSerProvider(boolean);
+  };
+
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
   };
 
   useEffect(() => {
     isAuth();
+    isAuthServ();
     getUserId();
   }, []);
 
   return (
     <Fragment>
-      <Header isAuthenticated={isAuthenticated} name={name} />
+      <Header isAuthenticated={isAuthenticated} isSerProvider={isSerProvider} name={name} />
 
       <Routes>
+      <Route
+          path="/admin-service"
+          element={
+            isSerProvider ? (
+              <AdminService
+                setAuthServ={setAuthServ}
+                providerid={providerid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login-service" />
+            )
+          }
+        />
+
+
+        <Route path="/login-service" element={ !isSerProvider ? ( <LoginServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} /> ) : (<Navigate to="/admin-service" />)} />
+        <Route path="/register-service" element={!isSerProvider ? ( <RegisterServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} />) : (<Navigate to="/login-register" />) } />
         <Route path="/" element={<Home />} />
         <Route
           path="/admin"
