@@ -69,7 +69,7 @@ const ServiceProviderCarousel = () => {
 
   return (
     <>
-      <section className="bg-light">
+      <section>
         <div className="container">
         <br></br>
         <h1 className="pacifico mt-5 mb-5 font-tertiary">Service providers</h1>

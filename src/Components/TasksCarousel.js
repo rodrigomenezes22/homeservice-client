@@ -49,7 +49,7 @@ function TasksCarousel() {
       }
 
   return (
-    <section>
+    <section  className="bg-light pt-5 pb-4">
         <div className="container">
 
         <h2 className="pacifico font-primary mt-5 mb-5

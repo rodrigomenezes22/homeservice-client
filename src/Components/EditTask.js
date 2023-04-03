@@ -184,7 +184,6 @@ function EditTask() {
                   id="file"
                   className="form-control"
                   type="file"
-                  name="file"
                   onChange={handleFileInputChange}
                 />
               </label>

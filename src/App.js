@@ -23,6 +23,7 @@ import EditTask from "./Components/EditTask";
 import RegisterServiceProvider from "./Components/RegisterServiceProvider";
 import LoginServiceProvider from "./Components/LoginServiceProvider";
 import AdminService from "./Components/AdminService";
+import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -105,7 +106,7 @@ function App() {
           }
         />
 
-
+        <Route path="/service-provider/:id" element={<ServiceProvidersCategory />} />
         <Route path="/login-service" element={ !isSerProvider ? ( <LoginServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} /> ) : (<Navigate to="/admin-service" />)} />
         <Route path="/register-service" element={!isSerProvider ? ( <RegisterServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} />) : (<Navigate to="/login-register" />) } />
         <Route path="/" element={<Home />} />
