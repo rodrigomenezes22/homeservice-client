@@ -11,6 +11,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
 import Tasks from "./Components/Tasks";
+import AboutUs from "./Components/AboutUs";
 import TaskDetails from "./Components/TaskDetails";
 import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
@@ -145,6 +146,7 @@ function App() {
 
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task-details/:id" element={<TaskDetails />} />
+        <Route path="/about-us" element={<AboutUs/>}/>
         <Route
           path="/service-provider-profile/:id"
           element={<ServiceProviderProfile />}
