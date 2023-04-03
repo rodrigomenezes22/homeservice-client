@@ -168,6 +168,8 @@ function EditTask() {
               <label for="file" className="label mt-3">
                 Image File:
                 <input
+                  name="file"
+                  id="file"
                   className="form-control"
                   type="file"
                   value={task.file}
