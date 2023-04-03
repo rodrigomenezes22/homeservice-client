@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
+
 function ManageTasks() {
   const { id } = useParams();
 
@@ -11,10 +12,13 @@ function ManageTasks() {
   const propertyid = id;
 
   const [tasksList, setTasksList] = useState([]);
+
   const [taskCount, setTaskCount] = useState([]);
 
   const [property, setProperty] = useState([]);
 
+
+  
   const getTasks = async () => {
     console.log(propertyid);
     try {
@@ -115,6 +119,9 @@ function ManageTasks() {
             Array.isArray(tasksList) &&
             tasksList.map((task, index) => (
               <div className="card-admin-properties" key={task?.taskid}>
+                <div className="card-header background-tertiary">                
+                <b>Service title:</b> {task?.title}
+                </div>
                 <div className="card-body">
                   <div className="icon-card">
                     <img
@@ -124,14 +131,14 @@ function ManageTasks() {
                     />
                   </div>
                   <div className="text">
-                    <h3 className="font-tertiary h4">{task?.title}</h3>
-                    <h4 className="font-tertiary h5">
-                      <b>Service Category:</b> {task?.category}
-                    </h4>
-                    <p className="m-1">
-                      <b>Description:</b> {task?.description},{" "}
+
+                    <p>
+                      <b>Service Category:</b> <br /> {task?.category}
                     </p>
-                    <p className="m-1">
+                    <p className="">
+                      <b>Description:</b><br /> {task?.description},{" "}
+                    </p>
+                    <p className="">
                       <b>Status:</b> {task?.status}
                     </p>
                     <p>
@@ -163,6 +170,7 @@ function ManageTasks() {
               </div>
             ))}
 
+          
           <Link
             className="btn btn-primary rounded-pill color-secondary  m-2"
             to={-1}

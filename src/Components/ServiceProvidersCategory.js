@@ -1,49 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from 'react'
+import CategoriesHome from './CategoriesHome'
+import axios from 'axios';
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
-import AddServiceProviderForm from "./AddServiceProvider";
-import Testing from "./Testing";
-import ServiceProviderCarousel from "./ServiceProviderCarousel";
-import { useNavigate } from "react-router-dom";
 
-function ServiceProvider() {
-  const [service, setServices] = useState([]);
-  const [categories, setCategories] = useState([]);
+function ServiceProvidersCategory() {
 
-  const navigate = useNavigate();
+    const [services, setServices] = useState([]);
+    const [category, setCategory] = useState({});
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders`)
-      .then((res) => {
-        setServices(res.data);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+    const { id } = useParams();
 
-  // update category when category id changes
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/category/`)
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+    const categoryid = id;
+    
+    useEffect(() => {
+      axios
+        .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/category/${categoryid}`)
+        .then((res) => {
 
-  const filteredCategories = service.map((e) => ({
-    ...e,
-    category: categories.filter((item) => item.categoryid === e.categoryid)[0],
-  }));
+            setServices(res.data);
+   
+        })
+        .catch((e) => console.log(e));
 
-  const viewProfile = (value) => {
-    navigate(`/service-provider-profile/${value}`);
-  }
+        axios
+        .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/category/${categoryid}`)
+        .then((res) => {
+
+            setCategory(res.data);
+            console.log("category", res.data)
+        })
+        .catch((e) => console.log(e));
+    }, [categoryid]);
 
   return (
-    <>
-      <Container>
-        {filteredCategories.map((provider) => (
+    <section>
+        <h2 className='pacifico font-tertiary mt-5 mb-5'>Showing results for {services && services.length !== 0 ?  <span>{category?.category}</span> : "No Results found"}</h2>
+        <div className='container mb-5'>
+        {services.map((provider) => (
           <div key={provider.serviceproviderid}>
             {provider.category && (
               <Card className="service-provider-card">
@@ -144,13 +140,27 @@ function ServiceProvider() {
             )}
           </div>
         ))}
-        <AddServiceProviderForm />
-        <h1>Test image upload</h1>
-        <Testing />
-        {/* <ServiceProviderCarousel /> */}
-      </Container>
-    </>
-  );
+        <div className='row mt-5 p-5'>
+          <div className='button-organizer'>
+            <div className='icon-side p-4'>
+            <span className="material-symbols-rounded icon-xxl font-tertiary">{category.categoryimage}</span>
+            </div>
+            <div className='content-side text-start'>
+            <h3 className='opensans font-tertiary'>
+              What tasks belongs to {category.category}?
+            </h3>
+            <p>{category.categorydescription}</p>
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+        <CategoriesHome />
+
+      
+    </section>
+  )
 }
 
-export default ServiceProvider;
+export default ServiceProvidersCategory
