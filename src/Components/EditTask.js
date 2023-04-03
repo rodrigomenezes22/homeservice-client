@@ -12,6 +12,7 @@ function EditTask() {
   console.log(`TaskID: ${taskid}`);
 
   const [task, setTask] = useState({
+    file: "",
     title: "",
     description: "",
     status: "",
@@ -34,16 +35,20 @@ function EditTask() {
       })
       .catch((e) => console.log(e));
   }, [taskid]);
+  const formData = new FormData();
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTask({ ...task, [name]: value });
     console.log(`Value changes: ${name} - value: ${value}`);
   };
 
-  const handleFileInputChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleFileInputChange = (e) => {
+    setFile(e.target.files[0]);
     console.log(`File selected: ${file}`);
   };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,24 +91,28 @@ function EditTask() {
     } else {
       return setFormError(`Please do not send empty imagedescription`);
     }
-    const formData = new FormData();
-    for (let key in task) {
-      formData.append(key, task[key]);
-    }
-    formData.append("file", file);
-    console.log(`Formdata: ${formData}`);
+
+
+    task.file = file;
+ 
+    console.log("What is this",file, task)
+
     axios
       .put(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`,
-        formData
+        task
       )
       .then((res) => navigate(`/manage-tasks/${task.propertyid}`))
       .catch((e) => console.log(e));
   };
 
+
   useEffect(() => {
     console.log(formError);
   }, [setFormError]);
+
+
+  console.log("whaaaaaaaaaat", task.file)
 
   return (
     <>
@@ -170,7 +179,7 @@ function EditTask() {
                 <input
                   className="form-control"
                   type="file"
-                  value={task.file}
+                  name="file"
                   onChange={handleFileInputChange}
                 />
               </label>
