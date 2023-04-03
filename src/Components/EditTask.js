@@ -29,12 +29,15 @@ function EditTask() {
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`)
       .then((res) => {
-        setTask(res.data);
+        const dataFetch = res.data;
+
+        setTask(dataFetch);
         const formattedDate = format(parseISO(res.data.date), "yyyy-MM-dd");
         setDate(formattedDate);
+        console.log(task);
       })
       .catch((e) => console.log(e));
-  }, [taskid]);
+  }, []);
   const formData = new FormData();
   
   const handleChange = (e) => {
