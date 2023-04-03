@@ -3,7 +3,7 @@ import Logo from '../images/myhomeservices.svg'
 import { Link, NavLink } from 'react-router-dom';
 
 
-function Header({ isAuthenticated, name}) {
+function Header({ isAuthenticated, isSerProvider, name}) {
   return (
     <header>
       <div className='container'>
@@ -47,15 +47,29 @@ function Header({ isAuthenticated, name}) {
                 </NavLink>
               </ul>
             </div>
-            {!isAuthenticated ? 
+
+
+
+            { !isAuthenticated && !isSerProvider ? 
             (
+
               <div className='navbar-end'>
                 <span className="material-symbols-rounded icon-xxl">
                 account_circle
                 </span>
                 <div><Link to="/register">Register</Link> | <Link to="/login">Login</Link></div> 
               </div>
-              ) : 
+              ) : isSerProvider ? 
+              (
+                <Link className='link-user' to="/admin-service">
+                <div className='navbar-end'>
+                  <span className="material-symbols-rounded icon-xxl">
+                  account_circle
+                  </span>
+                    <div>{name}</div> 
+                </div></Link>
+              )
+              : isAuthenticated ?
               (
                 <Link className='link-user' to="/admin">
                 <div className='navbar-end'>
@@ -64,7 +78,9 @@ function Header({ isAuthenticated, name}) {
                   </span>
                     <div>{name}</div> 
                 </div></Link>
-              )}
+                )
+                : ""
+              }
           </div>
         </nav>
 

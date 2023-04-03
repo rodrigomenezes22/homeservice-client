@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function AddServiceProviderForm() {
+function AddServiceProviderForm({providerid, serviceProviderData}) {
+  console.log(serviceProviderData)
+
   const [file, setFile] = useState(null);
   const [firstname, SetFirstname] = useState("");
   const [lastname, SetLastname] = useState("");
@@ -123,7 +125,7 @@ function AddServiceProviderForm() {
           <input
             className="form-control"
             type="email"
-            value={email}
+            value={serviceProviderData?.email}
             onChange={handleEmailInputChange}
           />
         </label>
