@@ -124,7 +124,22 @@ function ServiceProvidersCategory() {
             
           </div>
         ))}
+        <div className='row mt-5 p-5'>
+          <div className='button-organizer'>
+            <div className='icon-side p-4'>
+            <span className="material-symbols-rounded icon-xxl font-tertiary">{category.categoryimage}</span>
+            </div>
+            <div className='content-side text-start'>
+            <h3 className='opensans font-tertiary'>
+              What tasks belongs to {category.category}?
+            </h3>
+            <p>{category.categorydescription}</p>
+            </div>
+          </div>
         </div>
+        </div>
+
+
         <CategoriesHome />
 
       

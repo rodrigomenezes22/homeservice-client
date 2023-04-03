@@ -72,7 +72,7 @@ const ServiceProviderCarousel = () => {
       <section>
         <div className="container">
         <br></br>
-        <h1 className="pacifico mt-5 mb-5 font-tertiary">Service providers</h1>
+        <h1 className="pacifico mt-5 mb-5 font-primary">Service providers</h1>
         <div className="row">
         <Carousel responsive={responsive}>
             {service && service.map((provider)=> 
