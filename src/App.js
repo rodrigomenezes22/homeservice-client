@@ -25,6 +25,7 @@ import LoginServiceProvider from "./Components/LoginServiceProvider";
 import AdminService from "./Components/AdminService";
 import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -87,6 +88,7 @@ function App() {
 
   return (
     <Fragment>
+   
       <Header isAuthenticated={isAuthenticated} isSerProvider={isSerProvider} name={name} />
 
       <Routes>

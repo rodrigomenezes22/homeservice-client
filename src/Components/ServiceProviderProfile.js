@@ -13,6 +13,22 @@ function ServiceProviderProfile() {
 
     const [ profile, setProfile ] = useState({});
 
+    const [lat, setLat] = useState("");
+    const [long, setLong] = useState("");
+
+    const getLocation = () => {
+        
+        axios
+          .get(`https://geocode.maps.co/search?street=${profile.address}&city=${profile.city}&postalcode=${profile.city}&country=${profile.country}`)
+          .then((res) => {
+            console.log(res.data[0]);
+            setLong(res.data[0].lon);
+            setLat(res.data[0].lat);
+
+          })
+          .catch((e) => console.log(e));
+    }
+
 
     useEffect(() => {
         axios
@@ -24,6 +40,12 @@ function ServiceProviderProfile() {
           .catch((e) => console.log(e));
       }, []);
     
+      useEffect(() => {
+        if (Object.keys(profile).length > 0) {
+          getLocation();
+        }
+      }, [profile]);
+
 
   return (
     <section>
@@ -89,7 +111,8 @@ function ServiceProviderProfile() {
                 </div>
             </div>
         </div>
-        <LeafletMap name={profile?.firstname} lastname={profile?.lastname} city={profile?.city} />
+        { profile && 
+        <LeafletMap name={profile?.firstname} lastname={profile?.lastname} address={profile?.address} city={profile?.city}  zipcode={profile?.zipcode}  country={profile?.country} lat={lat} long={long} />}
     </section>
   )
 }

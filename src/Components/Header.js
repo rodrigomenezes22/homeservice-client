@@ -54,7 +54,7 @@ function Header({ isAuthenticated, isSerProvider, name}) {
             (
 
               <div className='navbar-end'>
-                <span className="material-symbols-rounded icon-xxl">
+                <span className="material-symbols-rounded font-primary icon-xxl">
                 account_circle
                 </span>
                 <div><Link to="/register">Register</Link> | <Link to="/login">Login</Link></div> 
@@ -63,7 +63,7 @@ function Header({ isAuthenticated, isSerProvider, name}) {
               (
                 <Link className='link-user' to="/admin-service">
                 <div className='navbar-end'>
-                  <span className="material-symbols-rounded icon-xxl">
+                  <span className="material-symbols-rounded font-primary icon-xxl">
                   account_circle
                   </span>
                     <div>{name}</div> 
@@ -73,7 +73,7 @@ function Header({ isAuthenticated, isSerProvider, name}) {
               (
                 <Link className='link-user' to="/admin">
                 <div className='navbar-end'>
-                  <span className="material-symbols-rounded icon-xxl">
+                  <span className="material-symbols-rounded font-primary icon-xxl">
                   account_circle
                   </span>
                     <div>{name}</div> 
