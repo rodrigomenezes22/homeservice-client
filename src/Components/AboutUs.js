@@ -12,7 +12,7 @@ import ironMan from '../images/iron-man.jpg';
 function AboutUs() {
   return (
     <div>
-      <div className="AboutUs">
+      <div className="AboutUs mt-5">
         <h2 className="About">About Us</h2>
         <p className="AboutDesc">
           Rodrigo, Priyanka and Savitha are the passionate founders of MyHomeServices.

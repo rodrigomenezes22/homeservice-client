@@ -707,7 +707,20 @@ footer {
   background-color: gray;
   object-fit: cover;
   
+}
 
+@media (max-width: 768px) {
+  .circle {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 
