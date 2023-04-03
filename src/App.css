@@ -73,6 +73,9 @@
   background-color: var(--tertiary)!important;
 }
 
+.leaflet-container {
+  height: 500px;
+}
 
 /* Helpers */
 .has-max-width {
