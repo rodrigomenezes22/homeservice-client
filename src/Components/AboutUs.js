@@ -1,5 +1,8 @@
 import React from "react";
 import "../App.css";
+import blackWidow from "../images/black-widow.jpg";
+import womenHero from "../images/women-hero.jpg";
+import ironMan from '../images/iron-man.jpg';
 
 //import Container from 'react-bootstrap/Container';
 
@@ -24,13 +27,9 @@ function AboutUs() {
         </p>
         </div>
         <div className="foundersPic">
-          <img
-            className="circle"
-            src="./images/ironman.webp"
-            alt="Founder1"
-          />
-          <div className="circle"></div>
-          <div className="circle"></div>
+        <img src={ironMan} alt="Founder1" className="circle" />
+        <img src={blackWidow} alt="Founder2" className="circle" />
+        <img src={womenHero} alt="Founder3" className="circle" />
         </div>
       
     </div>
