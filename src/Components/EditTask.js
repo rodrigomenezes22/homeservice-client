@@ -12,6 +12,7 @@ function EditTask() {
   console.log(`TaskID: ${taskid}`);
 
   const [task, setTask] = useState({
+    file: "",
     title: "",
     description: "",
     status: "",
@@ -35,6 +36,7 @@ function EditTask() {
         });
         const formattedDate = format(parseISO(res.data.date), "yyyy-MM-dd");
         setDate(formattedDate);
+        console.log(task);
       })
       .catch((e) => console.log(e));
   }, [taskid]);
@@ -49,10 +51,12 @@ function EditTask() {
     console.log(`Value changes: ${name} - value: ${value}`);
   };
 
-  const handleFileInputChange = (event) => {
-    setFile(event.target.files[0]);
+  const handleFileInputChange = (e) => {
+    setFile(e.target.files[0]);
     console.log(`File selected: ${file}`);
   };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,19 +111,23 @@ function EditTask() {
     });
     formData.append("file", file);
     console.log(`Formdata: ${JSON.stringify(formData)}`);
-
+    
     axios
       .put(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`,
-        formData
+        task
       )
       .then((res) => navigate(`/manage-tasks/${task.propertyid}`))
       .catch((e) => console.log(e));
   };
 
+
   useEffect(() => {
     console.log(formError);
   }, [setFormError]);
+
+
+  console.log("whaaaaaaaaaat", task.file)
 
   return (
     <>
@@ -185,9 +193,10 @@ function EditTask() {
               <label for="file" className="label mt-3">
                 Image File:
                 <input
+                  name="file"
+                  id="file"
                   className="form-control"
                   type="file"
-                  value={task.file}
                   onChange={handleFileInputChange}
                 />
               </label>

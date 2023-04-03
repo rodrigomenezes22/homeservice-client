@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 function AddTask() {
   const [file, setFile] = useState(null);
@@ -11,6 +11,9 @@ function AddTask() {
   const [date, SetDate] = useState("");
   const [categoyList, setCategoryList] = useState([]);
   const [categoryId, setCategoryId] = useState("");
+
+  const [ isLoading, setIsLoading ] = useState(false);
+
 
   const getAllCategories = async () => {
     try {
@@ -71,6 +74,7 @@ function AddTask() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("file", file);
     formData.append("title", title);
@@ -100,8 +104,10 @@ function AddTask() {
 
       // Navigate(`/task/${response.data.}`);
       navigate(`/manage-tasks/${propertyid}`);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
   };
 
@@ -110,6 +116,7 @@ function AddTask() {
 
   return (
     <div className="container justify-content-center d-flex align-items-center">
+       {isLoading ? <Loading /> : "" }
       <div className="has-max-width mt-5">
         <div className=" p-4">
           <h3 className="font-primary h4 pb-4">Add a new Task</h3>

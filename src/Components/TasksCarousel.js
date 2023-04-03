@@ -49,10 +49,10 @@ function TasksCarousel() {
       }
 
   return (
-    <section>
+    <section  className="bg-light pt-5 pb-4">
         <div className="container">
 
-        <h2 className="pacifico font-primary mt-5 mb-5
+        <h2 className="pacifico font-tertiary mt-5 mb-5
         ">Current Tasks</h2>
         <div className="row">
         <Carousel responsive={responsive}>
@@ -98,7 +98,7 @@ function TasksCarousel() {
 
 
                             <button className="card-button button-tertiary" onClick={()=>viewTask(task?.taskid)}>
-                            <span class="material-symbols-rounded">
+                            <span className="material-symbols-rounded">
                             add
                             </span>
                             <p>MORE</p>
@@ -107,7 +107,7 @@ function TasksCarousel() {
 
 
                             <button className="card-button button-green" onClick={()=>submitQuote(task?.taskid)}>
-                            <span class="material-symbols-rounded">
+                            <span className="material-symbols-rounded">
                             request_quote
                             </span>
                             <p>Submit</p>

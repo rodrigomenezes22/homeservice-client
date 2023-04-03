@@ -11,6 +11,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Admin from "./Components/Admin";
 import Tasks from "./Components/Tasks";
+import AboutUs from "./Components/AboutUs";
 import TaskDetails from "./Components/TaskDetails";
 import ManageProperties from "./Components/ManageProperties";
 import ServiceProvider from "./Components/ServiceProvider";
@@ -22,6 +23,8 @@ import EditTask from "./Components/EditTask";
 import RegisterServiceProvider from "./Components/RegisterServiceProvider";
 import LoginServiceProvider from "./Components/LoginServiceProvider";
 import AdminService from "./Components/AdminService";
+import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -85,6 +88,7 @@ function App() {
 
   return (
     <Fragment>
+   
       <Header isAuthenticated={isAuthenticated} isSerProvider={isSerProvider} name={name} />
 
       <Routes>
@@ -104,7 +108,7 @@ function App() {
           }
         />
 
-
+        <Route path="/service-provider/:id" element={<ServiceProvidersCategory />} />
         <Route path="/login-service" element={ !isSerProvider ? ( <LoginServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} /> ) : (<Navigate to="/admin-service" />)} />
         <Route path="/register-service" element={!isSerProvider ? ( <RegisterServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} />) : (<Navigate to="/login-register" />) } />
         <Route path="/" element={<Home />} />
@@ -117,6 +121,7 @@ function App() {
                 userid={userid}
                 setName={setName}
                 name={name}
+
               />
             ) : (
               <Navigate to="/login" />
@@ -191,6 +196,7 @@ function App() {
 
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task-details/:id" element={<TaskDetails />} />
+        <Route path="/about-us" element={<AboutUs/>}/>
         <Route
           path="/service-provider-profile/:id"
           element={<ServiceProviderProfile />}
