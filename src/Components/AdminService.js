@@ -148,6 +148,18 @@ function AdminService({
               <h3 className="opensans font-primary h4 mt-3 text-start">
                 Admin Service Provider Page
               </h3>
+              <label for="username" className="label mt-3">
+                Username
+              </label>
+              <input
+                type="text"
+                placeholder="User name"
+                className="form-control"
+                name="username"
+                value={serviceProviderData.username}
+                onChange={handleChange}
+                required
+              />
               <label for="firstname" className="label mt-3">
                 First Name
               </label>
@@ -183,6 +195,28 @@ function AdminService({
                 onChange={handleChange}
                 required
               />
+              <label for="Country" className="label mt-3">
+                Country:
+              </label>
+              <input
+                name="country"
+                className="form-control"
+                type="text"
+                value={serviceProviderData.country}
+                onChange={handleChange}
+                required
+              />
+              <label for="state" className="label mt-3">
+                State:
+              </label>
+              <input
+                name="state"
+                className="form-control"
+                type="text"
+                value={serviceProviderData.state}
+                onChange={handleChange}
+                required
+              />
               <label for="city" className="label mt-3">
                 City:
               </label>
@@ -191,6 +225,28 @@ function AdminService({
                 className="form-control"
                 type="text"
                 value={serviceProviderData.city}
+                onChange={handleChange}
+                required
+              />
+              <label for="address" className="label mt-3">
+                Address:
+              </label>
+              <input
+                name="address"
+                className="form-control"
+                type="text"
+                value={serviceProviderData.address}
+                onChange={handleChange}
+                required
+              />
+              <label for="zipcode" className="label mt-3">
+                Zipcode:
+              </label>
+              <input
+                name="zipcode"
+                className="form-control"
+                type="text"
+                value={serviceProviderData.zipcode}
                 onChange={handleChange}
                 required
               />
