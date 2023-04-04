@@ -27,6 +27,7 @@ import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
 import ScrollToTop from "./Components/ScrollToTop";
 import MenuMobile from "./Components/MenuMobile";
 import AvailableTasks from "./Components/AvailableTasks";
+import ContactUs from "./Components/ContactUs";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -227,9 +228,9 @@ function App() {
 
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task-details/:id" element={<TaskDetails />} />
-        <Route path="/about-us" element={<AboutUs/>}/>
-        <Route path="/contact-us" element={<ContactUs/>}/>
-        
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+
         <Route
           path="/service-provider-profile/:id"
           element={<ServiceProviderProfile />}
