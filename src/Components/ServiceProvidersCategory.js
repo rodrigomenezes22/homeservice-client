@@ -15,6 +15,11 @@ function ServiceProvidersCategory() {
 
     const categoryid = id;
     
+
+    const viewProfile = (value) => {
+      navigate(`/service-provider-profile/${value}`);
+    };
+
     useEffect(() => {
       axios
         .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/category/${categoryid}`)
