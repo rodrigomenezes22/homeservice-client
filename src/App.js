@@ -227,7 +227,9 @@ function App() {
 
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task-details/:id" element={<TaskDetails />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/contact-us" element={<ContactUs/>}/>
+        
         <Route
           path="/service-provider-profile/:id"
           element={<ServiceProviderProfile />}

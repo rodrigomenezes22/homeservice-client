@@ -883,3 +883,27 @@ footer {
   padding-left: 4rem;
   padding-right: 4rem;
 }
+
+ 
+
+.Contact-us-Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  
+  background-color: rgb(230, 230, 230);
+  
+}
+
+.Contact-Form {
+  justify-content: flex-start !important;
+  padding-left: 4rem !important;
+}
+
+
+
+.ContactPara {
+  font-size: large !important;
+}
+
