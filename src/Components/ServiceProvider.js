@@ -40,6 +40,9 @@ function ServiceProvider() {
   return (
     <>
       <Container>
+        <h1 className="mt-5 mb-5 pacifico font-primary">
+          Showing all Service Providers
+        </h1>
         {filteredCategories.map((provider) => (
           <div key={provider.serviceproviderid}>
             {provider.category && (

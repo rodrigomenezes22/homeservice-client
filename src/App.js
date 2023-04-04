@@ -24,7 +24,10 @@ import RegisterServiceProvider from "./Components/RegisterServiceProvider";
 import LoginServiceProvider from "./Components/LoginServiceProvider";
 import AdminService from "./Components/AdminService";
 import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
-
+import ScrollToTop from "./Components/ScrollToTop";
+import MenuMobile from "./Components/MenuMobile";
+import AvailableTasks from "./Components/AvailableTasks";
+import ContactUs from "./Components/ContactUs";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -88,11 +91,14 @@ function App() {
 
   return (
     <Fragment>
-   
-      <Header isAuthenticated={isAuthenticated} isSerProvider={isSerProvider} name={name} />
+      <Header
+        isAuthenticated={isAuthenticated}
+        isSerProvider={isSerProvider}
+        name={name}
+      />
 
       <Routes>
-      <Route
+        <Route
           path="/admin-service"
           element={
             isSerProvider ? (
@@ -108,9 +114,36 @@ function App() {
           }
         />
 
-        <Route path="/service-provider/:id" element={<ServiceProvidersCategory />} />
-        <Route path="/login-service" element={ !isSerProvider ? ( <LoginServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} /> ) : (<Navigate to="/admin-service" />)} />
-        <Route path="/register-service" element={!isSerProvider ? ( <RegisterServiceProvider setAuthServ={setAuthServ} setProviderid={setProviderid} />) : (<Navigate to="/login-register" />) } />
+        <Route
+          path="/service-provider/:id"
+          element={<ServiceProvidersCategory />}
+        />
+        <Route
+          path="/login-service"
+          element={
+            !isSerProvider ? (
+              <LoginServiceProvider
+                setAuthServ={setAuthServ}
+                setProviderid={setProviderid}
+              />
+            ) : (
+              <Navigate to="/admin-service" />
+            )
+          }
+        />
+        <Route
+          path="/register-service"
+          element={
+            !isSerProvider ? (
+              <RegisterServiceProvider
+                setAuthServ={setAuthServ}
+                setProviderid={setProviderid}
+              />
+            ) : (
+              <Navigate to="/login-register" />
+            )
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route
           path="/admin"
@@ -121,7 +154,6 @@ function App() {
                 userid={userid}
                 setName={setName}
                 name={name}
-
               />
             ) : (
               <Navigate to="/login" />
@@ -196,7 +228,9 @@ function App() {
 
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task-details/:id" element={<TaskDetails />} />
-        <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+
         <Route
           path="/service-provider-profile/:id"
           element={<ServiceProviderProfile />}
@@ -232,9 +266,12 @@ function App() {
           }
         />
         <Route path="/service-providers" element={<ServiceProvider />} />
+        <Route path="/available-tasks/:id" element={<AvailableTasks />} />
       </Routes>
 
+      <MenuMobile />
       <Footer />
+      <ScrollToTop />
     </Fragment>
   );
 }
