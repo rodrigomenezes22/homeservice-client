@@ -24,13 +24,8 @@ import RegisterServiceProvider from "./Components/RegisterServiceProvider";
 import LoginServiceProvider from "./Components/LoginServiceProvider";
 import AdminService from "./Components/AdminService";
 import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
-<<<<<<< HEAD
-import ContactUs from "./Components/ContactUs";
-
-=======
 import ScrollToTop from "./Components/ScrollToTop";
 import MenuMobile from "./Components/MenuMobile";
->>>>>>> 053b9e8614dffe64b19888663a56d43f381ebca6
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
