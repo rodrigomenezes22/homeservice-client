@@ -22,6 +22,7 @@ function EditTask() {
     imagedescription: "",
     categoryid: "",
   });
+  console.log(`Image URL: ${task.image}`);
   const [file, setFile] = useState(null);
   const [formError, setFormError] = useState("");
   const [formattedDate, setDate] = useState("");
@@ -29,17 +30,21 @@ function EditTask() {
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`)
       .then((res) => {
-        const dataFetch = res.data;
-
-        setTask(dataFetch);
+        setTask({
+          ...task,
+          ...res.data,
+        });
         const formattedDate = format(parseISO(res.data.date), "yyyy-MM-dd");
         setDate(formattedDate);
         console.log(task);
       })
       .catch((e) => console.log(e));
-  }, []);
-  const formData = new FormData();
-  
+  }, [taskid]);
+
+  useEffect(() => {
+    console.log("Updated task:", task);
+  }, [task]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTask({ ...task, [name]: value });
@@ -95,11 +100,18 @@ function EditTask() {
       return setFormError(`Please do not send empty imagedescription`);
     }
 
+    // remove the empty key from task object - if present
+    console.log(`Task: ${JSON.stringify(task)}`);
+    const { [""]: _, ...cleanTask } = task;
+    console.log(`Cleaned Task: ${JSON.stringify(task)}`);
 
-    task.file = file;
- 
-    console.log("What is this",file, task)
-
+    const formData = new FormData();
+    Object.entries(cleanTask).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append("file", file);
+    console.log(`Formdata: ${JSON.stringify(formData)}`);
+    
     axios
       .put(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`,
@@ -156,6 +168,7 @@ function EditTask() {
                 defaultValue={""}
                 className="form-control"
                 onChange={handleChange}
+                name="status"
                 required
               >
                 <option value="">Please Select Task Status</option>

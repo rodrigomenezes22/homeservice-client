@@ -153,6 +153,7 @@ function AddTask() {
               defaultValue={""}
               className="form-control"
               onChange={handlestatusInputChange}
+              name="status"
               required
             >
               <option value="">Please Select Task Status</option>

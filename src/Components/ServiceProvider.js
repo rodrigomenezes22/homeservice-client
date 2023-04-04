@@ -38,7 +38,7 @@ function ServiceProvider() {
 
   const viewProfile = (value) => {
     navigate(`/service-provider-profile/${value}`);
-  }
+  };
 
   return (
     <>
@@ -48,9 +48,9 @@ function ServiceProvider() {
             {provider.category && (
               <Card className="service-provider-card">
                 <div className="card-header">
-                {provider.firstname} {provider.lastname}
+                  {provider.firstname} {provider.lastname}
                 </div>
-                
+
                 <Card.Body>
                   <Row>
                     <Col xs={12} sm={12} md={4} lg={2}>
@@ -62,89 +62,83 @@ function ServiceProvider() {
                       ></Image>
                     </Col>
                     <Col xs={12} sm={12} md={8} lg={10}>
-                      <Row className="font-primary h4">
-                        
-                      </Row>
+                      <Row className="font-primary h4"></Row>
 
                       <Row>
-                      <h2 className='h2 font-primary'>
-                      <div className='button-organizer'>
-                        <span className="material-symbols-rounded icon-large font-primary">
-                          {provider.categoryimage}
-                        </span>
-                        {provider.category.category}
-                      </div>
-                      </h2> 
-
-                        </Row>
+                        <h2 className="h2 font-primary">
+                          <div className="button-organizer">
+                            <span className="material-symbols-rounded icon-large font-primary">
+                              {provider.categoryimage}
+                            </span>
+                            {provider.category.category}
+                          </div>
+                        </h2>
+                      </Row>
                       <Row>
                         <p className="ps-4">{provider.description}</p>
-                        </Row>
+                      </Row>
                     </Col>
-                    <Col xs={12} sm={12} md={12} lg={6}>
-
-                    </Col>
+                    <Col xs={12} sm={12} md={12} lg={6}></Col>
                   </Row>
                   <Row className="mt-3 buttons-card">
-                        <Col
-                          xs={12}
-                          sm={6}
-                          md={3}
-                          className="d-flex justify-content-center my-1"
-                        >
-                          <button className="btn btn-primary rounded-pill button-organizer color-primary text-uppercase">
-                            Call
-                            <span className="material-symbols-rounded">
-                              phone_in_talk
-                            </span>
-                          </button>
-                        </Col>
-                        <Col
-                          xs={12}
-                          sm={6}
-                          md={3}
-                          className="d-flex justify-content-center my-1"
-                        >
-                          <button className="btn btn-primary rounded-pill button-organizer color-primary text-uppercase" onClick={()=>viewProfile(provider?.serviceproviderid)}>
-                            View our profile
-                            <span className="material-symbols-rounded">
-                            person
-                            </span>
-                          </button>
-                        </Col>
-                        <Col
-                          xs={12}
-                          sm={6}
-                          md={3}
-                          className="d-flex justify-content-center my-1"
-                        >
-                          <button className="btn btn-primary rounded-pill button-organizer color-primary text-uppercase">
-                            Message
-                            <span className="material-symbols-rounded">
-                              chat
-                            </span>
-                          </button>
-                        </Col>
-                        <Col
-                          xs={12}
-                          sm={6}
-                          md={3}
-                          className="d-flex justify-content-center my-1"
-                        >
-                          <button className="btn btn-primary rounded-pill button-organizer color-green text-uppercase">
-                            Request Quote
-                            <span className="material-symbols-rounded">
-                              request_quote
-                            </span>
-                          </button>
-                        </Col>
-                      </Row>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      md={3}
+                      className="d-flex justify-content-center my-1"
+                    >
+                      <button className="btn btn-primary rounded-pill button-organizer color-primary text-uppercase">
+                        Call
+                        <span className="material-symbols-rounded">
+                          phone_in_talk
+                        </span>
+                      </button>
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      md={3}
+                      className="d-flex justify-content-center my-1"
+                    >
+                      <button
+                        className="btn btn-primary rounded-pill button-organizer color-primary text-uppercase"
+                        onClick={() => viewProfile(provider?.serviceproviderid)}
+                      >
+                        View our profile
+                        <span className="material-symbols-rounded">person</span>
+                      </button>
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      md={3}
+                      className="d-flex justify-content-center my-1"
+                    >
+                      <button className="btn btn-primary rounded-pill button-organizer color-primary text-uppercase">
+                        Message
+                        <span className="material-symbols-rounded">chat</span>
+                      </button>
+                    </Col>
+                    <Col
+                      xs={12}
+                      sm={6}
+                      md={3}
+                      className="d-flex justify-content-center my-1"
+                    >
+                      <button className="btn btn-primary rounded-pill button-organizer color-green text-uppercase">
+                        Request Quote
+                        <span className="material-symbols-rounded">
+                          request_quote
+                        </span>
+                      </button>
+                    </Col>
+                  </Row>
                 </Card.Body>
               </Card>
             )}
           </div>
         ))}
-        <AddServiceProviderForm />
+        {/* <AddServiceProviderForm /> */}
         <h1>Test image upload</h1>
         <Testing />
         {/* <ServiceProviderCarousel /> */}
