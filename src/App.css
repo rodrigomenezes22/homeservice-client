@@ -782,4 +782,34 @@ footer {
   }
 }
 
+.OurCompany {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  max-height: 10%;
+  background-color: rgb(215, 215, 215);
+  
+}
+
+
+
+.companytext {
+  width: 90%;
+  padding-left: 2rem;
+  font-size: larger;
+  line-height: 1.5;
+  justify-content: flex-start;
+  
+} 
+
+
+.Contactline {
+  text-align: center;
+  line-height: 1.5;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+ 
+
 
