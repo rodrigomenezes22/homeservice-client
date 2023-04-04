@@ -24,6 +24,7 @@ import RegisterServiceProvider from "./Components/RegisterServiceProvider";
 import LoginServiceProvider from "./Components/LoginServiceProvider";
 import AdminService from "./Components/AdminService";
 import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
+import ContactUs from "./Components/ContactUs";
 
 
 function App() {
@@ -197,6 +198,7 @@ function App() {
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/task-details/:id" element={<TaskDetails />} />
         <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/contact-us" element={<ContactUs/>}/>
         <Route
           path="/service-provider-profile/:id"
           element={<ServiceProviderProfile />}

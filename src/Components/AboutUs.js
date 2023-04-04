@@ -6,10 +6,6 @@ import womenHero from "../images/women-hero.jpg";
 import ironMan from '../images/iron-man.jpg';
 
 
-//import Container from 'react-bootstrap/Container';
-
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
 
 function AboutUs() {
   return (
