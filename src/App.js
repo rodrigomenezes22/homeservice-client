@@ -26,6 +26,7 @@ import AdminService from "./Components/AdminService";
 import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
 import ScrollToTop from "./Components/ScrollToTop";
 import MenuMobile from "./Components/MenuMobile";
+import AvailableTasks from "./Components/AvailableTasks";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -262,6 +263,7 @@ function App() {
           }
         />
         <Route path="/service-providers" element={<ServiceProvider />} />
+        <Route path="/available-tasks/:id" element={<AvailableTasks />} />
       </Routes>
 
       <MenuMobile />

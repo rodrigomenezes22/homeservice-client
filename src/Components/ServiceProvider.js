@@ -142,8 +142,8 @@ function ServiceProvider() {
           </div>
         ))}
         {/* <AddServiceProviderForm /> */}
-        <h1>Test image upload</h1>
-        <Testing />
+        {/* <h1>Test image upload</h1>
+        <Testing /> */}
         {/* <ServiceProviderCarousel /> */}
       </Container>
     </>
