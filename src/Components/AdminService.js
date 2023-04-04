@@ -1,18 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AddServiceProviderForm from "./AddServiceProvider";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function AdminService({
   setAuthServ,
+  serviceproviderid,
   setProviderid,
   providerid,
   name,
   setName,
 }) {
   console.log(providerid);
+  const { id } = useParams();
 
+  const [file, setFile] = useState(null);
   const [serviceProviderData, setServiceProviderData] = useState({});
   const [categoyList, setCategoryList] = useState([]);
   const [categoryId, setCategoryId] = useState("");
@@ -98,8 +101,20 @@ function AdminService({
     setServiceProviderData({ ...serviceProviderData, [name]: value });
   };
 
+  const handleFileInputChange = (event) => {
+    setFile(event.target.files[0]);
+    console.log(`File selected: ${file}`);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    // if (!serviceProviderData) {
+    //   return setFormError(`Service provider data is null`);
+    // }
+    if (serviceProviderData.username === null) {
+      return setFormError(`username number can not be empty`);
+    } else {
+      console.log("input value is NOT empty");
+    }
     if (serviceProviderData.firstname === null) {
       return setFormError(`Please enter your name`);
     } else {
@@ -128,11 +143,47 @@ function AdminService({
     } else {
       console.log("input value is NOT empty");
     }
+    if (serviceProviderData.state === null) {
+      return setFormError(`state number can not be empty`);
+    } else {
+      console.log("input value is NOT empty");
+    }
+    if (serviceProviderData.country === null) {
+      return setFormError(`country number can not be empty`);
+    } else {
+      console.log("input value is NOT empty");
+    }
+    if (serviceProviderData.zipcode === null) {
+      return setFormError(`zipcode number can not be empty`);
+    } else {
+      console.log("input value is NOT empty");
+    }
+    if (serviceProviderData.address === null) {
+      return setFormError(`address number can not be empty`);
+    } else {
+      console.log("input value is NOT empty");
+    }
+    if (serviceProviderData.description === null) {
+      return setFormError(`description number can not be empty`);
+    } else {
+      console.log("input value is NOT empty");
+    }
 
+    // remove the empty key from serviceprovider object - if present
+    console.log(`Data: ${JSON.stringify(serviceProviderData)}`);
+    const { [""]: _, ...cleanServiceProviderData } = serviceProviderData;
+    console.log(`Cleaned Data: ${JSON.stringify(cleanServiceProviderData)}`);
+
+    const formData = new FormData();
+    Object.entries(cleanServiceProviderData).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append("file", file);
+    console.log(`Formdata: ${JSON.stringify(formData)}`);
     axios
       .put(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/${providerid}`,
-        serviceProviderData
+        formData
       )
       .then((res) => navigate("/login-service"))
       .catch((e) => console.log(e));
@@ -148,8 +199,19 @@ function AdminService({
               <h3 className="opensans font-primary h4 mt-3 text-start">
                 Admin Service Provider Page
               </h3>
-              <label for="username" className="label mt-3">
-                Username
+              <label for="file" className="label mt-3">
+                Profile Image:
+              </label>
+              <input
+                id="file"
+                name="file"
+                className="form-control"
+                type="file"
+                onChange={handleFileInputChange}
+                required
+              />
+              <label for="username" className="label mt-3 form-label">
+                Username:
               </label>
               <input
                 type="text"
@@ -194,6 +256,7 @@ function AdminService({
                 value={serviceProviderData.email}
                 onChange={handleChange}
                 required
+                readOnly
               />
               <label for="Country" className="label mt-3">
                 Country:
@@ -283,6 +346,17 @@ function AdminService({
                     </option>
                   ))}
               </select>
+              <label for="state" className="label mt-3">
+                Description:
+              </label>
+              <input
+                name="description"
+                className="form-control"
+                type="text"
+                value={serviceProviderData.description}
+                onChange={handleChange}
+                required
+              />
               <button className="btn btn-primary prirmary-color mt-3 mb-3">
                 Update Info
               </button>
