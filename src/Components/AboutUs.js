@@ -50,7 +50,9 @@ function AboutUs() {
               </div>
             </Col>
             <Col md={6}>
-                <img src="../images/background_my_home_services.jpg" style={{ height: '100vh', objectFit: 'cover' }} alt="Home-image" />
+                
+                <img src="../images/background_my_home_services.jpg" className="img-fluid"  style={{ height: '100vh', objectFit: 'cover' }} alt="Home-image" />
+            
             </Col>
           </div>
         </Row>
