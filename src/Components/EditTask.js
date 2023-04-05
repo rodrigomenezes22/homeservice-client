@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 
-function EditTask() {
+function EditTask({ propertyid }) {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -55,8 +55,6 @@ function EditTask() {
     setFile(e.target.files[0]);
     console.log(`File selected: ${file}`);
   };
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,23 +109,21 @@ function EditTask() {
     });
     formData.append("file", file);
     console.log(`Formdata: ${JSON.stringify(formData)}`);
-    
+
     axios
       .put(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`,
-        task
+        formData
       )
       .then((res) => navigate(`/manage-tasks/${task.propertyid}`))
       .catch((e) => console.log(e));
   };
 
-
   useEffect(() => {
     console.log(formError);
   }, [setFormError]);
 
-
-  console.log("whaaaaaaaaaat", task.file)
+  console.log("whaaaaaaaaaat", task.file);
 
   return (
     <>
