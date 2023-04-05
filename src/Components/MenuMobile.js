@@ -7,8 +7,6 @@ function MenuMobile() {
   const [isVisible, setIsVisible] = useState(true);
   const scrollDirection = useScrollDirection();
 
-  console.log("whaaaaaaat", scrollDirection);
-
   const checkDirection = () => {
     if (scrollDirection === "down") {
       setIsVisible(false);

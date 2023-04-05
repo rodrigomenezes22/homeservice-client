@@ -8,6 +8,8 @@ function AdminService({
   setAuthServ,
   serviceproviderid,
   setProviderid,
+  setIsAuthenticated,
+  setIsSerProvider,
   providerid,
   name,
   setName,

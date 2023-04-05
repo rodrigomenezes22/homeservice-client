@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ManageProperties from "./ManageProperties";
 
-const Admin = ({ setAuth, userid, name, setName }) => {
+const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerProvider }) => {
 
   // Sets the user data values
   const [ userData, setUserData ] = useState({});
