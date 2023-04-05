@@ -28,6 +28,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import MenuMobile from "./Components/MenuMobile";
 import AvailableTasks from "./Components/AvailableTasks";
 import ContactUs from "./Components/ContactUs";
+import ManageQuotes from "./Components/ManageQuotes"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,14 +58,14 @@ function App() {
 
   async function isAuthServ() {
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/isverify`, {
+      const response = await fetch(`http://localhost:8000/api/authService/isverify`, {
         method: "GET",
         headers: { jwtToken: localStorage.jwtToken },
       });
       const parseRes = await response.json();
       console.log(parseRes);
 
-      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      parseRes === true ? setIsSerProvider(true) : setIsSerProvider(false);
     } catch (error) {
       console.error(error.messsage);
     }
@@ -73,6 +74,11 @@ function App() {
   async function getUserId() {
     const userid = localStorage.getItem("userId");
     setUserid(JSON.parse(userid));
+  }
+
+  async function getProviderId() {
+    const userid = localStorage.getItem("providerId");
+    setProviderid(JSON.parse(userid));
   }
 
   const setAuthServ = (boolean) => {
@@ -87,6 +93,7 @@ function App() {
     isAuth();
     isAuthServ();
     getUserId();
+    getProviderId();
   }, []);
 
   return (
@@ -104,6 +111,23 @@ function App() {
             isSerProvider ? (
               <AdminService
                 setAuthServ={setAuthServ}
+                providerid={providerid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login-service" />
+            )
+          }
+        />
+
+        <Route
+          path="/manage-quotes/:id"
+          element={
+            isSerProvider ? (
+              <ManageQuotes
+                setAuthServ={setAuthServ}
+                setAuth={setAuth}
                 providerid={providerid}
                 setName={setName}
                 name={name}
@@ -151,6 +175,7 @@ function App() {
             isAuthenticated ? (
               <Admin
                 setAuth={setAuth}
+                setAuthServ={setAuthServ}
                 userid={userid}
                 setName={setName}
                 name={name}

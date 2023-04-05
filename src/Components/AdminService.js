@@ -90,17 +90,15 @@ function AdminService({
     e.preventDefault();
     try {
       localStorage.removeItem("jwtToken");
-      localStorage.removeItem("userId");
+      localStorage.removeItem("providerId");
+      setAuthServ(false);
       setAuthServ(false);
       toast.success("Logout successfully");
     } catch (err) {
       console.error(err.message);
     }
   };
-  // Go to quotes
-  const goToquotes = () => {
-    navigate("/manage-quotes");
-  };
+
   // Go to add Quote page.
   const addQuote = () => {
     navigate(`/add-quotes/${providerid}`);
@@ -214,6 +212,11 @@ const goToAvailableTasks = () => {
 const viewProfile = () => {
   navigate(`/service-provider-profile/${serviceProviderData?.serviceproviderid}`)
 }
+
+  // Go to quotes
+  const goToquotes = () => {
+    navigate(`/manage-quotes/${serviceProviderData.serviceproviderid}`);
+  };
 
   return (
     <section className="admin-panel">
@@ -446,14 +449,6 @@ const viewProfile = () => {
                     <p>Quotes</p>
                   </button>
 
-                  <button
-                    className="card-button button-primary"
-                    onClick={addQuote}
-                  >
-                    <span class="material-symbols-rounded">add_box</span>
-                    <p>Add</p>
-                    <p>Quotes</p>
-                  </button>
                 </div>
               </div>
             </>

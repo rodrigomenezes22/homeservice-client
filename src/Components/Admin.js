@@ -72,6 +72,7 @@ const Admin = ({ setAuth, userid, name, setName }) => {
       localStorage.removeItem("jwtToken");
       localStorage.removeItem("userId");
       setAuth(false);
+      setAuthServ(false);
       toast.success("Logout successfully");
     } catch (err) {
       console.error(err.message);
