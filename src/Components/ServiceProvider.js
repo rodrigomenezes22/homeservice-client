@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
-import AddServiceProviderForm from "./AddServiceProvider";
-import Testing from "./Testing";
-import ServiceProviderCarousel from "./ServiceProviderCarousel";
 import { useNavigate } from "react-router-dom";
 
 function ServiceProvider() {
@@ -141,10 +138,6 @@ function ServiceProvider() {
             )}
           </div>
         ))}
-        {/* <AddServiceProviderForm /> */}
-        {/* <h1>Test image upload</h1>
-        <Testing /> */}
-        {/* <ServiceProviderCarousel /> */}
       </Container>
     </>
   );
