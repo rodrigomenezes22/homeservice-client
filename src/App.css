@@ -132,20 +132,35 @@ header {
   justify-content: center;
 }
 
+.profile-thumb {
+  width: 200px;
+  height: auto;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 2rem 1rem;
+}
+
+.profile-thumb img {
+  border-radius: 10px;
+  object-fit: contain;
+}
+
 .profile-picture {
   width: 300px;
-  height: 350px;
+  height: auto;
   overflow: hidden;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .profile-picture img {
-  border-radius: 100%;
+  border-radius: 10px;
+  object-fit: contain;
 }
 
 .icon-medium {
   font-size: 25px !important;
   height: 25px;
-  color: var(--primary);
 }
 
 .icon-large {
@@ -636,6 +651,10 @@ footer {
   .mobile-nav {
     display: none;
   }
+
+  .mainfooter-nav {
+    display: none;
+  }
 }
 
 @media (max-width: 991px) {
@@ -666,6 +685,7 @@ footer {
     right: 0px;
     justify-content: space-evenly;
     transition: transform 0.3s ease-in-out;
+    z-index: 10;
   }
 
   .mobile-nav.is-hidden {
@@ -695,6 +715,45 @@ footer {
     padding: 1rem 0px 0.7rem;
     height: 64px;
     border-radius: 10px 10px 0px 0px;
+  }
+
+  .mainfooter-nav {
+    display: flex;
+    align-items: flex-end;
+    position: fixed;
+    flex-direction: column;
+    bottom: 60px;
+    left: 0px;
+    right: 0px;
+    justify-content: space-evenly;
+    transition: transform 0.3s ease-in-out;
+    z-index: 2;
+    background-color: #fff;
+    color: var(--primary);
+    box-shadow: 1px -3px -15px rgba(0, 0, 0, 0.2);
+  }
+
+  .mainfooter-nav.hidden {
+    transform: translateY(400px);
+  }
+
+  .mainfooter-nav.visible {
+    transform: translateY(0);
+  }
+
+  .footer-nav {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    color: var(--footer);
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+  }
+
+  button.no-border {
+    border: 0px;
   }
 }
 
@@ -808,10 +867,7 @@ footer {
   width: 50%;
   max-height: 10%;
   background-color: rgb(215, 215, 215);
-  
 }
-
-
 
 .companytext {
   width: 90%;
@@ -819,9 +875,7 @@ footer {
   font-size: larger;
   line-height: 1.5;
   justify-content: flex-start;
-  
-} 
-
+}
 
 .Contactline {
   text-align: center;
@@ -830,25 +884,20 @@ footer {
   padding-right: 4rem;
 }
 
-
- 
-
 .Contact-us-Container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: auto;
-  
+
   background-color: rgb(230, 230, 230);
-  
 }
 
 .Contact-Form {
   justify-content: flex-start !important;
-  padding-left: 4rem !important;
+
+  min-width: auto;
 }
-
-
 
 .ContactPara {
   font-size: large !important;
