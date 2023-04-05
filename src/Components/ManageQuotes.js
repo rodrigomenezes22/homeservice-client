@@ -33,6 +33,24 @@ function ManageQuotes() {
         return price.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     }
 
+    const handleAddress = (e) => {
+
+        const taskCardWide = e.target.closest('.task-card-wide');
+        const addressElement = taskCardWide.querySelector('.address');
+        addressElement.classList.toggle('is-hidden');
+        const targetElement = e.target;
+        if(targetElement.innerHTML === 'View contact') {
+            targetElement.innerHTML = 'hide address';
+        } else {
+            targetElement.innerHTML = 'View contact';
+        }
+
+    }
+
+    const getDirection = (address, city, zipcode, country) => {
+        window.open(`https://www.google.com/maps/place/${address}+${city}+${zipcode}+${country}`, "_blank");
+    }
+
   return (
     <section className='mt-5 mb-5'>
         <div className='container'>
@@ -60,12 +78,13 @@ function ManageQuotes() {
             <Card.Body>
               <Row>
                 <Col xs={12} sm={6} md={4} lg={2}>
+                    <div className='task-profile-pic'>
                   <Image
                     src={quote?.image}
                     alt={quote?.taskdescription}
                     rounded
-                    className="task-profile-pic"
-                  ></Image>
+                    className="img-fluid"
+                  ></Image></div>
                 </Col>
                 <Col xs={12} sm={12} md={5} lg={5}>
                   {/*<Row>{provider.category.category}</Row>*/}
@@ -73,34 +92,66 @@ function ManageQuotes() {
                   <Row className="mt-3">
                     <p className='h6'>Service Description:</p>
                     <p >{quote.taskdescription}</p>
-                    <p className='h6'>Price: {formatPrice(quote?.price)}</p>
                     <p className='h6'>Client Approval:</p>
-                    <p>{quotes?.approval === "false" ? "Waiting for customer approval" : "<span class='material-symbols-rounded'>request_quote</span> Approved!"}</p>
-                    {}
+                    <p>       
+                    {quote.approval === "false" ? "Waiting for customer approval" : (
+                    <span className="material-symbols-rounded">request_quote</span>
+                    , "Approved!"
+                    )}
+                    </p>
+                    {quote.approval === "true" ? ( 
+                        
+                    <div className='card address is-hidden p-3'>
+                        <h3 className='h5 font-primary'>Client Name: </h3>
+                        <p>{quote?.firstname} {quote?.lastname}</p>
+                        <h3 className='h6 font-primary'>Client contacts: </h3>
+                        <div className='button-organizer'>
+                        <span className="material-symbols-rounded">
+                          phone
+                        </span>
+                         &nbsp;{quote.phone}
+                        </div>
+                        <div className='button-organizer'>
+                        <span className="material-symbols-rounded">
+                          mail
+                        </span>
+                         &nbsp;{quote.email}
+                        </div>
+                        <h3 className='h6 font-primary mt-3'>Client Address: </h3>
+                        <p>{quote?.address}, {quote.city} <br />
+                        {quote?.zipcode} - {quote.country}
+                        </p>
+                        <button className='btn btn-primary rounded-pill color-primary' onClick={()=> getDirection(quote.address, quote.city, quote.zipcode, quote.country)}>
+                            Get Directions
+                        </button>
+
+                    </div>
+                   
+                   ) : "" }
                   </Row>
                 </Col>
-                <Col xs={12} sm={12} md={12} lg={5}>
+                <Col xs={12} sm={12} md={5} lg={5}>
                   <Row className="mt-3 buttons-card">
                     <Col xs={12} sm={6} md={6} className="text-center my-1">
-                      <button
-                        className="btn btn-primary rounded-pill color-tertiary"
-                        
-                      >
-                        <div className="button-organizer">
-                          <span class="material-symbols-rounded">add</span>
-                          Details
-                        </div>
+
+                    <p className='h6'>Price: {formatPrice(quote?.price)}</p>
+                    
+
+                     {quote.approval === "false" ? "" : (
+                        <div className='button-organizer'>
+                        <button
+                        className="btn btn-primary rounded-pill color-primary" onClick={handleAddress}>
+
+
+                          View contact
+
                       </button>
-                    </Col>
-                    <Col xs={12} sm={6} md={6} className="text-center my-1">
-                      <button className="btn btn-primary rounded-pill color-green">
-                        <div className="button-organizer">
-                          send Quote
-                          <span class="material-symbols-rounded">
-                            request_quote
-                          </span>
-                        </div>
-                      </button>
+                      </div>
+                      )
+                    }
+
+
+                      
                     </Col>
                   </Row>
                 </Col>

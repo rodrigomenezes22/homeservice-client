@@ -113,6 +113,8 @@ function App() {
                 setAuthServ={setAuthServ}
                 providerid={providerid}
                 setName={setName}
+                setIsAuthenticated={setIsAuthenticated}
+                setIsSerProvider={setIsAuthenticated}
                 name={name}
               />
             ) : (
@@ -176,6 +178,8 @@ function App() {
               <Admin
                 setAuth={setAuth}
                 setAuthServ={setAuthServ}
+                setIsAuthenticated={setIsAuthenticated}
+                setIsSerProvider={setIsAuthenticated}
                 userid={userid}
                 setName={setName}
                 name={name}

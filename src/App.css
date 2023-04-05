@@ -562,6 +562,16 @@ header {
   text-transform: uppercase;
 }
 
+
+.address {
+  display: block;
+}
+
+.address.is-hidden {
+  display: none;
+}
+
+
 .task-image-thumb {
   width: 150px;
   height: auto;
