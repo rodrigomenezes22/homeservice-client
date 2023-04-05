@@ -27,6 +27,16 @@ function AdminService({
 
   const navigate = useNavigate();
 
+  const getCompleteServiceProvider = () => {
+    axios
+    .get(
+      `${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/${providerid}`
+    )
+    .then((res) =>   setServiceProviderData(res.data))
+    .catch((e) => console.log(e));
+  }
+
+
   const getServiceProvider = async () => {
     console.log(providerid);
     try {
@@ -50,6 +60,7 @@ function AdminService({
       } else if (parseData.firstname !== null) {
         setIncompleteRegis(false);
         setName(parseData.firstname);
+        getCompleteServiceProvider();
       }
     } catch (err) {
       console.log(err);
@@ -86,16 +97,20 @@ function AdminService({
       console.error(err.message);
     }
   };
+  // Go to quotes
   const goToquotes = () => {
     navigate("/manage-quotes");
   };
+  // Go to add Quote page.
   const addQuote = () => {
     navigate(`/add-quotes/${providerid}`);
   };
+  // Loads data
   useEffect(() => {
     getServiceProvider();
     getAllCategories();
   }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setServiceProviderData({ ...serviceProviderData, [name]: value });
@@ -189,11 +204,22 @@ function AdminService({
       .catch((e) => console.log(e));
   };
 
+  const editAccount = () => {
+    setIncompleteRegis(true);
+  }
+// Go to available tass
+const goToAvailableTasks = () => {
+  navigate(`/available-tasks/${serviceProviderData.serviceproviderid}`)
+}
+const viewProfile = () => {
+  navigate(`/service-provider-profile/${serviceProviderData?.serviceproviderid}`)
+}
+
   return (
     <section className="admin-panel">
       <div className="container justify-content-center d-flex align-items-center">
         <div className="has-max-width mt-5">
-          <h2 className="opensans font-primary">Welcome {name}</h2>
+          <h2 className="opensans font-primary mb-4">Welcome {name}</h2>
           {incompleteRegis ? (
             <form onSubmit={handleSubmit}>
               <h3 className="opensans font-primary h4 mt-3 text-start">
@@ -363,27 +389,58 @@ function AdminService({
             </form>
           ) : (
             <>
-              <h2 className="opensans font-primary"></h2>
+
               <div className="card-admin-properties">
                 <div className="card-body">
                   <div className="icon-card">
                     <span class="material-symbols-rounded font-primary icon-xxl">
-                      real_estate_agent
+                      {serviceProviderData?.categoryimage}
                     </span>
                   </div>
                   <div className="text">
-                    <h3 className="font-primary h4">Your Quotes</h3>
+                    <h3 className="font-primary h4">Welcome to your Account </h3>
+                    <p>{serviceProviderData?.firstname} {serviceProviderData?.lastname} - {serviceProviderData?.category}</p>
+                    
                     <p>You have {quotesCount} Quotes</p>
                   </div>
                 </div>
 
                 <div className="buttons-card">
+
+
+                  <button
+                    className="card-button button-primary"
+                    onClick={editAccount}
+                  >
+                    <span class="material-symbols-rounded">edit</span>
+                    <p>Edit My </p>
+                    <p>Account</p>
+                  </button>
+
+                  <button
+                    className="card-button button-primary"
+                    onClick={viewProfile}
+                  >
+                    <span class="material-symbols-rounded">person</span>
+                    <p>View my</p>
+                    <p>Profile</p>
+                  </button>
+
+                  <button
+                    className="card-button button-primary"
+                    onClick={goToAvailableTasks}
+                  >
+                    <span class="material-symbols-rounded">task</span>
+                    <p>Available Tasks </p>
+                    <p>to Send Quotes</p>
+                  </button>
+
                   <button
                     className="card-button button-primary"
                     onClick={goToquotes}
                   >
                     <span class="material-symbols-rounded">
-                      real_estate_agent
+                      request_quote
                     </span>
                     <p>Manage</p>
                     <p>Quotes</p>
