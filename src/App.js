@@ -26,7 +26,7 @@ import AdminService from "./Components/AdminService";
 import ServiceProvidersCategory from "./Components/ServiceProvidersCategory";
 import ScrollToTop from "./Components/ScrollToTop";
 import MenuMobile from "./Components/MenuMobile";
-
+import ContactUs from "./Components/ContactUs";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
