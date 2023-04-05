@@ -28,7 +28,8 @@ import ScrollToTop from "./Components/ScrollToTop";
 import MenuMobile from "./Components/MenuMobile";
 import AvailableTasks from "./Components/AvailableTasks";
 import ContactUs from "./Components/ContactUs";
-import ManageQuotes from "./Components/ManageQuotes"
+import ManageQuotes from "./Components/ManageQuotes";
+import SubmitQuotes from "./Components/SubmitQuotes";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -58,10 +59,13 @@ function App() {
 
   async function isAuthServ() {
     try {
-      const response = await fetch(`http://localhost:8000/api/authService/isverify`, {
-        method: "GET",
-        headers: { jwtToken: localStorage.jwtToken },
-      });
+      const response = await fetch(
+        `http://localhost:8000/api/authService/isverify`,
+        {
+          method: "GET",
+          headers: { jwtToken: localStorage.jwtToken },
+        }
+      );
       const parseRes = await response.json();
       console.log(parseRes);
 
@@ -292,6 +296,7 @@ function App() {
         />
         <Route path="/service-providers" element={<ServiceProvider />} />
         <Route path="/available-tasks/:id" element={<AvailableTasks />} />
+        <Route path="/submit-quotes/:id" element={<SubmitQuotes />} />
       </Routes>
 
       <MenuMobile />
