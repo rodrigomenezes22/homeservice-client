@@ -45,7 +45,7 @@ const LoginServiceProvider = ({ setAuthServ, setProviderid }) => {
 
       if (parseRes.jwtToken) {
         localStorage.setItem("jwtToken", parseRes.jwtToken);
-        localStorage.setItem("userId", parseRes.userId);
+        localStorage.setItem("providerId", parseRes.userId);
         setAuthServ(true);
         setProviderid(parseRes.userId);
         toast.success("Logged in Successfully");
