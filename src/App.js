@@ -107,6 +107,8 @@ function App() {
         isAuthenticated={isAuthenticated}
         isSerProvider={isSerProvider}
         name={name}
+        userid={userid}
+        providerid={providerid}
       />
 
       <Routes>
