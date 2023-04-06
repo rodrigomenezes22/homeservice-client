@@ -44,6 +44,8 @@ function App() {
 
   const [name, setName] = useState("");
 
+  const [ openSearch, setOpenSearch ] = useState(false);
+
   async function isAuth() {
     try {
       const response = await fetch(`http://localhost:8000/api/auth/isverify`, {
@@ -110,6 +112,7 @@ function App() {
         name={name}
         userid={userid}
         providerid={providerid}
+        openSearch={openSearch}
       />
 
       <Routes>
@@ -325,7 +328,7 @@ function App() {
         <Route path="/submit-quotes/:id" element={<SubmitQuotes />} />
       </Routes>
 
-      <MenuMobile />
+      <MenuMobile setOpenSearch={setOpenSearch} openSearch={openSearch} />
       <Footer />
       <ScrollToTop />
     </Fragment>

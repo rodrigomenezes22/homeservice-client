@@ -3,7 +3,7 @@ import Logo from "../images/myhomeservices.svg";
 import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid}) {
+function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid, openSearch}) {
 
 
   const [categoyList, setCategoryList] = useState([]);
@@ -161,7 +161,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
         </div>
       </div>
         ) : "" }
-      <div className="search mobile-hidden">
+      <div className={openSearch ? "search" : "search mobile-hidden"}>
       <form id="searchform"  onSubmit={handleSearch}>
         <div class="input-group">
 
