@@ -3,7 +3,7 @@ import Logo from "../images/myhomeservices.svg";
 import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Header({ isAuthenticated, isSerProvider, name }) {
+function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid}) {
   const { keyword } = useParams();
   const [city, setCity] = useState();
   const [category, setCategory] = useState();
