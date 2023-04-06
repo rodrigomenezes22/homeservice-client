@@ -31,7 +31,7 @@ function ManageTasks() {
       );
 
       const tasksData = await res.json();
-
+      console.log(tasksData);
       setTaskCount(tasksData.length);
       setTasksList(tasksData);
     } catch (error) {
@@ -61,6 +61,10 @@ function ManageTasks() {
   const addTask = (value) => {
     return navigate(`/add-task/${value}`);
   };
+
+  const viewQuotes = (value) => {
+    return navigate(`/view-quotes-home/${value}`);
+  } 
 
   const editTask = (value) => {
     return navigate(`/edit-task/${value}`);
@@ -119,7 +123,8 @@ function ManageTasks() {
             Array.isArray(tasksList) &&
             tasksList.map((task, index) => (
               <div className="card-admin-properties" key={task?.taskid}>
-                <div className="card-header background-tertiary">                
+                <div className="card-header background-tertiary">
+                               
                 <b>Service title:</b> {task?.title}
                 </div>
                 <div className="card-body">
@@ -145,10 +150,26 @@ function ManageTasks() {
                       <b>Task Date:</b>
                       {moment(task?.date).utc().format("DD-MM-YYYY")}
                     </p>
+                    {task?.quote_count > 0 ? 
+                    <div className="alert alert-warning p-1 ps-3 pe-3">
+                     You received {task?.quote_count} quote(s). 
+                    </div> : "You received no quotes." }
+
                   </div>
                 </div>
 
                 <div className="buttons-card">
+                {task?.quote_count > 0 ? 
+                  <button
+                    className="card-button button-green"
+                    onClick={() => viewQuotes(task?.taskid)}
+                  >
+                    <span class="material-symbols-rounded">edit_square</span>
+                    <p>View</p>
+                    <p>Quotes</p>
+                  </button>
+                  : "" }
+
                   <button
                     className="card-button button-tertiary"
                     onClick={() => editTask(task?.taskid)}
