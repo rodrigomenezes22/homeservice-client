@@ -112,6 +112,7 @@ function App() {
       />
 
       <Routes>
+        <Route path="/api/search/:keyword" component={<Header />} />
         <Route
           path="/admin-service"
           element={
