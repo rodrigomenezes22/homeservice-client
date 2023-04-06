@@ -8,6 +8,7 @@ import moment from "moment";
 function AvailableTasks() {
   const { id } = useParams();
   const serviceproviderid = id;
+  const navigate = useNavigate();
 
   const [serviceProviderData, setServiceProviderData] = useState(null);
   const [tasks, setTasks] = useState([]);
@@ -23,6 +24,13 @@ function AvailableTasks() {
       })
       .catch((e) => console.log(e));
   };
+
+  // Go to submit quote form
+  function goToSubmitQuote(taskid) {
+    navigate(`/submit-quotes/${serviceProviderData.serviceproviderid}`, {
+      state: { taskid: taskid },
+    });
+  }
 
   useEffect(() => {
     getServiceProvider();
@@ -97,7 +105,10 @@ function AvailableTasks() {
                   <p>Details</p>
                 </button>
 
-                <button className="card-button button-primary">
+                <button
+                  className="card-button button-primary"
+                  onClick={() => goToSubmitQuote(task.taskid)}
+                >
                   <span class="material-symbols-rounded">add_box</span>
                   <p>Submit</p>
                   <p>Quote</p>
