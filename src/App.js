@@ -30,6 +30,7 @@ import AvailableTasks from "./Components/AvailableTasks";
 import ContactUs from "./Components/ContactUs";
 import ManageQuotes from "./Components/ManageQuotes";
 import SubmitQuotes from "./Components/SubmitQuotes";
+import ViewQuotes from "./Components/ViewQuotes";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -228,6 +229,23 @@ function App() {
             )
           }
         />
+
+        <Route
+          path="/view-quotes-home/:id"
+          element={
+            isAuthenticated ? (
+              <ViewQuotes
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
         <Route
           path="/add-property/:id"
           element={
