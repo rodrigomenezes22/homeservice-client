@@ -12,10 +12,10 @@ function useScrollDirection() {
       const currentScrollTop = window.pageYOffset;
 
       if (currentScrollTop < lastScrollTop - 1) {
-        console.log("scrolling up");
+
         setScrollDirection("up");
       } else if (currentScrollTop > lastScrollTop + 1) {
-        console.log("scrolling down");
+
         setScrollDirection("down");
       }
 
