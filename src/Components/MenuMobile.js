@@ -34,21 +34,21 @@ function MenuMobile() {
   return (
     <>
       <div className={`mainfooter-nav ${showNavi ? "visible" : "hidden"}`}>
-        <NavLink className="footer-nav" to="/">
+        <NavLink className="footer-nav" onClick={handleMenu} to="/">
           Home <span className="material-symbols-rounded">chevron_right</span>
         </NavLink>
-        <NavLink className="footer-nav" to="/tasks">
+        <NavLink className="footer-nav" onClick={handleMenu} to="/tasks">
           Tasks<span className="material-symbols-rounded">chevron_right</span>
         </NavLink>
-        <NavLink className="footer-nav" to="/service-providers">
+        <NavLink className="footer-nav" onClick={handleMenu} to="/service-providers">
           Service Providers
           <span className="material-symbols-rounded">chevron_right</span>
         </NavLink>
-        <NavLink className="footer-nav" to="/about-us">
+        <NavLink className="footer-nav" onClick={handleMenu} to="/about-us">
           About Us
           <span className="material-symbols-rounded">chevron_right</span>
         </NavLink>
-        <NavLink className="footer-nav" to="/contact-us">
+        <NavLink className="footer-nav" onClick={handleMenu} to="/contact-us">
           Contact us
           <span className="material-symbols-rounded">chevron_right</span>
         </NavLink>

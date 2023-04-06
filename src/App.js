@@ -31,6 +31,7 @@ import ContactUs from "./Components/ContactUs";
 import ManageQuotes from "./Components/ManageQuotes";
 import SubmitQuotes from "./Components/SubmitQuotes";
 import ViewQuotes from "./Components/ViewQuotes";
+import SearchResults from "./Components/SearchResults";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -112,7 +113,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/api/search/:keyword" component={<Header />} />
+        <Route path="/search-results/:search/:category/:city" element={<SearchResults />} />
         <Route
           path="/admin-service"
           element={

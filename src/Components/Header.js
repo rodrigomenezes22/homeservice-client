@@ -4,22 +4,17 @@ import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid}) {
-  const { keyword } = useParams();
-  const [city, setCity] = useState();
-  const [category, setCategory] = useState();
+
 
   const [categoyList, setCategoryList] = useState([]);
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (keyword) {
-      navigate(`/api/serviceProviders/search/${keyword}`);
-      return () => {
-        console.log("Return clear");
-      };
-    }
-  };
+  // Error on empty search
+  const [ err, setErr ] = useState(false);
+
+  const [ city, setCity ] = useState("all");
+  const [ category, setCategory ] = useState("all");
+  const [ searchTerm, setSearchTerm ] = useState("");
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
@@ -29,27 +24,21 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
     setCategory(e.target.value);
   };
 
-  const searchByCityAndCategory = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_BASE_URL}/api/search?city=${city}&category=${category}`
-      );
-      // handle search result
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSearchTerm = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  } 
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if(searchTerm === "") {
+      setErr(true);
+    } else {
+        navigate(`/search-results/${searchTerm}/${category}/${city}`);
+        setErr(false);
+        const formFields = document.querySelector("#searchform");
+        formFields.reset();
+        }
   };
-
-  useEffect(() => {
-    searchByCityAndCategory();
-  }, [city, category]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/search/${keyword}`)
-  //     .then((res) => setCity(res.data))
-  //     .catch((e) => console.log(e));
-  // }, [city]);
 
   const getAllCategories = async () => {
     try {
@@ -70,6 +59,11 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
       console.log(error);
     }
   };
+
+  const closeToast = (e) => {
+    const toast = document.querySelector('.toast');
+    toast.classList.remove('show');
+  }
 
   useEffect(() => {
     getAllCategories();
@@ -157,14 +151,28 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
           </div>
         </nav>
       </div>
-
+      {err ? (
+        <div class="toast show align-items-center text-bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true" onClick={closeToast}>
+        <div class="d-flex">
+          <div class="toast-body">
+            Search can not be empty.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+        ) : "" }
       <div className="search mobile-hidden">
+      <form id="searchform"  onSubmit={handleSearch}>
         <div class="input-group">
+
+
           <input
             type="text"
-            className="form-control"
+            className={err ? "form-control is-invalid" : "form-control"}
             placeholder="Type your search term"
             style={{ width: 150, minwidth: 100, maxwidth: 200 }}
+            name="searchterm"
+            onChange={handleSearchTerm}
           />
           <select
             id="inputGroupSelect04"
@@ -173,7 +181,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
             style={{ width: 200, minwidth: 100, maxwidth: 400 }}
             onChange={handleCategoryChange}
           >
-            <option value="">Select a Category..</option>
+            <option value="all">Select a Category..</option>
             {categoyList &&
               categoyList.map((category) => (
                 <option value={category?.categoryid}>
@@ -188,20 +196,22 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
             style={{ width: 150, minwidth: 100, maxwidth: 200 }}
             onChange={handleCityChange}
           >
-            <option selected>Select a City...</option>
-            <option value="1">Hamburg</option>
-            <option value="2">Berlin</option>
-            <option value="3">Leipzig</option>
+            <option selected value="all">Select a City...</option>
+            <option value="hamburg">Hamburg</option>
+            <option value="berlin">Berlin</option>
+            <option value="leipzig">Leipzig</option>
           </select>
-          <button class="btn btn-search" type="button">
+          <button class="btn btn-search" type="submit">
             <span
               class="material-symbols-rounded icon-medium"
-              onClick={handleSearch}
             >
               search
             </span>
           </button>
+          
+
         </div>
+        </form>
       </div>
     </header>
   );
