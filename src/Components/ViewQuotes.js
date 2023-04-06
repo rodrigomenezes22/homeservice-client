@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 
-function ViewQuotes() {
+function ViewQuotes({ userid }) {
     
     const { id } = useParams();
     const taskid = id;

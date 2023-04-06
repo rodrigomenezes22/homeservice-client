@@ -3,7 +3,7 @@ import Logo from '../images/myhomeservices.svg'
 import { Link, NavLink } from 'react-router-dom';
 
 
-function Header({ isAuthenticated, isSerProvider, name}) {
+function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid}) {
   return (
     <header>
       <div className='container'>
