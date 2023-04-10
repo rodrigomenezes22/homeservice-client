@@ -6,8 +6,8 @@ function ContactUs() {
   return (
     <div>
       <div className="Contactline mt-5">
-        <h3>Contact Us</h3>
-        <div className="ContactPara">
+        <h3 className="trykker font-primary">Contact Us</h3>
+        <div className="ContactPara mb-5">
           <p>
             To connect with us and to learn more about us, please visit our
             websit or reach out to us to our contact page
@@ -25,17 +25,17 @@ function ContactUs() {
           >
             <div className="Contact-Form">
               <div className="Contact-Us mt-2 ">
-                <h2>Send us a message</h2>
+                <h2 className="trykker font-primary h5">Send us a message</h2>
               </div>
 
               <Form>
                 <Form.Group controlId="formBasicName">
-                  <Form.Label>Name</Form.Label>
+                  <Form.Label className="mt-3">Name</Form.Label>
                   <Form.Control type="text" placeholder="Enter your name" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicLastName">
-                  <Form.Label>Last Name</Form.Label>
+                  <Form.Label className="mt-3">Last Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter your last name"
@@ -43,7 +43,7 @@ function ContactUs() {
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPhone">
-                  <Form.Label>Phone</Form.Label>
+                  <Form.Label className="mt-3">Phone</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter your phone number"
@@ -51,7 +51,7 @@ function ContactUs() {
                 </Form.Group>
 
                 <Form.Group controlId="formBasicMessage">
-                  <Form.Label>Message</Form.Label>
+                  <Form.Label className="mt-3">Message</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}

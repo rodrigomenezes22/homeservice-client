@@ -30,6 +30,8 @@ import AvailableTasks from "./Components/AvailableTasks";
 import ContactUs from "./Components/ContactUs";
 import ManageQuotes from "./Components/ManageQuotes";
 import SubmitQuotes from "./Components/SubmitQuotes";
+import ViewQuotes from "./Components/ViewQuotes";
+import SearchResults from "./Components/SearchResults";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +43,18 @@ function App() {
   const [providerid, setProviderid] = useState();
 
   const [name, setName] = useState("");
+
+  const [ openSearch, setOpenSearch ] = useState(false);
+
+
+  const openSearchBar = () => {
+    if(openSearch === true) {
+      setOpenSearch(false);
+    } else {
+      setOpenSearch(true);
+    }
+
+  }
 
   async function isAuth() {
     try {
@@ -106,9 +120,14 @@ function App() {
         isAuthenticated={isAuthenticated}
         isSerProvider={isSerProvider}
         name={name}
+        userid={userid}
+        providerid={providerid}
+        openSearch={openSearch}
+        openSearchBar={openSearchBar}
       />
 
       <Routes>
+        <Route path="/search-results/:search/:category/:city" element={<SearchResults />} />
         <Route
           path="/admin-service"
           element={
@@ -228,6 +247,23 @@ function App() {
             )
           }
         />
+
+        <Route
+          path="/view-quotes-home/:id"
+          element={
+            isAuthenticated ? (
+              <ViewQuotes
+                setAuth={setAuth}
+                userid={userid}
+                setName={setName}
+                name={name}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
         <Route
           path="/add-property/:id"
           element={
@@ -303,7 +339,7 @@ function App() {
         <Route path="/submit-quotes/:id" element={<SubmitQuotes />} />
       </Routes>
 
-      <MenuMobile />
+      <MenuMobile setOpenSearch={setOpenSearch} openSearch={openSearch} openSearchBar={openSearchBar} />
       <Footer />
       <ScrollToTop />
     </Fragment>

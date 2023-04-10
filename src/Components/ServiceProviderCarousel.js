@@ -149,10 +149,11 @@ const ServiceProviderCarousel = () => {
                 ))}
             </Carousel>
           </div>
-          <div className="search service-pro-search my-3">
+          <div className="container d-flex justify-content-center">
+          <div className="col-xs-12 col-md-5 col-lg-5 col-xl-3 service-pro-search my-3">
             <Link
               to={`/service-providers`}
-              className="btn btn-search color-white rounded-pill"
+              className="btn btn-search color-white rounded-pill "
               type="button"
               onClick={() => {
                 window.scroll({
@@ -171,6 +172,7 @@ const ServiceProviderCarousel = () => {
             </Link>
           </div>
           <br></br>
+        </div>
         </div>
       </section>
     </>

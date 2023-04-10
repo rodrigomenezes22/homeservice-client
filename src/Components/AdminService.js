@@ -10,6 +10,7 @@ function AdminService({
   setProviderid,
   setIsAuthenticated,
   setIsSerProvider,
+  setAuth,
   providerid,
   name,
   setName,

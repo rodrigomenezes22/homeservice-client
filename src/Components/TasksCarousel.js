@@ -36,7 +36,7 @@ function TasksCarousel() {
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
-          items: 2
+          items: 1
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
@@ -119,27 +119,28 @@ function TasksCarousel() {
                 </div>
             ))}
             </Carousel>
-            <div className="search service-pro-search my-3">
-          <Link
-            to={`/tasks`}
-            className="btn btn-search color-white rounded-pill"
-            type="button"
-            onClick={() => {
-              window.scroll({
-                top: 0,
-                left: 0,
-                behavior: "smooth",
-              });
-            }}
-          >
-            <div className="button-organizer">
-            Search for tasks
-            <span className="material-symbols-rounded icon-medium">search</span>
+            <div className=" service-pro-search mt-0 d-flex justify-content-center">
+              <div className="col-xs-12 col-md-5 col-lg-5 col-xl-3 service-pro-search my-3">
+                <Link
+                  to={`/tasks`}
+                  className="btn btn-search color-white rounded-pill"
+                  type="button"
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                  }}
+                >
+                  <div className="button-organizer">
+                  Search for tasks
+                  <span className="material-symbols-rounded icon-medium">search</span>
+                  </div>
+                </Link>
+              </div>
+             </div>
             </div>
-          </Link>
-        </div>
-            </div>
-
         </div>
     </section>
   )
