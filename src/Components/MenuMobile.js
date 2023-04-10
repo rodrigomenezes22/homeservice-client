@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useScrollDirection from "./useScrollDirection";
 
-function MenuMobile({setOpenSearch, openSearch}) {
+function MenuMobile({setOpenSearch, openSearch, openSearchBar}) {
   const [isVisible, setIsVisible] = useState(true);
   const scrollDirection = useScrollDirection();
 
@@ -12,6 +12,7 @@ function MenuMobile({setOpenSearch, openSearch}) {
     if (scrollDirection === "down") {
       setIsVisible(false);
       setShowNavi(false);
+      setOpenSearch(false);
     } else if (scrollDirection === "up") {
       setIsVisible(true);
     }
@@ -32,14 +33,7 @@ function MenuMobile({setOpenSearch, openSearch}) {
     }
   };
 
-  const openSearchBar = () => {
-    if(openSearch === true) {
-      setOpenSearch(false);
-    } else {
-      setOpenSearch(true);
-    }
 
-  }
 
   return (
     <>

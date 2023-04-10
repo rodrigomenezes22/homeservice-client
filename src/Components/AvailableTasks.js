@@ -27,9 +27,13 @@ function AvailableTasks() {
 
   // Go to submit quote form
   function goToSubmitQuote(taskid) {
-    navigate(`/submit-quotes/${serviceProviderData.serviceproviderid}`, {
+    return navigate(`/submit-quotes/${serviceProviderData.serviceproviderid}`, {
       state: { taskid: taskid },
     });
+  }
+
+  function viewTaskDetails(taskid) {
+    return navigate(`/task-details/${taskid}`);
   }
 
   useEffect(() => {
@@ -99,7 +103,7 @@ function AvailableTasks() {
               </div>
 
               <div className="buttons-card">
-                <button className="card-button button-primary">
+                <button className="card-button button-primary" onClick={() => viewTaskDetails(task.taskid)}>
                   <span class="material-symbols-rounded">visibility</span>
                   <p>View Task </p>
                   <p>Details</p>
