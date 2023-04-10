@@ -4,14 +4,22 @@ import { Container, Row, Col } from "react-bootstrap";
 import blackWidow from "../images/black-widow.jpg";
 import womenHero from "../images/women-hero.jpg";
 import ironMan from '../images/iron-man.jpg';
-
+import { useNavigate } from "react-router-dom";
 
 
 function AboutUs() {
+
+  const navigate = useNavigate();
+
+  const goToContact = () => {
+    navigate("/contact-us");
+  }
+
   return (
     <div>
+      <div className="container">
       <div className="AboutUs mt-5">
-        <h2 className="About">About Us</h2>
+        <h2 className="About trykker font-primary">About Us</h2>
         <p className="AboutDesc">
           Rodrigo, Priyanka and Savitha are the passionate founders of MyHomeServices.
           Each one brings uniques skills and expertise to the company.
@@ -29,13 +37,15 @@ function AboutUs() {
         <img src={blackWidow} alt="Founder2" className="circle" />
         <img src={womenHero} alt="Founder3" className="circle" />
       </div>
+      </div>
       <Container fluid>
-        <Row>
-          <div className="OurCompany">
-            <Col md={6}>
+
+
+          <Row>
+            <Col xs={12} md={6} className="d-flex justify-content-center align-items-center bg-light p-0">
               <div className="companytext">
-                <h2>Our Company</h2>
-                <p>MyHomeServices is a leading home services platform that connects homme owners and home residents
+                <h2 className="trykker font-primary">Our Company</h2>
+                <p className="text-justify">MyHomeServices is a leading home services platform that connects homme owners and home residents
                   with the right service providers to meet their needs. Our mission is to simplify the process of finding reliable ,
                   affordable and trustworthy serviceproviders for all types of home services. Our platform offers a wide range of categories
                   including cleaning , handyman , plumbing electrical pest contrl , lawn and garden, HVAC, roofing, painting and more .
@@ -45,20 +55,21 @@ function AboutUs() {
                   experience and helping homeowners and residents keep their homes in top condition.</p>
               </div>
             </Col>
-            <Col md={6}>
+            <Col xs={12} md={6} className=" p-0">
                 
                 <img src="../images/background_my_home_services.jpg" className="img-fluid"  style={{ height: '100vh', objectFit: 'cover' }} alt="Home-image" />
             
             </Col>
-          </div>
-        </Row>
+            </Row>
+
+
       </Container>
       
-      <div className="Contactline mt-5">
-        <h3>Contact Us</h3>
+      <div className="Contactline mt-5 mb-5">
+        <h3 className="trykker font-primary">Contact Us</h3>
         <p>To connect with us and to learn more about us, please visit our websit or reach out to us to our contact page</p>
-        <button className="btn btn-primary rounded-pill color-dark m-2"style={{backgroundColor:"black"}}>
-          <div className='button-organizer'>
+        <button className="btn btn-primary rounded-pill color-primary m-2" onClick={goToContact}>
+          <div className='button-organizer' >
             Contact Us
             <span class="material-symbols-rounded">&#9993;</span>
           </div>

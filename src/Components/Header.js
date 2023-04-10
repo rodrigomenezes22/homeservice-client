@@ -3,7 +3,7 @@ import Logo from "../images/myhomeservices.svg";
 import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid}) {
+function Header({ isAuthenticated, isSerProvider, name, userid, serviceproviderid, openSearch, openSearchBar }) {
 
 
   const [categoyList, setCategoryList] = useState([]);
@@ -36,7 +36,9 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
         navigate(`/search-results/${searchTerm}/${category}/${city}`);
         setErr(false);
         const formFields = document.querySelector("#searchform");
+        openSearchBar();
         formFields.reset();
+        setSearchTerm("");
         }
   };
 
@@ -161,7 +163,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
         </div>
       </div>
         ) : "" }
-      <div className="search mobile-hidden">
+      <div className={openSearch ? "search" : "search mobile-hidden"}>
       <form id="searchform"  onSubmit={handleSearch}>
         <div class="input-group">
 
@@ -169,8 +171,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
           <input
             type="text"
             className={err ? "form-control is-invalid" : "form-control"}
-            placeholder="Type your search term"
-            style={{ width: 150, minwidth: 100, maxwidth: 200 }}
+            placeholder="Search"
             name="searchterm"
             onChange={handleSearchTerm}
           />
@@ -178,7 +179,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
             id="inputGroupSelect04"
             className="form-select"
             aria-label="Example select with button addon"
-            style={{ width: 200, minwidth: 100, maxwidth: 400 }}
+
             onChange={handleCategoryChange}
           >
             <option value="all">Select a Category..</option>
@@ -193,7 +194,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
             class="form-select"
             id="inputGroupSelect04"
             aria-label="Example select with button addon"
-            style={{ width: 150, minwidth: 100, maxwidth: 200 }}
+
             onChange={handleCityChange}
           >
             <option selected value="all">Select a City...</option>
@@ -207,6 +208,7 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
             >
               search
             </span>
+            <span className="text-search">Find a Service Provider</span>
           </button>
           
 

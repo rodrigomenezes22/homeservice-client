@@ -3,14 +3,16 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useScrollDirection from "./useScrollDirection";
 
-function MenuMobile() {
+function MenuMobile({setOpenSearch, openSearch, openSearchBar}) {
   const [isVisible, setIsVisible] = useState(true);
   const scrollDirection = useScrollDirection();
+
 
   const checkDirection = () => {
     if (scrollDirection === "down") {
       setIsVisible(false);
       setShowNavi(false);
+      setOpenSearch(false);
     } else if (scrollDirection === "up") {
       setIsVisible(true);
     }
@@ -30,6 +32,8 @@ function MenuMobile() {
       setShowNavi(true);
     }
   };
+
+
 
   return (
     <>
@@ -62,10 +66,10 @@ function MenuMobile() {
           <span className="material-symbols-rounded">person</span>
           MY ACCOUNT
         </NavLink>
-        <NavLink className="navfooter-item searchnav" to="/">
+        <button className="navfooter-item searchnav" onClick={openSearchBar}>
           <span className="material-symbols-rounded">search</span>
           SEARCH
-        </NavLink>
+        </button>
         <NavLink className="navfooter-item" to="/admin">
           <span className="material-symbols-rounded">real_estate_agent</span>
           PROPERTIES

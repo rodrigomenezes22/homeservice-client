@@ -6,6 +6,10 @@ import CategoriesHome from './CategoriesHome';
 
 
 function SearchResults() {
+
+  const navigate = useNavigate();
+
+
     const { search } = useParams();
     const { category } = useParams();
     const { city } = useParams();
@@ -31,6 +35,11 @@ function SearchResults() {
     useEffect(()=> {
         getResults();
     }, [search, category, city]);
+
+    const viewProfile = (value) => {
+      navigate(`/service-provider-profile/${value}`);
+    };
+  
 
   return (
 <>
