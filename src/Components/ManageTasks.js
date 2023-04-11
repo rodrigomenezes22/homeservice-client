@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import Loading from "./Loading";
 
 
 function ManageTasks() {
@@ -17,9 +18,12 @@ function ManageTasks() {
 
   const [property, setProperty] = useState([]);
 
+  const [ isLoading, setIsLoading ] = useState(false);
+
 
   
   const getTasks = async () => {
+    setIsLoading(true);
     console.log(propertyid);
     try {
       const res = await fetch(
@@ -34,6 +38,7 @@ function ManageTasks() {
       console.log(tasksData);
       setTaskCount(tasksData.length);
       setTasksList(tasksData);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -87,6 +92,8 @@ function ManageTasks() {
   // Test
 
   return (
+    <>
+    {isLoading ? <Loading /> : "" }
     <div className="container justify-content-center d-flex align-items-center">
       <div className="has-max-width mt-5">
         <div className=" p-4">
@@ -204,6 +211,7 @@ function ManageTasks() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
