@@ -96,7 +96,7 @@ function ManageTasks() {
     {isLoading ? <Loading /> : "" }
     <div className="container justify-content-center d-flex align-items-center">
       <div className="has-max-width mt-5">
-        <div className=" p-4">
+        <div className=" p-md-4">
           <h3 className="font-tertiary h3 pb-4">Manage your tasks for:</h3>
           <div className="property-header">
             <div className="icon-container">

@@ -26,6 +26,7 @@ function ManageQuotes() {
           `${process.env.REACT_APP_SERVER_BASE_URL}/api/quotes/serviceprovider/${serviceproviderid}`
         )
         .then((res) => {
+          console.log(res.data);
           setQuotes(res.data);
           setIsLoading(false);
         })
