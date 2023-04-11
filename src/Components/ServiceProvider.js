@@ -2,18 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 function ServiceProvider() {
   const [service, setServices] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  const [ isLoading, setIsLoading ] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders`)
       .then((res) => {
         setServices(res.data);
+        setIsLoading(false);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -39,6 +42,7 @@ function ServiceProvider() {
 
   return (
     <>
+        {isLoading ? <Loading /> : "" }
       <Container>
         <h1 className="mt-5 mb-5 pacifico font-primary">
           Showing all Service Providers

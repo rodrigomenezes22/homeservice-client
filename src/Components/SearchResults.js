@@ -3,12 +3,13 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import axios from 'axios';
 import CategoriesHome from './CategoriesHome';
-
+import Loading from './Loading';
 
 function SearchResults() {
 
   const navigate = useNavigate();
 
+  const [ isLoading, setIsLoading ] = useState(false);
 
     const { search } = useParams();
     const { category } = useParams();
@@ -23,11 +24,13 @@ function SearchResults() {
 
 
     const getResults = () => {
+      setIsLoading(true);
         axios
         .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/search/${searchTerm}/${categorySearch}/${citySearch}`)
         .then((res) => {
           console.log(res.data);
           setServiceProviders(res.data);
+          setIsLoading(false);
         })
         .catch((e) => console.log(e));
     }
@@ -43,6 +46,7 @@ function SearchResults() {
 
   return (
 <>
+{isLoading ? <Loading /> : "" }
       <Container className='mb-5'>
         {serviceProviders.length === 0 ? "" : (
          <h1 className="mt-5 mb-5 pacifico font-primary">

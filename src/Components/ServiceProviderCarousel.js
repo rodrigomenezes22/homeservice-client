@@ -4,6 +4,7 @@ import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import Loading from "./Loading";
 
 const responsive = {
   widescreen: {
@@ -32,14 +33,16 @@ const responsive = {
 const ServiceProviderCarousel = () => {
   const [service, setServices] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  const [ isLoading, setIsLoading ] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders`)
       .then((res) => {
         setServices(res.data);
+        setIsLoading(false);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -69,6 +72,7 @@ const ServiceProviderCarousel = () => {
 
   return (
     <>
+      {isLoading ? <Loading /> : "" }
       <section>
         <div className="container">
           <br></br>

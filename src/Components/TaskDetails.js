@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import Loading from "./Loading";
 
 const TaskDetails = () => {
   const [item, setTask] = useState(Object);
   const { id } = useParams();
   const taskid = id;
+  const [ isLoading, setIsLoading ] = useState(false);
   const navigate = useNavigate();
   console.log("taskdetails " + taskid);
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/${taskid}`)
-      .then((res) => setTask(res.data))
+      .then((res) => {
+      setTask(res.data);
+      setIsLoading(false);
+    }
+      )
       .catch((e) => console.log(e));
   }, [taskid]);
 
   return (
     <>
+      {isLoading ? <Loading /> : "" }
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-6 col-lg-4 image-profile-column mt-5 mb-5">
