@@ -46,13 +46,21 @@ function App() {
   const [name, setName] = useState("");
 
   const [ openSearch, setOpenSearch ] = useState(false);
+  
+  // Disable browser bouncy effect on scroll
+  document.addEventListener('scroll', function (e) {
+    e.preventDefault();
+  }, { passive: false });
 
+  const body = document.querySelector('body');
 
   const openSearchBar = () => {
     if(openSearch === true) {
       setOpenSearch(false);
+
     } else {
       setOpenSearch(true);
+
     }
 
   }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Logo from "../images/myhomeservices.svg";
+import Logo from "../images/my-home-services-logo.svg";
 import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 

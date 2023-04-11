@@ -76,7 +76,10 @@ function ServiceProvider() {
                         </h2>
                       </Row>
                       <Row>
-                        <p className="ps-4">{provider.description}</p>
+                        <p className="ps-4">
+                          {provider?.description?.substring(0, 120)}
+                          {provider?.description?.length > 120 ? "..." : ""}
+                        </p>
                       </Row>
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={6}></Col>
