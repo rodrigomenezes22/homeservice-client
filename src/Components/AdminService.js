@@ -46,7 +46,8 @@ function AdminService({
 
 
   const getServiceProvider = async () => {
-    console.log(providerid);
+
+    setIsLoading(true)
     try {
       const res = await fetch(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/adminService/${providerid}`,
@@ -62,7 +63,7 @@ function AdminService({
       setName(parseData.email);
       // Getting user information.
       setServiceProviderData(parseData);
-
+      setIsLoading(false)
       if (parseData.firstname === null) {
         setIncompleteRegis(true);
       } else if (parseData.firstname !== null) {
@@ -201,12 +202,16 @@ function AdminService({
     });
     formData.append("file", file);
     console.log(`Formdata: ${JSON.stringify(formData)}`);
+    setIsLoading(true)
     axios
       .put(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/${providerid}`,
         formData
       )
-      .then((res) => navigate("/login-service"))
+      .then((res) => {
+        navigate("/login-service");
+        setIsLoading(false);
+      })
       .catch((e) => console.log(e));
   };
 
@@ -227,6 +232,8 @@ const viewProfile = () => {
   };
 
   return (
+    <>
+        {isLoading ? <Loading /> : "" }
     <section className="admin-panel">
       <div className="container justify-content-center d-flex align-items-center">
         <div className="has-max-width mt-5">
@@ -482,72 +489,8 @@ const viewProfile = () => {
         </div>
       </div>
     </section>
-    // <section>
-    //    <div className="container admin-panel">
-    //     Admin Service Provider Page
-    //     <button
-    //       onClick={(e) => logout(e)}
-    //       className="btn btn-primary color-danger rounded-pill"
-    //     >
-    //       <div className="button-organizer">
-    //         Logout
-    //         <span class="material-symbols-rounded">logout</span>
-    //       </div>
-    //     </button>
-    //     {incompleteRegis ? (
-    //       <AddServiceProviderForm
-    //         providerid={providerid}
-    //         serviceProviderData={serviceProviderData}
-    //       />
-    //      ) : (
-    //       <>
-    //         <h2 className="opensans font-primary"></h2>
-    //         <div className="card-admin-properties">
-    //           <div className="card-body">
-    //             <div className="icon-card">
-    //               <span class="material-symbols-rounded font-primary icon-xxl">
-    //                 real_estate_agent
-    //               </span>
-    //             </div>
-    //             <div className="text">
-    //               <h3 className="font-primary h4">Your quotes</h3>
-    //               <p>You have {propertyCount} Qutoes</p>
-    //             </div>
-    //           </div>
 
-    //           <div className="buttons-card">
-    //             <button
-    //               className="card-button button-primary"
-    //               onClick={goToProperties}
-    //             >
-    //               <span class="material-symbols-rounded">
-    //                 real_estate_agent
-    //               </span>
-    //               <p>Manage</p>
-    //               <p>quotes</p>
-    //             </button>
-
-    //             <button
-    //               className="card-button button-primary"
-    //               onClick={addProperty}
-    //             >
-    //               <span class="material-symbols-rounded">add_box</span>
-    //               <p>Add</p>
-    //               <p>quotes</p>
-    //             </button>
-    //           </div>
-    //         </div>
-    //       </>
-    //     )}
-    //     {formError !== "" ? (
-    //       <div className="alert alert-warning" role="alert">
-    //         {formError}
-    //       </div>
-    //     ) : (
-    //       <></>
-    //     )}
-    //   </div>
-    // </section>
+    </>
   );
 }
 

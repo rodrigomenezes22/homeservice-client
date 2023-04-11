@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Card, Row, Container, Col, Image } from "react-bootstrap"
 import moment from "moment";
 import axios from 'axios';
+import Loading from './Loading';
+
 
 function ManageQuotes() {
 
@@ -13,16 +15,19 @@ function ManageQuotes() {
 
     const [ quotes, setQuotes ] = useState([]);
 
+    const [ isLoading, setIsLoading ] = useState(false);
+
     console.log(quotes.length)
 
     useEffect(()=> {
+      setIsLoading(true);
         axios
         .get(
           `${process.env.REACT_APP_SERVER_BASE_URL}/api/quotes/serviceprovider/${serviceproviderid}`
         )
         .then((res) => {
-          console.log(res.data);
           setQuotes(res.data);
+          setIsLoading(false);
         })
         .catch((e) => console.log(e));
     }, []);
@@ -52,9 +57,25 @@ function ManageQuotes() {
     }
 
   return (
+    <>
+        {isLoading ? <Loading /> : "" }
+
     <section className='mt-5 mb-5'>
         <div className='container'>
-        <h1>Manage your quotes</h1>
+          <div className='container-fluid button-organizer'>
+          <h1 className="opensans font-primary h3 mt-5 mb-5 flex-grow-1 text-start">
+           Manage your Quotes
+          </h1>
+          <Link
+            className="btn btn-primary rounded-pill color-secondary  m-2"
+            to={-1}
+          >
+            <div className="button-organizer">
+              <span class="material-symbols-rounded">chevron_left</span>
+              Back to properties
+            </div>
+          </Link>
+        </div>
         {quotes && quotes.length !== 0 ? 
         <>
         
@@ -170,6 +191,7 @@ function ManageQuotes() {
         }
         </div>
     </section>
+  </>
   )
 }
 
