@@ -1,16 +1,18 @@
 import React from "react";
 import "../App.css";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 function Pricing() {
     return (
-        <div id="generic_price_table">
+        <div id="generic_price_table" className="pb-5">
             <Container>
                 <div className ="container">
                     <div className="row">
                         <div className="col-md-12">
 
                             <div className="price-heading  text-dark">
-                                <h1> Pricing </h1>
+                                <h1 className="trykker font-primary h1 mt-5 mb-0"> Pricing </h1>
                                 <p className="price-text text-dark"> Choose the pricing that suits your business needs.</p>
                             </div>
                         </div>
@@ -64,7 +66,7 @@ function Pricing() {
                                 </div>
 
                                 <div className="generic_price_btn clearfix">
-                                    <a className="" href="">Sign up</a>
+                                    <Link to="/register-service">Sign up</Link>
                                 </div>
 
 
@@ -116,7 +118,7 @@ function Pricing() {
                                 </div>
 
                                 <div className="generic_price_btn clearfix">
-                                    <a className="" href="">Sign up</a>
+                                    <Link to="/register-service" className="">Sign up</Link>
                                 </div>
 
                             </div>
@@ -165,7 +167,7 @@ function Pricing() {
                                 </div>
 
                                 <div className="generic_price_btn clearfix">
-                                    <a className="" href="">Sign up</a>
+                                    <Link to="/register-service" >Sign up</Link>
                                 </div>
 
 
