@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 import ManageProperties from "./ManageProperties";
 
 const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerProvider, setAuthServ }) => {
-
+  const [ isLoading, setIsLoading ] = useState(false);
   // Sets the user data values
   const [ userData, setUserData ] = useState({});
+
 
   // Check if contact data is filled up
   const [ incompleteRegis, setIncompleteRegis ] = useState(true)
@@ -21,7 +23,7 @@ const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerPr
   const navigate = useNavigate();
 
   const getProfile = async () => {
-
+    setIsLoading(true);
     try {
       const res = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/api/admin/${userid}`, {
         method: "POST",
@@ -32,16 +34,19 @@ const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerPr
       setName(parseData.email);
       // Getting user information.
       setUserData(parseData);
+      
 
       if(parseData.firstname === null) {
         setIncompleteRegis(true);
       } else if(parseData.firstname !== null ) {
         setIncompleteRegis(false);
         setName(parseData.firstname)
+        
       }
       
     } catch (err) {
       console.log(err);
+
     }
   };
 
@@ -60,6 +65,7 @@ const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerPr
 
       setPropertyCount(propertyData.length);
       setProperties(propertyData);
+      setIsLoading(false);
 
     } catch (error) {
       console.log(error);
@@ -130,6 +136,8 @@ const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerPr
   };
 
   return (
+    <>
+    {isLoading ? <Loading /> : "" }
     <section className="admin-panel">
 
       <div className="container justify-content-center d-flex align-items-center">
@@ -208,6 +216,7 @@ const Admin = ({ setAuth, userid, name, setName , setIsAuthenticated, setIsSerPr
         </div>      
 
     </section>
+    </>
   );
 };
 
