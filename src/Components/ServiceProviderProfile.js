@@ -3,6 +3,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import LeafletMap from "./LeafletMap";
+import Loading from "./Loading";
 
 function ServiceProviderProfile() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ function ServiceProviderProfile() {
   const serviceproviderid = id;
 
   const [profile, setProfile] = useState({});
-
+  const [ isLoading, setIsLoading ] = useState(false);
   const [lat, setLat] = useState("");
   const [long, setLong] = useState("");
 
@@ -28,6 +29,7 @@ function ServiceProviderProfile() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/${serviceproviderid}`
@@ -35,6 +37,7 @@ function ServiceProviderProfile() {
       .then((res) => {
         setProfile(res.data);
         console.log(res.data);
+        setIsLoading(false);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -46,6 +49,8 @@ function ServiceProviderProfile() {
   }, [profile]);
 
   return (
+    <>   
+    {isLoading ? <Loading /> : "" }
     <section>
       <div className="container">
         <div className="row">
@@ -116,6 +121,7 @@ function ServiceProviderProfile() {
         />
       )}
     </section>
+    </>
   );
 }
 
