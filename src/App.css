@@ -421,6 +421,7 @@ header {
 /* Cards - admin */
 .card {
   border-radius: 10px !important;
+  border:none!important;
 }
 
 .card-admin-properties {
@@ -671,9 +672,193 @@ footer {
   }
 }
 
+
+
+/* servieprovider section */
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-decoration: none;
+  padding: 0px 1rem;
+  color: var(--light);
+  text-align: center;
+}
+
+.service-provider-card {
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  margin: 1rem 2rem;
+  height: 300px;
+}
+
+.servieprovider-profile-pic {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.has-max-width {
+  padding: 0.75rem;
+  width: 100%;
+  border: none;
+  margin: 0px;
+  box-shadow: none;
+}
+
+.task-profile-pic {
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+}
+.task {
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  margin: 1rem 2rem;
+  height: 300px;
+}
+
+/*AboutUS section*/
+.AboutUs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.About {
+  text-align: center;
+  font-size: 36px;
+  font-weight: normal;
+  margin-top: 10 px;
+  padding: 1rem;
+}
+
+.AboutDesc {
+  text-align: center;
+
+}
+
+.foundersPic {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: gray;
+  object-fit: cover;
+}
+
+.toast {
+  position: absolute;
+  z-index: 100;
+  top: 50px;
+  left: 20px;
+}
+
+@media (max-width: 768px) {
+  .circle {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.OurCompany {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  max-height: 10%;
+  background-color: rgb(215, 215, 215);
+}
+
+.companytext {
+  max-width: 550px;
+  padding-left: 2rem;
+  justify-content: flex-start;
+}
+
+.Contactline {
+  text-align: center;
+  line-height: 1.5;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.Contact-us-Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+
+  background-color: rgb(230, 230, 230);
+}
+
+.Contact-Form {
+  justify-content: flex-start !important;
+
+  min-width: 320px;
+}
+
+.ContactPara {
+  font-size: large !important;
+}
+
 @media (max-width: 991px) {
 
+  body.no-scroll {
+    overflow: hidden;
+  }
 
+
+  .buttons-profie .color-primary,   .buttons-profie .color-green {
+    width: 220px;
+  }
+
+  .service-provider-card {
+    margin: 1rem .25rem;
+  }
+
+  .service-provider-card .color-primary  {
+    margin: 1rem 0px 0px;
+  }
+
+  .task-card-wide .color-tertiary  {
+    margin: 0px auto;
+    width: 200px;
+  }
+
+  .task-card-wide .color-green  {
+    width: 200px;
+  }
+
+  .task-card-wide .card-header .button-organizer {
+    display: flex;
+    flex-direction: column;
+    font-size: .7rem;
+  }
+
+  .task-card-wide .card-header {
+    align-items: center;
+  }
 
   #searchform .input-group {
     flex-direction: column;
@@ -823,154 +1008,4 @@ footer {
   button.no-border {
     border: 0px;
   }
-}
-
-/* servieprovider section */
-.action-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  text-decoration: none;
-  padding: 0px 1rem;
-  color: var(--light);
-  text-align: center;
-}
-
-.service-provider-card {
-  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  margin: 1rem 2rem;
-  height: 300px;
-}
-
-.servieprovider-profile-pic {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.has-max-width {
-  padding: 0.75rem;
-  width: 100%;
-  border: none;
-  margin: 0px;
-  box-shadow: none;
-}
-
-.task-profile-pic {
-  height: 80%;
-  width: 80%;
-  object-fit: cover;
-}
-.task {
-  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  margin: 1rem 2rem;
-  height: 300px;
-}
-
-/*AboutUS section*/
-.AboutUs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.About {
-  text-align: center;
-  font-size: 36px;
-  font-weight: normal;
-  margin-top: 10 px;
-  padding: 1rem;
-}
-
-.AboutDesc {
-  text-align: center;
-
-}
-
-.foundersPic {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-top: 5rem;
-  padding-bottom: 10rem;
-}
-
-.circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  background-color: gray;
-  object-fit: cover;
-}
-
-.toast {
-  position: absolute;
-  z-index: 100;
-  top: 50px;
-  left: 20px;
-}
-
-@media (max-width: 768px) {
-  .circle {
-    width: 150px;
-    height: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .circle {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-.OurCompany {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
-  max-height: 10%;
-  background-color: rgb(215, 215, 215);
-}
-
-.companytext {
-  max-width: 550px;
-  padding-left: 2rem;
-  font-size: larger;
-  line-height: 1.5;
-  justify-content: flex-start;
-}
-
-.Contactline {
-  text-align: center;
-  line-height: 1.5;
-  padding-left: 4rem;
-  padding-right: 4rem;
-}
-
-.Contact-us-Container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: auto;
-
-  background-color: rgb(230, 230, 230);
-}
-
-.Contact-Form {
-  justify-content: flex-start !important;
-
-  min-width: 320px;
-}
-
-.ContactPara {
-  font-size: large !important;
 }

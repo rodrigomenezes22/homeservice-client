@@ -50,8 +50,8 @@ function Tasks() {
               </div>
             </div>
             <Card.Body>
-              <Row>
-                <Col xs={12} sm={6} md={4} lg={2}>
+              <Row className="d-flex align-items-center justify-content-center">
+                <Col xs={8} sm={6} md={4} lg={2} className="text-center">
                   <Image
                     src={item.image}
                     alt={item.title}
