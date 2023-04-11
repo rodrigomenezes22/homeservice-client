@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Loading from "./Loading";
 
 function AdminService({
   setAuthServ,
@@ -17,7 +18,7 @@ function AdminService({
 }) {
   console.log(providerid);
   const { id } = useParams();
-
+  const [ isLoading, setIsLoading ] = useState(false);
   const [file, setFile] = useState(null);
   const [serviceProviderData, setServiceProviderData] = useState({});
   const [categoyList, setCategoryList] = useState([]);
@@ -31,11 +32,15 @@ function AdminService({
   const navigate = useNavigate();
 
   const getCompleteServiceProvider = () => {
+    setIsLoading(true);
     axios
     .get(
       `${process.env.REACT_APP_SERVER_BASE_URL}/api/serviceProviders/${providerid}`
     )
-    .then((res) =>   setServiceProviderData(res.data))
+    .then((res) =>  {
+      setServiceProviderData(res.data);
+      setIsLoading(false);
+    } )
     .catch((e) => console.log(e));
   }
 
