@@ -13,7 +13,6 @@ function Home() {
       <HowItWorks />
       <CategoriesHome />
       <ServiceProviderCarousel />
-
       <TasksCarousel />
     </div>
   );

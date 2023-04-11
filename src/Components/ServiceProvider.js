@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import CategoriesHome  from "./CategoriesHome";
 
 function ServiceProvider() {
   const [service, setServices] = useState([]);
@@ -139,6 +140,7 @@ function ServiceProvider() {
           </div>
         ))}
       </Container>
+      <CategoriesHome />
     </>
   );
 }

@@ -32,6 +32,7 @@ import ManageQuotes from "./Components/ManageQuotes";
 import SubmitQuotes from "./Components/SubmitQuotes";
 import ViewQuotes from "./Components/ViewQuotes";
 import SearchResults from "./Components/SearchResults";
+import Pricing from "./Components/Pricing";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -299,6 +300,7 @@ function App() {
         <Route path="/task-details/:id" element={<TaskDetails />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/pricing" element= {<Pricing/>}/>
 
         <Route
           path="/service-provider-profile/:id"

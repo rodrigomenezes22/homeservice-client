@@ -10,11 +10,11 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
   const navigate = useNavigate();
 
   // Error on empty search
-  const [ err, setErr ] = useState(false);
+  const [err, setErr] = useState(false);
 
-  const [ city, setCity ] = useState("all");
-  const [ category, setCategory ] = useState("all");
-  const [ searchTerm, setSearchTerm ] = useState("");
+  const [city, setCity] = useState("all");
+  const [category, setCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
@@ -26,20 +26,20 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
 
   const handleSearchTerm = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
-  } 
+  }
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if(searchTerm === "") {
+    if (searchTerm === "") {
       setErr(true);
     } else {
-        navigate(`/search-results/${searchTerm}/${category}/${city}`);
-        setErr(false);
-        const formFields = document.querySelector("#searchform");
-        openSearchBar();
-        formFields.reset();
-        setSearchTerm("");
-        }
+      navigate(`/search-results/${searchTerm}/${category}/${city}`);
+      setErr(false);
+      const formFields = document.querySelector("#searchform");
+      openSearchBar();
+      formFields.reset();
+      setSearchTerm("");
+    }
   };
 
   const getAllCategories = async () => {
@@ -104,6 +104,14 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
                   </span>
                   Service Provider
                 </NavLink>
+                <NavLink className="navbar-item" to="/pricing">
+                  <span class="material-symbols-rounded icon-large">
+                    euro
+                  </span>
+                  Pricing
+                </NavLink>
+
+
                 <NavLink className="navbar-item" to="/about-us">
                   <span className="material-symbols-rounded icon-large">
                     apartment
@@ -155,64 +163,64 @@ function Header({ isAuthenticated, isSerProvider, name, userid, serviceprovideri
       </div>
       {err ? (
         <div class="toast show align-items-center text-bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true" onClick={closeToast}>
-        <div class="d-flex">
-          <div class="toast-body">
-            Search can not be empty.
+          <div class="d-flex">
+            <div class="toast-body">
+              Search can not be empty.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-      </div>
-        ) : "" }
+      ) : ""}
       <div className={openSearch ? "search" : "search mobile-hidden"}>
-      <form id="searchform"  onSubmit={handleSearch}>
-        <div class="input-group">
+        <form id="searchform" onSubmit={handleSearch}>
+          <div class="input-group">
 
 
-          <input
-            type="text"
-            className={err ? "form-control is-invalid" : "form-control"}
-            placeholder="Search"
-            name="searchterm"
-            onChange={handleSearchTerm}
-          />
-          <select
-            id="inputGroupSelect04"
-            className="form-select"
-            aria-label="Example select with button addon"
+            <input
+              type="text"
+              className={err ? "form-control is-invalid" : "form-control"}
+              placeholder="Search"
+              name="searchterm"
+              onChange={handleSearchTerm}
+            />
+            <select
+              id="inputGroupSelect04"
+              className="form-select"
+              aria-label="Example select with button addon"
 
-            onChange={handleCategoryChange}
-          >
-            <option value="all">Select a Category..</option>
-            {categoyList &&
-              categoyList.map((category) => (
-                <option value={category?.categoryid}>
-                  {category?.category}
-                </option>
-              ))}
-          </select>
-          <select
-            class="form-select"
-            id="inputGroupSelect04"
-            aria-label="Example select with button addon"
-
-            onChange={handleCityChange}
-          >
-            <option selected value="all">Select a City...</option>
-            <option value="hamburg">Hamburg</option>
-            <option value="berlin">Berlin</option>
-            <option value="leipzig">Leipzig</option>
-          </select>
-          <button class="btn btn-search" type="submit">
-            <span
-              class="material-symbols-rounded icon-medium"
+              onChange={handleCategoryChange}
             >
-              search
-            </span>
-            <span className="text-search">Find a Service Provider</span>
-          </button>
-          
+              <option value="all">Select a Category..</option>
+              {categoyList &&
+                categoyList.map((category) => (
+                  <option value={category?.categoryid}>
+                    {category?.category}
+                  </option>
+                ))}
+            </select>
+            <select
+              class="form-select"
+              id="inputGroupSelect04"
+              aria-label="Example select with button addon"
 
-        </div>
+              onChange={handleCityChange}
+            >
+              <option selected value="all">Select a City...</option>
+              <option value="hamburg">Hamburg</option>
+              <option value="berlin">Berlin</option>
+              <option value="leipzig">Leipzig</option>
+            </select>
+            <button class="btn btn-search" type="submit">
+              <span
+                class="material-symbols-rounded icon-medium"
+              >
+                search
+              </span>
+              <span className="text-search">Find a Service Provider</span>
+            </button>
+
+
+          </div>
         </form>
       </div>
     </header>
