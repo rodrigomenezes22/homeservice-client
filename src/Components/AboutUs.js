@@ -1,9 +1,9 @@
 import React from "react";
 import "../App.css";
 import { Container, Row, Col } from "react-bootstrap";
-import blackWidow from "../images/black-widow.jpg";
-import womenHero from "../images/women-hero.jpg";
-import ironMan from '../images/iron-man.jpg';
+import blackWidow from "../images/priyanka.jpg";
+import womenHero from "../images/savitha.jpg";
+import ironMan from '../images/rodrigo-profile.jpg';
 import { useNavigate } from "react-router-dom";
 
 
@@ -33,9 +33,21 @@ function AboutUs() {
         </p>
       </div>
       <div className="foundersPic">
+        <div className="wrapper-pic text-center">
         <img src={ironMan} alt="Founder1" className="circle" />
+        <p className="opensans h6 font-primary mt-3">Rodrigo Menezes</p>
+
+        </div>
+        <div className="wrapper-pic text-center">
         <img src={blackWidow} alt="Founder2" className="circle" />
+        <p className="opensans h6 font-primary mt-3">Priyanka Davara</p>
+
+        </div>
+        <div className="wrapper-pic text-center">
         <img src={womenHero} alt="Founder3" className="circle" />
+        <p className="opensans h6 font-primary mt-3">Savitha Krishnan</p>
+
+        </div>
       </div>
       </div>
       <Container fluid>

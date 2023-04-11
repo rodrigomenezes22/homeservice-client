@@ -421,7 +421,7 @@ header {
 /* Cards - admin */
 .card {
   border-radius: 10px !important;
-  border:none!important;
+
 }
 
 .card-admin-properties {
@@ -1393,6 +1393,10 @@ body{background-color:#eee;}
   font-size:large !important;
 }
 @media (max-width: 991px) {
+
+  .card-admin-properties .card-body {
+    flex-direction: column;
+  }
 
   body.no-scroll {
     overflow: hidden;
