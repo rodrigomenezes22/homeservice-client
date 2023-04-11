@@ -2,10 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import Loading from "./Loading";
+
 
 function ManageProperties({ userid }) {
   const navigate = useNavigate();
-
+ 
   const [propertyCount, setPropertyCount] = useState("");
 
   const [tasksCount, setTasksCount] = useState("");
@@ -13,8 +15,11 @@ function ManageProperties({ userid }) {
   const [properties, setProperties] = useState([]);
 
   const [tasks, setTasks] = useState([]);
+   
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const getProperties = async () => {
+    setIsLoading(true);
     console.log(userid);
     try {
       const res = await fetch(
@@ -29,6 +34,7 @@ function ManageProperties({ userid }) {
 
       setPropertyCount(propertyData.length);
       setProperties(propertyData);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -61,6 +67,8 @@ function ManageProperties({ userid }) {
   };
 
   return (
+  <>
+     {isLoading ? <Loading /> : "" }
     <div className="container justify-content-center d-flex align-items-center">
       <div className="has-max-width mt-5">
         <div className=" p-4">
@@ -127,6 +135,7 @@ function ManageProperties({ userid }) {
         </div>
       </div>
     </div>
+  </>  
   );
 }
 
