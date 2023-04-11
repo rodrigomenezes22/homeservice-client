@@ -4,19 +4,22 @@ import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import Loading from "./Loading";
 //import { Link, Navigate } from 'react-router-dom';
 
 function Tasks() {
   const [task, setTask] = useState([]);
   //const [categories, setCategories] = useState([]);
   //const [id ] =useParams
-
+  const [ isLoading, setIsLoading ] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`${process.env.REACT_APP_SERVER_BASE_URL}/api/task/`)
       .then((res) => {
         //console.log(res.data);
         setTask(res.data);
+        setIsLoading(false);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -29,6 +32,7 @@ function Tasks() {
 
   return (
     <>
+    {isLoading ? <Loading /> : "" }
       {/*fluid className='task-grid mt-5  p-4 y'>*/}
       <Container>
         <h1 className="mt-5 mb-5 pacifico font-tertiary">Showing all tasks</h1>
