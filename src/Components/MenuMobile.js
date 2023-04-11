@@ -8,6 +8,7 @@ function MenuMobile({setOpenSearch, openSearch, openSearchBar}) {
   const scrollDirection = useScrollDirection();
 
 
+
   const checkDirection = () => {
     if (scrollDirection === "down") {
       setIsVisible(false);
