@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { format, parseISO } from "date-fns";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Loading from "./Loading";
 
 function SubmitQuotes() {
   const { id } = useParams();
@@ -12,6 +13,8 @@ function SubmitQuotes() {
     taskid: location.state.taskid,
     serviceproviderid: id,
   };
+
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const [quote, setQuote] = useState({
     description: "",
@@ -58,10 +61,13 @@ function SubmitQuotes() {
     } else {
       console.log("input value is not empty");
     }
-
+    setIsLoading(true);
     axios
       .post(`${process.env.REACT_APP_SERVER_BASE_URL}/api/quotes/`, quote)
-      .then((res) => navigate(`/available-tasks/${id}`))
+      .then((res) => {
+        navigate(`/available-tasks/${id}`);
+        setIsLoading(false);
+    })
       .catch((e) => console.log(e));
   };
 
@@ -71,8 +77,11 @@ function SubmitQuotes() {
 
   const { description, price } = quote;
 
+
+
   return (
     <>
+       {isLoading ? <Loading /> : "" }
       <div className="container justify-content-center d-flex align-items-center">
         <div className="has-max-width mt-5">
           <div className=" p-4">
@@ -131,7 +140,7 @@ function SubmitQuotes() {
               ) : (
                 <></>
               )}
-              <button className="btn btn-primary rounded-pill color-primary m-2">
+              <button className="btn btn-primary rounded-pill color-primary mt-4">
                 <div className="button-organizer">
                   Save Quotes
                   <span class="material-symbols-rounded">add_box</span>

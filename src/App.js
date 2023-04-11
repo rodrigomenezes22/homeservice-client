@@ -198,7 +198,7 @@ function App() {
                 setProviderid={setProviderid}
               />
             ) : (
-              <Navigate to="/login-register" />
+              <Navigate to="/login-service" />
             )
           }
         />

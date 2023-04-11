@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, Link  } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import Loading from "./Loading";
 
 function AvailableTasks() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ function AvailableTasks() {
 
   const [serviceProviderData, setServiceProviderData] = useState(null);
   const [tasks, setTasks] = useState([]);
-
+  const [ isLoading, setIsLoading ] = useState(false);
   const getServiceProvider = async () => {
     axios
       .get(
@@ -42,25 +43,40 @@ function AvailableTasks() {
 
   useEffect(() => {
     if (serviceProviderData) {
-      console.log(serviceProviderData.categoryid);
+      setIsLoading(true);
       axios
         .get(
           `${process.env.REACT_APP_SERVER_BASE_URL}/api/task/search/${serviceProviderData.categoryid}`
         )
         .then((res) => {
-          console.log(res.data);
           setTasks(res.data);
+          console.log("whhaaaat", res.data);
+          setIsLoading(false);
         })
         .catch((e) => console.log(e));
     }
   }, [serviceProviderData]);
 
   return (
+    <>    
+    {isLoading ? <Loading /> : "" }
     <section>
       <div className="container">
-        <h1 className="opensans font-primary h3 mt-5">
-          Available tasks for your Business Activity
-        </h1>
+        <div className="container-fluid button-organizer">
+          <h1 className="opensans font-primary h3 mt-5 mb-5 flex-grow-1 text-start">
+            Available tasks for your Business Activity
+          </h1>
+          <Link
+            className="btn btn-primary rounded-pill color-secondary  m-2"
+            to={-1}
+          >
+            <div className="button-organizer">
+              <span class="material-symbols-rounded">chevron_left</span>
+              Back to properties
+            </div>
+          </Link>
+        </div>
+
         {tasks &&
           tasks.map((task) => (
             <div className="card-admin-properties">
@@ -120,8 +136,20 @@ function AvailableTasks() {
               </div>
             </div>
           ))}
+      <Link
+        className="btn btn-primary rounded-pill color-secondary  m-2 mb-5"
+        to={-1}
+      >
+        <div className="button-organizer">
+          <span class="material-symbols-rounded">chevron_left</span>
+          Back to properties
+        </div>
+      </Link>
       </div>
+
+
     </section>
+    </>
   );
 }
 
