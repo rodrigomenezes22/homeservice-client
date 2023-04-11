@@ -56,10 +56,10 @@ function App() {
   const openSearchBar = () => {
     if(openSearch === true) {
       setOpenSearch(false);
-      body.classList.add('no-scroll');
+
     } else {
       setOpenSearch(true);
-      body.classList.remove('no-scroll');
+
     }
 
   }
