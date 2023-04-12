@@ -73,7 +73,7 @@ function ServiceProvidersCategory() {
                         <span className="material-symbols-rounded icon-large font-primary">
                           {provider.categoryimage}
                         </span>
-                        {provider.category.category}
+                        {provider.category}
                       </div>
                       </h2> 
 

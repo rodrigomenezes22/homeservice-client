@@ -49,6 +49,11 @@ function MenuMobile({setOpenSearch, openSearch, openSearchBar}) {
           Service Providers
           <span className="material-symbols-rounded">chevron_right</span>
         </NavLink>
+
+        <NavLink className="footer-nav" onClick={handleMenu} to="/pricing">
+          Pricing
+          <span className="material-symbols-rounded">chevron_right</span>
+        </NavLink>
         <NavLink className="footer-nav" onClick={handleMenu} to="/about-us">
           About Us
           <span className="material-symbols-rounded">chevron_right</span>
